@@ -66,15 +66,15 @@
 			[
 				{
 					"backtrace" : 4,
-					"path" : "C:/Users/danny/CLionProjects/Software_engineering/."
+					"path" : "C:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/."
 				},
 				{
 					"backtrace" : 4,
-					"path" : "C:/Users/danny/CLionProjects/Software_engineering/./gtest-1.7.0/include"
+					"path" : "C:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/./gtest-1.7.0/include"
 				},
 				{
 					"backtrace" : 4,
-					"path" : "C:/Users/danny/CLionProjects/Software_engineering/./tinyxml_2_6_2/tinyxml"
+					"path" : "C:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/./tinyxml_2_6_2/tinyxml"
 				}
 			],
 			"language" : "CXX",
@@ -111,7 +111,7 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "-LC:\\Users\\danny\\CLionProjects\\Software_engineering\\.\\gtest-1.7.0\\lib",
+				"fragment" : "-LC:\\Users\\ibrab\\OneDrive\\Documents\\untitled\\Project_Software_Engineer\\.\\gtest-1.7.0\\lib",
 				"role" : "libraryPath"
 			},
 			{

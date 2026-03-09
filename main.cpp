@@ -36,6 +36,7 @@ int main(int argc, char **argv) {
         return 1;
     }
     cout<<"lolo"<<endl;
+    cout<<"getit"<<endl;
 
     // Loop over alle <CD> elementen binnen de <CATALOG> [cite: 57, 58]
     for (TiXmlElement* cd = root->FirstChildElement("ROOM"); cd != NULL; cd = cd->NextSiblingElement("ROOM")) {

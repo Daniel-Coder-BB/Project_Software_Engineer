@@ -1,0 +1,32 @@
+[
+{
+  "directory": "C:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/cmake-build-debug",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.2\\bin\\mingw\\bin\\G__~1.EXE -IC:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/. -IC:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/./gtest-1.7.0/include -IC:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/./tinyxml_2_6_2/tinyxml  -Wall -Werror -O2 -g -std=gnu++17 -fdiagnostics-color=always -o CMakeFiles\\uitproberen.dir\\main.cpp.obj -c C:\\Users\\ibrab\\OneDrive\\Documents\\untitled\\Project_Software_Engineer\\main.cpp",
+  "file": "C:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/main.cpp",
+  "output": "C:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/cmake-build-debug/CMakeFiles/uitproberen.dir/main.cpp.obj"
+},
+{
+  "directory": "C:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/cmake-build-debug",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.2\\bin\\mingw\\bin\\G__~1.EXE -IC:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/. -IC:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/./gtest-1.7.0/include -IC:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/./tinyxml_2_6_2/tinyxml  -Wall -Werror -O2 -g -std=gnu++17 -fdiagnostics-color=always -o CMakeFiles\\uitproberen.dir\\tinyxml_2_6_2\\tinyxml\\tinyxml.cpp.obj -c C:\\Users\\ibrab\\OneDrive\\Documents\\untitled\\Project_Software_Engineer\\tinyxml_2_6_2\\tinyxml\\tinyxml.cpp",
+  "file": "C:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/tinyxml_2_6_2/tinyxml/tinyxml.cpp",
+  "output": "C:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/cmake-build-debug/CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxml.cpp.obj"
+},
+{
+  "directory": "C:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/cmake-build-debug",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.2\\bin\\mingw\\bin\\G__~1.EXE -IC:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/. -IC:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/./gtest-1.7.0/include -IC:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/./tinyxml_2_6_2/tinyxml  -Wall -Werror -O2 -g -std=gnu++17 -fdiagnostics-color=always -o CMakeFiles\\uitproberen.dir\\tinyxml_2_6_2\\tinyxml\\tinyxmlparser.cpp.obj -c C:\\Users\\ibrab\\OneDrive\\Documents\\untitled\\Project_Software_Engineer\\tinyxml_2_6_2\\tinyxml\\tinyxmlparser.cpp",
+  "file": "C:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/tinyxml_2_6_2/tinyxml/tinyxmlparser.cpp",
+  "output": "C:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/cmake-build-debug/CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxmlparser.cpp.obj"
+},
+{
+  "directory": "C:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/cmake-build-debug",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.2\\bin\\mingw\\bin\\G__~1.EXE -IC:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/. -IC:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/./gtest-1.7.0/include -IC:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/./tinyxml_2_6_2/tinyxml  -Wall -Werror -O2 -g -std=gnu++17 -fdiagnostics-color=always -o CMakeFiles\\uitproberen.dir\\tinyxml_2_6_2\\tinyxml\\tinyxmlerror.cpp.obj -c C:\\Users\\ibrab\\OneDrive\\Documents\\untitled\\Project_Software_Engineer\\tinyxml_2_6_2\\tinyxml\\tinyxmlerror.cpp",
+  "file": "C:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/tinyxml_2_6_2/tinyxml/tinyxmlerror.cpp",
+  "output": "C:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/cmake-build-debug/CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxmlerror.cpp.obj"
+},
+{
+  "directory": "C:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/cmake-build-debug",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.2\\bin\\mingw\\bin\\G__~1.EXE -IC:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/. -IC:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/./gtest-1.7.0/include -IC:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/./tinyxml_2_6_2/tinyxml  -Wall -Werror -O2 -g -std=gnu++17 -fdiagnostics-color=always -o CMakeFiles\\uitproberen.dir\\tinyxml_2_6_2\\tinyxml\\tinystr.cpp.obj -c C:\\Users\\ibrab\\OneDrive\\Documents\\untitled\\Project_Software_Engineer\\tinyxml_2_6_2\\tinyxml\\tinystr.cpp",
+  "file": "C:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/tinyxml_2_6_2/tinyxml/tinystr.cpp",
+  "output": "C:/Users/ibrab/OneDrive/Documents/untitled/Project_Software_Engineer/cmake-build-debug/CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinystr.cpp.obj"
+}
+]
