@@ -24,11 +24,13 @@ set(SOURCE_FILES
         tinyxml_2_6_2/tinyxml/tinyxmlparser.cpp
         tinyxml_2_6_2/tinyxml/tinyxmlerror.cpp
         tinyxml_2_6_2/tinyxml/tinystr.cpp
+        Classes/File_Reader/File_Reader.h
         # Voeg hier Largest.cpp of Fighterplane.cpp toe als je die hebt [cite: 169, 186]
 )
 
 # 4. Target aanmaken (Eén executable waar je alles in doet)
-add_executable(uitproberen main.cpp ${SOURCE_FILES})
+add_executable(uitproberen main.cpp ${SOURCE_FILES}
+        Classes/File_Reader/File_Reader.h)
 
 # 5. Linken van bibliotheken
 # Je moet gtest EN pthread linken aan je hoofdprogramma om de testen te draaien
