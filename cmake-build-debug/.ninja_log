@@ -1,14 +1,7 @@
 # ninja log v6
-138	489	7944207204630144	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxmlerror.cpp.obj	4638770233c875ef
-178	563	7944207205027542	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinystr.cpp.obj	7186974febee873d
-11	1645	7944207833286345	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxmlparser.cpp.obj	b4e61e77e7998a04
-13	2078	7944249653460992	CMakeFiles/uitproberen.dir/main.cpp.obj	6c33abb6b99ca4c3
-44	1990	7944207203690780	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxml.cpp.obj	78c591265be70000
-2079	3588	7944249674121462	uitproberen.exe	fb3fcb396a2f7cfb
-4	392	7947698452195009	build.ninja	196e975f1c3cae1e
-57	351	7947698827743124	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxmlerror.cpp.obj	579cfe779fcfe1ed
-66	544	7947698827823131	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinystr.cpp.obj	1277c4a22c7261dd
-48	1876	7947698827643142	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxmlparser.cpp.obj	aaade03b7e028d14
-38	2063	7947698827552158	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxml.cpp.obj	8436c72deb12f43a
-30	1913	7947699325139215	CMakeFiles/uitproberen.dir/main.cpp.obj	e0299f96097c0aa0
-1915	3014	7947699343985059	uitproberen.exe	11e53fa15a3ecfc1
+112	448	7947721164761137	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxmlerror.cpp.obj	31a177605cd37eeb
+149	570	7947721165138527	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinystr.cpp.obj	8ba23c9ecdecc41d
+76	1734	7947721164408287	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxmlparser.cpp.obj	6cfb09c9dca5fc65
+8	2178	7947721163723290	CMakeFiles/uitproberen.dir/main.cpp.obj	f991cd459545ae92
+43	1964	7947721164067908	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxml.cpp.obj	f2a117092c585874
+2180	3838	7947721185431627	uitproberen.exe	3987e48f1393b69d
