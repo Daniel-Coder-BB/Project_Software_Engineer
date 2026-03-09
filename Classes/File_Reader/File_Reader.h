@@ -6,6 +6,7 @@
 #define FILE_READER_H
 #include "tinyxml.h"
 #include "string"
+#include "CD.h"
 using namespace std;
 
 class File_Reader {
@@ -16,9 +17,10 @@ public:
     /*
      * This function check if there is a error with reading a file
      * @param file_name a string that contains the name of the file
+     * @param doc the document wich contains the xml_file data
      * @return if failed (1) or succeeded (0)
      */
-    int fout_bij_laden(string file_name);
+    static int fout_bij_laden(const string& file_name,TiXmlDocument doc);
     /*
      * This function check if the root exist
      * @param root the FirstChildElement() of the document
@@ -27,10 +29,12 @@ public:
     int if_root_exits(TiXmlElement* root);
     /*
      * This function prints out the room, identifier, capacity
-     *  @param root
+     *  @param room contains the room it is in
      *  @return none
      */
-    void pars_file(TiXmlElement* root);
+    void pars_file(CD room);
+
+
 
 
 };

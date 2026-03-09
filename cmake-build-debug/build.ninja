@@ -84,6 +84,20 @@ build CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinystr.cpp.obj: CXX_COMP
   OBJECT_DIR = CMakeFiles\uitproberen.dir
   OBJECT_FILE_DIR = CMakeFiles\uitproberen.dir\tinyxml_2_6_2\tinyxml
 
+build CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.obj: CXX_COMPILER__uitproberen_unscanned_Debug C$:/Users/danny/CLionProjects/Software_engineering/Classes/File_Reader/File_Reader.cpp || cmake_object_order_depends_target_uitproberen
+  DEP_FILE = CMakeFiles\uitproberen.dir\Classes\File_Reader\File_Reader.cpp.obj.d
+  FLAGS = -Wall -Werror -O2 -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/danny/CLionProjects/Software_engineering/. -IC:/Users/danny/CLionProjects/Software_engineering/./gtest-1.7.0/include -IC:/Users/danny/CLionProjects/Software_engineering/./tinyxml_2_6_2/tinyxml
+  OBJECT_DIR = CMakeFiles\uitproberen.dir
+  OBJECT_FILE_DIR = CMakeFiles\uitproberen.dir\Classes\File_Reader
+
+build CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.obj: CXX_COMPILER__uitproberen_unscanned_Debug C$:/Users/danny/CLionProjects/Software_engineering/Classes/Room/Room.cpp || cmake_object_order_depends_target_uitproberen
+  DEP_FILE = CMakeFiles\uitproberen.dir\Classes\Room\Room.cpp.obj.d
+  FLAGS = -Wall -Werror -O2 -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/danny/CLionProjects/Software_engineering/. -IC:/Users/danny/CLionProjects/Software_engineering/./gtest-1.7.0/include -IC:/Users/danny/CLionProjects/Software_engineering/./tinyxml_2_6_2/tinyxml
+  OBJECT_DIR = CMakeFiles\uitproberen.dir
+  OBJECT_FILE_DIR = CMakeFiles\uitproberen.dir\Classes\Room
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target uitproberen
@@ -92,7 +106,7 @@ build CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinystr.cpp.obj: CXX_COMP
 #############################################
 # Link the executable uitproberen.exe
 
-build uitproberen.exe: CXX_EXECUTABLE_LINKER__uitproberen_Debug CMakeFiles/uitproberen.dir/main.cpp.obj CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxml.cpp.obj CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxmlparser.cpp.obj CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxmlerror.cpp.obj CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinystr.cpp.obj
+build uitproberen.exe: CXX_EXECUTABLE_LINKER__uitproberen_Debug CMakeFiles/uitproberen.dir/main.cpp.obj CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxml.cpp.obj CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxmlparser.cpp.obj CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxmlerror.cpp.obj CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinystr.cpp.obj CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.obj CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.obj
   FLAGS = -Wall -Werror -O2 -g
   LINK_FLAGS = -pthread
   LINK_LIBRARIES = -lgtest  -lpthread  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32

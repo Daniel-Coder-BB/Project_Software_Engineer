@@ -5,3 +5,11 @@
 8	2178	7947721163723290	CMakeFiles/uitproberen.dir/main.cpp.obj	f991cd459545ae92
 43	1964	7947721164067908	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxml.cpp.obj	f2a117092c585874
 2180	3838	7947721185431627	uitproberen.exe	3987e48f1393b69d
+68	198	7947754362572254	CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.obj	f301e0c29de24b44
+41	249	7947754362298768	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxmlerror.cpp.obj	31a177605cd37eeb
+49	334	7947754362382967	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinystr.cpp.obj	8ba23c9ecdecc41d
+59	910	7947754362483132	CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.obj	5cd22cd72565b860
+33	1595	7947754362211718	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxmlparser.cpp.obj	6cfb09c9dca5fc65
+24	1801	7947754362131348	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxml.cpp.obj	f2a117092c585874
+13	2063	7947754362015956	CMakeFiles/uitproberen.dir/main.cpp.obj	f991cd459545ae92
+2063	3601	7947754382519988	uitproberen.exe	6ea33757daf91d69
