@@ -1,0 +1,8 @@
+# ninja log v6
+138	489	7944207204630144	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxmlerror.cpp.obj	4638770233c875ef
+178	563	7944207205027542	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinystr.cpp.obj	7186974febee873d
+11	1645	7944207833286345	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxmlparser.cpp.obj	b4e61e77e7998a04
+13	2078	7944249653460992	CMakeFiles/uitproberen.dir/main.cpp.obj	6c33abb6b99ca4c3
+44	1990	7944207203690780	CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxml.cpp.obj	78c591265be70000
+2079	3588	7944249674121462	uitproberen.exe	fb3fcb396a2f7cfb
+4	392	7947688339998332	build.ninja	196e975f1c3cae1e

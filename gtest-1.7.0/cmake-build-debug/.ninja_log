@@ -1,0 +1,5 @@
+# ninja log v6
+18	1593	7944231478807166	CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj	921efb63bf5282c5
+8	7329	7944231478707228	CMakeFiles/gtest.dir/src/gtest-all.cc.obj	c5d0c9f8201f3359
+7336	8599	7944231551981189	libgtest.a	6ef558d4a7282770
+8599	8752	7944231564623783	libgtest_main.a	67f90d52f2dfa949
