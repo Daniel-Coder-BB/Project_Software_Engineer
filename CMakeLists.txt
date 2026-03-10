@@ -30,6 +30,8 @@ set(SOURCE_FILES
         Classes/Meeting/Meeting.h
         Classes/Participation/Participation.cpp
         Classes/Participation/Participation.h
+        Classes/Meeting/Meeting.cpp
+        Classes/Meeting/Meeting.h
 
 
 )
@@ -42,7 +44,9 @@ add_executable(uitproberen main.cpp ${SOURCE_FILES}
         Classes/Meeting/Meeting.h
         Classes/Participation/Participation.h
         Classes/Participation/Participation.cpp
-        )
+        Classes/Meeting/Meeting.cpp
+        Classes/Meeting/Meeting.h
+)
 
 # 5. Linken van bibliotheken
 # Je moet gtest EN pthread linken aan je hoofdprogramma om de testen te draaien
