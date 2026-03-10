@@ -128,6 +128,54 @@ uitproberen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\uitproberen.dir\build.make CMakeFiles/uitproberen.dir/build
 .PHONY : uitproberen/fast
 
+Classes/File_Reader/File_Reader.obj: Classes/File_Reader/File_Reader.cpp.obj
+.PHONY : Classes/File_Reader/File_Reader.obj
+
+# target to build an object file
+Classes/File_Reader/File_Reader.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\uitproberen.dir\build.make CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.obj
+.PHONY : Classes/File_Reader/File_Reader.cpp.obj
+
+Classes/File_Reader/File_Reader.i: Classes/File_Reader/File_Reader.cpp.i
+.PHONY : Classes/File_Reader/File_Reader.i
+
+# target to preprocess a source file
+Classes/File_Reader/File_Reader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\uitproberen.dir\build.make CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.i
+.PHONY : Classes/File_Reader/File_Reader.cpp.i
+
+Classes/File_Reader/File_Reader.s: Classes/File_Reader/File_Reader.cpp.s
+.PHONY : Classes/File_Reader/File_Reader.s
+
+# target to generate assembly for a file
+Classes/File_Reader/File_Reader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\uitproberen.dir\build.make CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.s
+.PHONY : Classes/File_Reader/File_Reader.cpp.s
+
+Classes/Room/Room.obj: Classes/Room/Room.cpp.obj
+.PHONY : Classes/Room/Room.obj
+
+# target to build an object file
+Classes/Room/Room.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\uitproberen.dir\build.make CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.obj
+.PHONY : Classes/Room/Room.cpp.obj
+
+Classes/Room/Room.i: Classes/Room/Room.cpp.i
+.PHONY : Classes/Room/Room.i
+
+# target to preprocess a source file
+Classes/Room/Room.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\uitproberen.dir\build.make CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.i
+.PHONY : Classes/Room/Room.cpp.i
+
+Classes/Room/Room.s: Classes/Room/Room.cpp.s
+.PHONY : Classes/Room/Room.s
+
+# target to generate assembly for a file
+Classes/Room/Room.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\uitproberen.dir\build.make CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.s
+.PHONY : Classes/Room/Room.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -257,6 +305,12 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... uitproberen
+	@echo ... Classes/File_Reader/File_Reader.obj
+	@echo ... Classes/File_Reader/File_Reader.i
+	@echo ... Classes/File_Reader/File_Reader.s
+	@echo ... Classes/Room/Room.obj
+	@echo ... Classes/Room/Room.i
+	@echo ... Classes/Room/Room.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
