@@ -1,3 +1,8 @@
+//
+// Created by danny on 10-Mar-26.
+//
+
+#include <gtest/gtest.h>
 #include <iostream>
 #include "tinyxml.h"
 #include "Classes/Room/Room.h"
@@ -16,7 +21,7 @@ using namespace std;
  *@param room_element an XML element with the ROOM tag
  *@return new_room a room of the type ROOM with all the details
  */
-Room parse_room_element(TiXmlElement* room_element) {
+Room t_parse_room_element(TiXmlElement* room_element) {
     Room new_room;
     if (room_element->FirstChildElement("NAME")) {
         new_room.set_name(room_element->FirstChildElement("NAME")->GetText());
@@ -38,7 +43,7 @@ Room parse_room_element(TiXmlElement* room_element) {
  *@param meeting_element an XML element with the MEETING tag
  *@return new_meeting a meeting of the type MEETING with all the details
  */
-Meeting parse_meeting_element(TiXmlElement* meeting_element) {
+Meeting t_parse_meeting_element(TiXmlElement* meeting_element) {
     Meeting new_meeting;
     if (meeting_element->FirstChildElement("LABEL")) {
         new_meeting.set_label(meeting_element->FirstChildElement("LABEL")->GetText());
@@ -63,7 +68,7 @@ Meeting parse_meeting_element(TiXmlElement* meeting_element) {
  *@param participation_element an XML element with the PARTICIPATION tag
  *@return new_participation a participation of the type PARTICIPATION with all the details
  */
-Participation parse_participation_element(TiXmlElement* participation_element) {
+Participation t_parse_participation_element(TiXmlElement* participation_element) {
     Participation new_participation;
     if (participation_element->FirstChildElement("USER")) {
         new_participation.set_user(participation_element->FirstChildElement("USER")->GetText());
@@ -83,7 +88,7 @@ Participation parse_participation_element(TiXmlElement* participation_element) {
  *@param doc a TiXmlDocument wich contains our XML file
  *@return if failed (1) or if no errors(0)
  */
-int file_error_check(const string& filename,TiXmlDocument& doc) {
+int t_file_error_check(const string& filename,TiXmlDocument& doc) {
 
     if (!doc.LoadFile(filename.c_str())) {
         cerr << "Fout bij laden: " << doc.ErrorDesc() << endl;
@@ -93,7 +98,7 @@ int file_error_check(const string& filename,TiXmlDocument& doc) {
 }
 
 
-int if_root_exists(TiXmlElement* root) {
+int t_if_root_exists(TiXmlElement* root) {
     if (root == NULL) {
         cerr << "Geen root element gevonden." << endl;
         return 1;
@@ -104,37 +109,22 @@ int if_root_exists(TiXmlElement* root) {
 
 
 int main(int argc, char **argv) {
-    TiXmlDocument doc;
-    string filename = "../XML_files/Room.xml";
-    file_error_check(filename,doc);
+    std::cout<<"starten van de testen in main..."<<std::endl;
+    ::testing::InitGoogleTest(&argc, argv);
 
-    TiXmlElement* root = doc.FirstChildElement(); // Dit is <system>
-    if_root_exists(root);
-
-    // Loop over alle <ROOm> elementen binnen  <SYSTEM> [cite: 57, 58]
-    for (TiXmlElement* room = root->FirstChildElement("ROOM"); room != NULL; room = room->NextSiblingElement("ROOM")) {
-        Room new_room = parse_room_element(room);
-        new_room.print();
-    }
-
-    for (TiXmlElement* meeting = root->FirstChildElement("MEETING"); meeting != NULL; meeting = meeting->NextSiblingElement("MEETING")) {
-        Meeting new_meeting = parse_meeting_element(meeting);
-        new_meeting.print();
-    }
-
-    for (TiXmlElement* participation = root->FirstChildElement("PARTICIPATION"); participation != NULL; participation = participation->NextSiblingElement("PARTICIPATION")) {
-        Participation new_participation = parse_participation_element(participation);
-        new_participation.print();
-    }
-    doc.Clear();
-
-    // Netjes opruimen [cite: 107]
-
-
-
+    return RUN_ALL_TESTS();
     return 0;
 }
 
-int maaltafel(int x) {
-    return x*2;
+TEST(file_error_check_test,happy_day_test) {
+    TiXmlDocument test_xml_doc;
+    string test_xml_directory = "../Tests/test_XML_file/happy_day.xml";
+    EXPECT_EQ(t_file_error_check(test_xml_directory,test_xml_doc),0);
+}
+
+TEST(file_error_check_test,file_not_loading_test) {
+    TiXmlDocument test_xml_doc;
+    string test_xml_directory = "happy_day.xml";
+    EXPECT_EQ(t_file_error_check(test_xml_directory,test_xml_doc),1);
+
 }

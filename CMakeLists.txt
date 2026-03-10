@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.28)
-project(uitproberen)
+project(planning_system_project)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -18,36 +18,24 @@ include_directories(
 # 2. Zoek de gtest bibliotheek
 link_directories(./gtest-1.7.0/lib)
 
-# 3. Bronbestanden
-set(SOURCE_FILES
+# 3. Gedeelde Bronbestanden (bestanden die BEIDE nodig hebben)
+# Let op: GEEN main.cpp en GEEN test-bestanden hierin zetten!
+set(SHARED_SOURCES
         tinyxml_2_6_2/tinyxml/tinyxml.cpp
         tinyxml_2_6_2/tinyxml/tinyxmlparser.cpp
         tinyxml_2_6_2/tinyxml/tinyxmlerror.cpp
         tinyxml_2_6_2/tinyxml/tinystr.cpp
         Classes/Room/Room.cpp
-        Classes/Room/Room.h
         Classes/Meeting/Meeting.cpp
-        Classes/Meeting/Meeting.h
         Classes/Participation/Participation.cpp
-        Classes/Participation/Participation.h
-        Classes/Meeting/Meeting.cpp
-        Classes/Meeting/Meeting.h
-
-
 )
 
-# 4. Target aanmaken (Eén executable waar je alles in doet)
-add_executable(uitproberen main.cpp ${SOURCE_FILES}
-        Classes/Room/Room.cpp
-        Classes/Room/Room.h
-        Classes/Meeting/Meeting.cpp
-        Classes/Meeting/Meeting.h
-        Classes/Participation/Participation.h
-        Classes/Participation/Participation.cpp
-        Classes/Meeting/Meeting.cpp
-        Classes/Meeting/Meeting.h
-)
+# 4. TARGET 1: Je echte applicatie (Planning System)
+# Deze gebruikt main.cpp voor de normale werking
+add_executable(planning_system main.cpp ${SHARED_SOURCES})
+target_link_libraries(planning_system pthread)
 
-# 5. Linken van bibliotheken
-# Je moet gtest EN pthread linken aan je hoofdprogramma om de testen te draaien
-target_link_libraries(uitproberen gtest pthread)
+# 5. TARGET 2: Je Google Tests
+# Deze gebruikt de test-file en de gedeelde code, maar NIET main.cpp
+add_executable(run_tests Tests/TEST_parse_xxx_element.cpp ${SHARED_SOURCES})
+target_link_libraries(run_tests gtest pthread)
