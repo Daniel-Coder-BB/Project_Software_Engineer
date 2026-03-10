@@ -2,7 +2,7 @@
 #include "tinyxml.h"
 #include "CD.h"
 #include <gtest/gtest.h>
-
+#include <chrono>
 
 using namespace std;
 
@@ -23,12 +23,21 @@ CD parseCDElement(TiXmlElement* cdElem) {
     return newCD;
 }
 
-int main(int argc, char **argv) {
-    TiXmlDocument doc;
-    if (!doc.LoadFile("../XML_files/Room.xml")) {
+
+
+int file_error_check(const string& filename,TiXmlDocument doc) {
+
+    if (!doc.LoadFile(filename.c_str())) {
         cerr << "Fout bij laden: " << doc.ErrorDesc() << endl;
         return 1;
     }
+    return 0;
+}
+
+int main(int argc, char **argv) {
+    TiXmlDocument doc;
+    string filename = "../XML_files/Room.xml";
+    file_error_check(filename,doc);
 
     TiXmlElement* root = doc.FirstChildElement(); // Dit is <CATALOG>
     if (root == NULL) {
