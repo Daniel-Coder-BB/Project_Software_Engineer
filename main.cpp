@@ -5,7 +5,7 @@
 #include <gtest/gtest.h>
 #include <chrono>
 #include "Classes/Meeting/Meeting.h"
-
+#include "Classes/Meetingplanner/Meetingplanner.h"
 #include "Classes/Participation/Participation.h"
 
 using namespace std;
@@ -104,6 +104,7 @@ int if_root_exists(TiXmlElement* root) {
 
 
 int main(int argc, char **argv) {
+    MeetingPlanner planner;
     TiXmlDocument doc;
     string filename = "../XML_files/Room.xml";
     file_error_check(filename,doc);
@@ -114,6 +115,7 @@ int main(int argc, char **argv) {
     // Loop over alle <ROOm> elementen binnen  <SYSTEM> [cite: 57, 58]
     for (TiXmlElement* room = root->FirstChildElement("ROOM"); room != NULL; room = room->NextSiblingElement("ROOM")) {
         Room new_room = parse_room_element(room);
+        planner.addRoom(new_room);
         new_room.print();
     }
 
@@ -126,6 +128,7 @@ int main(int argc, char **argv) {
         Participation new_participation = parse_participation_element(participation);
         new_participation.print();
     }
+    planner.getRooms();
     doc.Clear();
 
     // Netjes opruimen [cite: 107]
