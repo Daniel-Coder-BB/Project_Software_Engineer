@@ -19,3 +19,9 @@ string Participation::get_meeting() const {
 void Participation::set_meeting(const string &meeting) {
     this->meeting = meeting;
 }
+void Participation::print()
+{
+    std::cout << "User: " << user << std::endl;
+    std::cout << "Meeting: " << meeting << std::endl;
+
+}

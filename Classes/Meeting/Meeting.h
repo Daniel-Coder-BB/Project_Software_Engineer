@@ -30,6 +30,8 @@ public:
     [[nodiscard]] std::string get_date() const;
 
     void set_date(const std::string &date);
+
+    void print();
 };
 
 

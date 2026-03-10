@@ -3,6 +3,7 @@
 #include "CD.h"
 #include <gtest/gtest.h>
 #include <chrono>
+#include "Classes/Meeting/Meeting.h"
 
 using namespace std;
 
@@ -63,7 +64,6 @@ int main(int argc, char **argv) {
         CD mijnCD = parseCDElement(room);
         mijnCD.print();
     }
-
     doc.Clear();
 
     // Netjes opruimen [cite: 107]

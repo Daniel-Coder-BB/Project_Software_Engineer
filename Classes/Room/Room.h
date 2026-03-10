@@ -27,6 +27,8 @@ public:
     unsigned int get_capacity() const;
 
     void set_capacity(unsigned int capacity);
+
+    void print();
 };
 
 

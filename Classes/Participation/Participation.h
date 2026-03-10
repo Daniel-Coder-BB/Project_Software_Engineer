@@ -21,6 +21,8 @@ public:
     string get_meeting() const;
 
     void set_meeting(const string &meeting);
+
+    void print();
 };
 
 

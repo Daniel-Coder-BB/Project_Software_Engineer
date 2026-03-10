@@ -27,3 +27,9 @@ unsigned int Room::get_capacity() const {
 void Room::set_capacity(unsigned int capacity) {
     this->capacity = capacity;
 }
+void Room::print()
+{
+    std::cout << "Name: " << name << std::endl;
+    std::cout << "Identifier: " << identifier << std::endl;
+    std::cout << "Capacity: " << capacity << std::endl;
+}

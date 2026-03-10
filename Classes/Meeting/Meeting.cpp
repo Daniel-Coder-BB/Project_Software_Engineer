@@ -3,6 +3,8 @@
 //
 
 #include "Meeting.h"
+#include <iostream>
+
 
 std::string Meeting::get_label() const {
     return label;
@@ -34,4 +36,11 @@ std::string Meeting::get_date() const {
 
 void Meeting::set_date(const std::string &date) {
     this->date = date;
+}
+void Meeting::print()
+{
+    std::cout << "Label: " << label << std::endl;
+    std::cout << "Identifier: " << identifier << std::endl;
+    std::cout << "Room: " << room << std::endl;
+    std::cout << "Date: " << date << std::endl;
 }
