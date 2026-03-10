@@ -5,7 +5,6 @@
 #ifndef UITPROBEREN_MEETING_H
 #define UITPROBEREN_MEETING_H
 #include <string>
-#include <ctime>
 
 
 class Meeting {
@@ -13,40 +12,24 @@ private:
     std::string label;
     std::string identifier;
     std::string room;
-    tm data;
+    std::string date;
 
 public:
-    std::string get_label() const {
-        return label;
-    }
+    [[nodiscard]] std::string get_label() const;
 
-    void set_label(const std::string &new_label) {
-        this->label = new_label;
-    }
+    void set_label(const std::string &label);
 
-    std::string get_identifier() const {
-        return identifier;
-    }
+    [[nodiscard]] std::string get_identifier() const;
 
-    void set_identifier(const std::string &new_identifier) {
-        this->identifier = identifier;
-    }
+    void set_identifier(const std::string &identifier);
 
-    std::string get_room() const {
-        return room;
-    }
+    [[nodiscard]] std::string get_room() const;
 
-    void set_room(const std::string &new_room) {
-        this->room = new_room;
-    }
+    void set_room(const std::string &room);
 
-    tm get_data() const {
-        return data;
-    }
+    [[nodiscard]] std::string get_date() const;
 
-    void set_data(const tm &data) {
-        this->data = data;
-    }
+    void set_date(const std::string &date);
 };
 
 
