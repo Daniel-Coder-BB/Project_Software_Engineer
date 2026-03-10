@@ -1,36 +1,25 @@
 //
-// Created by danny on 10-Mar-26.
+// Created by ibrab on 10.03.2026.
 //
 
-#ifndef MEETING_H
-#define MEETING_H
+#ifndef UITPROBEREN_MEETING_H
+#define UITPROBEREN_MEETING_H
+
 #include <iostream>
 #include <string>
-#include <chrono>
+#include <ctime>
 using namespace std;
-
 
 class Meeting {
 private:
     string label;
     string identifier;
     string room;
-
+    tm data{};
 
 public:
-    string get_label() const;
 
-    void set_label(const string &label);
-
-    string get_identifier() const;
-
-    void set_identifier(const string &identifier);
-
-    string get_room() const;
-
-    void set_room(const string &room);
 };
 
 
-
-#endif //MEETING_H
+#endif //UITPROBEREN_MEETING_H
