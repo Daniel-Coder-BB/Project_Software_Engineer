@@ -39,6 +39,7 @@ void Meeting::set_date(const std::string &date) {
 }
 void Meeting::print()
 {
+    std::cout << "MEEETING"<<std::endl;
     std::cout << "Label: " << label << std::endl;
     std::cout << "Identifier: " << identifier << std::endl;
     std::cout << "Room: " << room << std::endl;

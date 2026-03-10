@@ -29,7 +29,8 @@ void Room::set_capacity(unsigned int capacity) {
 }
 void Room::print()
 {
-    std::cout << "Name: " << name << std::endl;
-    std::cout << "Identifier: " << identifier << std::endl;
-    std::cout << "Capacity: " << capacity << std::endl;
+    std::cout<<"ROOM: "<<std::endl;
+    std::cout << "Name: " << name;
+    std::cout << " | Identifier: " << identifier;
+    std::cout << " | Capacity: " << capacity << std::endl;
 }
