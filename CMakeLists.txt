@@ -28,6 +28,7 @@ set(SHARED_SOURCES
         Classes/Room/Room.cpp
         Classes/Meeting/Meeting.cpp
         Classes/Participation/Participation.cpp
+        Classes/Meetingplanner/Meetingplanner.cpp
 )
 
 # 4. TARGET 1: Je echte applicatie (Planning System)

@@ -116,19 +116,21 @@ int main(int argc, char **argv) {
     for (TiXmlElement* room = root->FirstChildElement("ROOM"); room != NULL; room = room->NextSiblingElement("ROOM")) {
         Room new_room = parse_room_element(room);
         planner.addRoom(new_room);
-        new_room.print();
     }
 
     for (TiXmlElement* meeting = root->FirstChildElement("MEETING"); meeting != NULL; meeting = meeting->NextSiblingElement("MEETING")) {
         Meeting new_meeting = parse_meeting_element(meeting);
-        new_meeting.print();
+        planner.addMeeting(new_meeting);
+
     }
 
     for (TiXmlElement* participation = root->FirstChildElement("PARTICIPATION"); participation != NULL; participation = participation->NextSiblingElement("PARTICIPATION")) {
         Participation new_participation = parse_participation_element(participation);
-        new_participation.print();
+        planner.addParticipation(new_participation);
     }
-    planner.getRooms();
+    for (auto& room: planner.getParticipations()) {
+        room.print();
+    }
     doc.Clear();
 
     // Netjes opruimen [cite: 107]
