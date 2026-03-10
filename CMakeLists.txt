@@ -32,6 +32,8 @@ set(SOURCE_FILES
         Classes/Participation/Participation.h
         Classes/Meeting/Meeting.cpp
         Classes/Meeting/Meeting.h
+        Classes/Meetingplanner/Meetingplanner.cpp
+        Classes/Meetingplanner/Meetingplanner.h
 
 
 )
