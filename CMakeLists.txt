@@ -18,27 +18,31 @@ include_directories(
 # 2. Zoek de gtest bibliotheek
 link_directories(./gtest-1.7.0/lib)
 
-# 3. Bronbestanden (TinyXML + eventuele andere .cpp files zoals Largest.cpp)
+# 3. Bronbestanden
 set(SOURCE_FILES
         tinyxml_2_6_2/tinyxml/tinyxml.cpp
         tinyxml_2_6_2/tinyxml/tinyxmlparser.cpp
         tinyxml_2_6_2/tinyxml/tinyxmlerror.cpp
         tinyxml_2_6_2/tinyxml/tinystr.cpp
-        Classes/File_Reader/File_Reader.h
-        Classes/File_Reader/File_Reader.cpp
-        Classes/File_Reader/File_Reader.h
         Classes/Room/Room.cpp
         Classes/Room/Room.h
-        # Voeg hier Largest.cpp of Fighterplane.cpp toe als je die hebt [cite: 169, 186]
+        Classes/Meeting/Meeting.cpp
+        Classes/Meeting/Meeting.h
+        Classes/Participation/Participation.cpp
+        Classes/Participation/Participation.h
+
+
 )
 
 # 4. Target aanmaken (Eén executable waar je alles in doet)
 add_executable(uitproberen main.cpp ${SOURCE_FILES}
-        Classes/File_Reader/File_Reader.h
-        Classes/File_Reader/File_Reader.cpp
-        Classes/File_Reader/File_Reader.h
         Classes/Room/Room.cpp
-        Classes/Room/Room.h)
+        Classes/Room/Room.h
+        Classes/Meeting/Meeting.cpp
+        Classes/Meeting/Meeting.h
+        Classes/Participation/Participation.h
+        Classes/Participation/Participation.cpp
+        )
 
 # 5. Linken van bibliotheken
 # Je moet gtest EN pthread linken aan je hoofdprogramma om de testen te draaien
