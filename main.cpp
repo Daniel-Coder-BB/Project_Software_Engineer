@@ -25,7 +25,7 @@ CD parseCDElement(TiXmlElement* cdElem) {
 
 
 
-int file_error_check(const string& filename,TiXmlDocument doc) {
+int file_error_check(const string& filename,TiXmlDocument& doc) {
 
     if (!doc.LoadFile(filename.c_str())) {
         cerr << "Fout bij laden: " << doc.ErrorDesc() << endl;

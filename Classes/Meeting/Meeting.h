@@ -8,14 +8,14 @@
 #include <string>
 #include <chrono>
 using namespace std;
-using Date = std::chrono::year_month_day;
+
 
 class Meeting {
 private:
     string label;
     string identifier;
     string room;
-    Date data;
+
 
 public:
     string get_label() const;
