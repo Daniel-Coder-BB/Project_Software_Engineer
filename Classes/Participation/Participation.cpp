@@ -21,7 +21,8 @@ void Participation::set_meeting(const string &meeting) {
 }
 void Participation::print()
 {
-    std::cout << "User: " << user << std::endl;
-    std::cout << "Meeting: " << meeting << std::endl;
+    std::cout<<"PARTICIPATION: "<<std::endl;
+    std::cout << "User: " << user;
+    std::cout << " | Meeting: " << meeting << std::endl;
 
 }

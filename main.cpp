@@ -10,6 +10,12 @@
 
 using namespace std;
 
+
+/*
+ *This function parses the room tag of an XML file
+ *@param room_element an XML element with the ROOM tag
+ *@return new_room a room of the type ROOM with all the details
+ */
 Room parse_room_element(TiXmlElement* room_element) {
     Room new_room;
     if (room_element->FirstChildElement("NAME")) {
@@ -27,6 +33,11 @@ Room parse_room_element(TiXmlElement* room_element) {
     return new_room;
 }
 
+/*
+ *This function parses the meeting tag of an XML file
+ *@param meeting_element an XML element with the MEETING tag
+ *@return new_meeting a meeting of the type MEETING with all the details
+ */
 Meeting parse_meeting_element(TiXmlElement* meeting_element) {
     Meeting new_meeting;
     if (meeting_element->FirstChildElement("LABEL")) {
@@ -40,20 +51,25 @@ Meeting parse_meeting_element(TiXmlElement* meeting_element) {
     }
 
     if (meeting_element->FirstChildElement("DATE")) {
-        new_meeting.set_room(meeting_element->FirstChildElement("DATE")->GetText());
+        new_meeting.set_date(meeting_element->FirstChildElement("DATE")->GetText());
     }
 
     return new_meeting;
 }
 
 
+/*
+ *This function parses the participation tag of an XML file
+ *@param participation_element an XML element with the PARTICIPATION tag
+ *@return new_participation a participation of the type PARTICIPATION with all the details
+ */
 Participation parse_participation_element(TiXmlElement* participation_element) {
     Participation new_participation;
-    if (participation_element->FirstChildElement("LABEL")) {
-        new_participation.set_user(participation_element->FirstChildElement("LABEL")->GetText());
+    if (participation_element->FirstChildElement("USER")) {
+        new_participation.set_user(participation_element->FirstChildElement("USER")->GetText());
     }
-    if (participation_element->FirstChildElement("IDENTIFIER")) {
-        new_participation.set_meeting(participation_element->FirstChildElement("IDENTIFIER")->GetText());
+    if (participation_element->FirstChildElement("MEETING")) {
+        new_participation.set_meeting(participation_element->FirstChildElement("MEETING")->GetText());
     }
 
 
@@ -108,7 +124,7 @@ int main(int argc, char **argv) {
         new_meeting.print();
     }
 
-    for (TiXmlElement* participation = root->FirstChildElement("MEETING"); participation != NULL; participation = participation->NextSiblingElement("MEETING")) {
+    for (TiXmlElement* participation = root->FirstChildElement("PARTICIPATION"); participation != NULL; participation = participation->NextSiblingElement("PARTICIPATION")) {
         Participation new_participation = parse_participation_element(participation);
         new_participation.print();
     }
