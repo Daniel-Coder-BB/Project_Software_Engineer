@@ -146,26 +146,11 @@ CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinystr.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinystr.cpp.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ibrab\OneDrive\Documents\untitled1\Project_Software_Engineer\tinyxml_2_6_2\tinyxml\tinystr.cpp -o CMakeFiles\uitproberen.dir\tinyxml_2_6_2\tinyxml\tinystr.cpp.s
 
-CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.obj: CMakeFiles/uitproberen.dir/flags.make
-CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.obj: CMakeFiles/uitproberen.dir/includes_CXX.rsp
-CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.obj: C:/Users/ibrab/OneDrive/Documents/untitled1/Project_Software_Engineer/Classes/File_Reader/File_Reader.cpp
-CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.obj: CMakeFiles/uitproberen.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ibrab\OneDrive\Documents\untitled1\Project_Software_Engineer\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.obj -MF CMakeFiles\uitproberen.dir\Classes\File_Reader\File_Reader.cpp.obj.d -o CMakeFiles\uitproberen.dir\Classes\File_Reader\File_Reader.cpp.obj -c C:\Users\ibrab\OneDrive\Documents\untitled1\Project_Software_Engineer\Classes\File_Reader\File_Reader.cpp
-
-CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ibrab\OneDrive\Documents\untitled1\Project_Software_Engineer\Classes\File_Reader\File_Reader.cpp > CMakeFiles\uitproberen.dir\Classes\File_Reader\File_Reader.cpp.i
-
-CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ibrab\OneDrive\Documents\untitled1\Project_Software_Engineer\Classes\File_Reader\File_Reader.cpp -o CMakeFiles\uitproberen.dir\Classes\File_Reader\File_Reader.cpp.s
-
 CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.obj: CMakeFiles/uitproberen.dir/flags.make
 CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.obj: CMakeFiles/uitproberen.dir/includes_CXX.rsp
 CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.obj: C:/Users/ibrab/OneDrive/Documents/untitled1/Project_Software_Engineer/Classes/Room/Room.cpp
 CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.obj: CMakeFiles/uitproberen.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ibrab\OneDrive\Documents\untitled1\Project_Software_Engineer\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ibrab\OneDrive\Documents\untitled1\Project_Software_Engineer\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.obj"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.obj -MF CMakeFiles\uitproberen.dir\Classes\Room\Room.cpp.obj.d -o CMakeFiles\uitproberen.dir\Classes\Room\Room.cpp.obj -c C:\Users\ibrab\OneDrive\Documents\untitled1\Project_Software_Engineer\Classes\Room\Room.cpp
 
 CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.i: cmake_force
@@ -176,6 +161,36 @@ CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ibrab\OneDrive\Documents\untitled1\Project_Software_Engineer\Classes\Room\Room.cpp -o CMakeFiles\uitproberen.dir\Classes\Room\Room.cpp.s
 
+CMakeFiles/uitproberen.dir/Classes/Meeting/Meeting.cpp.obj: CMakeFiles/uitproberen.dir/flags.make
+CMakeFiles/uitproberen.dir/Classes/Meeting/Meeting.cpp.obj: CMakeFiles/uitproberen.dir/includes_CXX.rsp
+CMakeFiles/uitproberen.dir/Classes/Meeting/Meeting.cpp.obj: C:/Users/ibrab/OneDrive/Documents/untitled1/Project_Software_Engineer/Classes/Meeting/Meeting.cpp
+CMakeFiles/uitproberen.dir/Classes/Meeting/Meeting.cpp.obj: CMakeFiles/uitproberen.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ibrab\OneDrive\Documents\untitled1\Project_Software_Engineer\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/uitproberen.dir/Classes/Meeting/Meeting.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/uitproberen.dir/Classes/Meeting/Meeting.cpp.obj -MF CMakeFiles\uitproberen.dir\Classes\Meeting\Meeting.cpp.obj.d -o CMakeFiles\uitproberen.dir\Classes\Meeting\Meeting.cpp.obj -c C:\Users\ibrab\OneDrive\Documents\untitled1\Project_Software_Engineer\Classes\Meeting\Meeting.cpp
+
+CMakeFiles/uitproberen.dir/Classes/Meeting/Meeting.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/uitproberen.dir/Classes/Meeting/Meeting.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ibrab\OneDrive\Documents\untitled1\Project_Software_Engineer\Classes\Meeting\Meeting.cpp > CMakeFiles\uitproberen.dir\Classes\Meeting\Meeting.cpp.i
+
+CMakeFiles/uitproberen.dir/Classes/Meeting/Meeting.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/uitproberen.dir/Classes/Meeting/Meeting.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ibrab\OneDrive\Documents\untitled1\Project_Software_Engineer\Classes\Meeting\Meeting.cpp -o CMakeFiles\uitproberen.dir\Classes\Meeting\Meeting.cpp.s
+
+CMakeFiles/uitproberen.dir/Classes/Participation/Participation.cpp.obj: CMakeFiles/uitproberen.dir/flags.make
+CMakeFiles/uitproberen.dir/Classes/Participation/Participation.cpp.obj: CMakeFiles/uitproberen.dir/includes_CXX.rsp
+CMakeFiles/uitproberen.dir/Classes/Participation/Participation.cpp.obj: C:/Users/ibrab/OneDrive/Documents/untitled1/Project_Software_Engineer/Classes/Participation/Participation.cpp
+CMakeFiles/uitproberen.dir/Classes/Participation/Participation.cpp.obj: CMakeFiles/uitproberen.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\ibrab\OneDrive\Documents\untitled1\Project_Software_Engineer\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/uitproberen.dir/Classes/Participation/Participation.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/uitproberen.dir/Classes/Participation/Participation.cpp.obj -MF CMakeFiles\uitproberen.dir\Classes\Participation\Participation.cpp.obj.d -o CMakeFiles\uitproberen.dir\Classes\Participation\Participation.cpp.obj -c C:\Users\ibrab\OneDrive\Documents\untitled1\Project_Software_Engineer\Classes\Participation\Participation.cpp
+
+CMakeFiles/uitproberen.dir/Classes/Participation/Participation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/uitproberen.dir/Classes/Participation/Participation.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\ibrab\OneDrive\Documents\untitled1\Project_Software_Engineer\Classes\Participation\Participation.cpp > CMakeFiles\uitproberen.dir\Classes\Participation\Participation.cpp.i
+
+CMakeFiles/uitproberen.dir/Classes/Participation/Participation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/uitproberen.dir/Classes/Participation/Participation.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\ibrab\OneDrive\Documents\untitled1\Project_Software_Engineer\Classes\Participation\Participation.cpp -o CMakeFiles\uitproberen.dir\Classes\Participation\Participation.cpp.s
+
 # Object files for target uitproberen
 uitproberen_OBJECTS = \
 "CMakeFiles/uitproberen.dir/main.cpp.obj" \
@@ -183,8 +198,9 @@ uitproberen_OBJECTS = \
 "CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxmlparser.cpp.obj" \
 "CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxmlerror.cpp.obj" \
 "CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinystr.cpp.obj" \
-"CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.obj" \
-"CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.obj"
+"CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.obj" \
+"CMakeFiles/uitproberen.dir/Classes/Meeting/Meeting.cpp.obj" \
+"CMakeFiles/uitproberen.dir/Classes/Participation/Participation.cpp.obj"
 
 # External object files for target uitproberen
 uitproberen_EXTERNAL_OBJECTS =
@@ -194,13 +210,14 @@ uitproberen.exe: CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxml.cpp.ob
 uitproberen.exe: CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxmlparser.cpp.obj
 uitproberen.exe: CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinyxmlerror.cpp.obj
 uitproberen.exe: CMakeFiles/uitproberen.dir/tinyxml_2_6_2/tinyxml/tinystr.cpp.obj
-uitproberen.exe: CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.obj
 uitproberen.exe: CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.obj
+uitproberen.exe: CMakeFiles/uitproberen.dir/Classes/Meeting/Meeting.cpp.obj
+uitproberen.exe: CMakeFiles/uitproberen.dir/Classes/Participation/Participation.cpp.obj
 uitproberen.exe: CMakeFiles/uitproberen.dir/build.make
 uitproberen.exe: CMakeFiles/uitproberen.dir/linkLibs.rsp
 uitproberen.exe: CMakeFiles/uitproberen.dir/objects1.rsp
 uitproberen.exe: CMakeFiles/uitproberen.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\ibrab\OneDrive\Documents\untitled1\Project_Software_Engineer\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable uitproberen.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\ibrab\OneDrive\Documents\untitled1\Project_Software_Engineer\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable uitproberen.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\uitproberen.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

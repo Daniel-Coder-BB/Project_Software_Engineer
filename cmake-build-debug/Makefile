@@ -128,29 +128,53 @@ uitproberen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\uitproberen.dir\build.make CMakeFiles/uitproberen.dir/build
 .PHONY : uitproberen/fast
 
-Classes/File_Reader/File_Reader.obj: Classes/File_Reader/File_Reader.cpp.obj
-.PHONY : Classes/File_Reader/File_Reader.obj
+Classes/Meeting/Meeting.obj: Classes/Meeting/Meeting.cpp.obj
+.PHONY : Classes/Meeting/Meeting.obj
 
 # target to build an object file
-Classes/File_Reader/File_Reader.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\uitproberen.dir\build.make CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.obj
-.PHONY : Classes/File_Reader/File_Reader.cpp.obj
+Classes/Meeting/Meeting.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\uitproberen.dir\build.make CMakeFiles/uitproberen.dir/Classes/Meeting/Meeting.cpp.obj
+.PHONY : Classes/Meeting/Meeting.cpp.obj
 
-Classes/File_Reader/File_Reader.i: Classes/File_Reader/File_Reader.cpp.i
-.PHONY : Classes/File_Reader/File_Reader.i
+Classes/Meeting/Meeting.i: Classes/Meeting/Meeting.cpp.i
+.PHONY : Classes/Meeting/Meeting.i
 
 # target to preprocess a source file
-Classes/File_Reader/File_Reader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\uitproberen.dir\build.make CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.i
-.PHONY : Classes/File_Reader/File_Reader.cpp.i
+Classes/Meeting/Meeting.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\uitproberen.dir\build.make CMakeFiles/uitproberen.dir/Classes/Meeting/Meeting.cpp.i
+.PHONY : Classes/Meeting/Meeting.cpp.i
 
-Classes/File_Reader/File_Reader.s: Classes/File_Reader/File_Reader.cpp.s
-.PHONY : Classes/File_Reader/File_Reader.s
+Classes/Meeting/Meeting.s: Classes/Meeting/Meeting.cpp.s
+.PHONY : Classes/Meeting/Meeting.s
 
 # target to generate assembly for a file
-Classes/File_Reader/File_Reader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\uitproberen.dir\build.make CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.s
-.PHONY : Classes/File_Reader/File_Reader.cpp.s
+Classes/Meeting/Meeting.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\uitproberen.dir\build.make CMakeFiles/uitproberen.dir/Classes/Meeting/Meeting.cpp.s
+.PHONY : Classes/Meeting/Meeting.cpp.s
+
+Classes/Participation/Participation.obj: Classes/Participation/Participation.cpp.obj
+.PHONY : Classes/Participation/Participation.obj
+
+# target to build an object file
+Classes/Participation/Participation.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\uitproberen.dir\build.make CMakeFiles/uitproberen.dir/Classes/Participation/Participation.cpp.obj
+.PHONY : Classes/Participation/Participation.cpp.obj
+
+Classes/Participation/Participation.i: Classes/Participation/Participation.cpp.i
+.PHONY : Classes/Participation/Participation.i
+
+# target to preprocess a source file
+Classes/Participation/Participation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\uitproberen.dir\build.make CMakeFiles/uitproberen.dir/Classes/Participation/Participation.cpp.i
+.PHONY : Classes/Participation/Participation.cpp.i
+
+Classes/Participation/Participation.s: Classes/Participation/Participation.cpp.s
+.PHONY : Classes/Participation/Participation.s
+
+# target to generate assembly for a file
+Classes/Participation/Participation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\uitproberen.dir\build.make CMakeFiles/uitproberen.dir/Classes/Participation/Participation.cpp.s
+.PHONY : Classes/Participation/Participation.cpp.s
 
 Classes/Room/Room.obj: Classes/Room/Room.cpp.obj
 .PHONY : Classes/Room/Room.obj
@@ -305,9 +329,12 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... uitproberen
-	@echo ... Classes/File_Reader/File_Reader.obj
-	@echo ... Classes/File_Reader/File_Reader.i
-	@echo ... Classes/File_Reader/File_Reader.s
+	@echo ... Classes/Meeting/Meeting.obj
+	@echo ... Classes/Meeting/Meeting.i
+	@echo ... Classes/Meeting/Meeting.s
+	@echo ... Classes/Participation/Participation.obj
+	@echo ... Classes/Participation/Participation.i
+	@echo ... Classes/Participation/Participation.s
 	@echo ... Classes/Room/Room.obj
 	@echo ... Classes/Room/Room.i
 	@echo ... Classes/Room/Room.s

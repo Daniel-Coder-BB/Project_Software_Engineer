@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.obj"
-  "CMakeFiles/uitproberen.dir/Classes/File_Reader/File_Reader.cpp.obj.d"
+  "CMakeFiles/uitproberen.dir/Classes/Meeting/Meeting.cpp.obj"
+  "CMakeFiles/uitproberen.dir/Classes/Meeting/Meeting.cpp.obj.d"
+  "CMakeFiles/uitproberen.dir/Classes/Participation/Participation.cpp.obj"
+  "CMakeFiles/uitproberen.dir/Classes/Participation/Participation.cpp.obj.d"
   "CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.obj"
   "CMakeFiles/uitproberen.dir/Classes/Room/Room.cpp.obj.d"
   "CMakeFiles/uitproberen.dir/main.cpp.obj"
