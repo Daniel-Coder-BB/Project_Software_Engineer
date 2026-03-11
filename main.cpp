@@ -150,18 +150,37 @@ int main(int argc, char **argv) {
     // Loop over alle <ROOm> elementen binnen  <SYSTEM> [cite: 57, 58]
     for (TiXmlElement* room = root->FirstChildElement("ROOM"); room != NULL; room = room->NextSiblingElement("ROOM")) {
         Room new_room = parse_room_element(room);
-        planner.addRoom(new_room);
+        if (new_room.get_name() != "Fout") {
+            planner.addRoom(new_room);
+        }
+        else {
+            cerr<<"Er was een fout bij Room"<<endl;
+        }
+
     }
 
     for (TiXmlElement* meeting = root->FirstChildElement("MEETING"); meeting != NULL; meeting = meeting->NextSiblingElement("MEETING")) {
         Meeting new_meeting = parse_meeting_element(meeting);
-        planner.addMeeting(new_meeting);
+        if (new_meeting.get_room() != "fout") {
+            planner.addMeeting(new_meeting);
+        }
+        else {
+            cerr<<"Er was een fout bij meeting"<<endl;
+        }
+
 
     }
 
     for (TiXmlElement* participation = root->FirstChildElement("PARTICIPATION"); participation != NULL; participation = participation->NextSiblingElement("PARTICIPATION")) {
         Participation new_participation = parse_participation_element(participation);
-        planner.addParticipation(new_participation);
+        if(new_participation.get_meeting() != "fout") {
+            planner.addParticipation(new_participation);
+        }
+
+        else {
+            cerr<<"Er was een fout bij meeting"<<endl;
+        }
+
     }
     for (auto& room: planner.getParticipations()) {
         room.print();
