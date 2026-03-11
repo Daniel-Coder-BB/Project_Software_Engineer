@@ -56,7 +56,10 @@ void MeetingPlanner::set_occupied_rooms(const std::vector<string> &occupied_room
     this->occupied_rooms = occupied_rooms;
 }
 
-
+/*
+ * Deze functie geeft een aparte text file die de informatie geeft van de meetings en rooms
+ * @return Een text file
+ */
 void MeetingPlanner::simpleOutput() {
     std::ofstream file("../output.txt");
 
