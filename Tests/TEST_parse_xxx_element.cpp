@@ -31,8 +31,20 @@ Room t_parse_room_element(TiXmlElement* room_element) {
     }
     if (room_element->FirstChildElement("CAPACITY")) {
         // Omzetten van string naar int
-        int capacity = std::stoi(room_element->FirstChildElement("CAPACITY")->GetText());
-        new_room.set_capacity(capacity);
+        try {
+            int capacity = std::stoi(room_element->FirstChildElement("CAPACITY")->GetText());
+            new_room.set_capacity(capacity);
+        }
+        catch (const std::invalid_argument& e) {
+            cerr<<"Capacity moet een getal zijn";
+            new_room.set_capacity(0);
+        }
+
+    }
+    if (new_room.get_name() == "" or new_room.get_identifier()=="" or new_room.get_capacity() == 0) {
+        new_room.set_capacity(0);
+        new_room.set_name("Fout");
+        new_room.set_identifier("Fout");
     }
 
     return new_room;
@@ -123,8 +135,91 @@ TEST(file_error_check_test,happy_day_test) {
 }
 
 TEST(file_error_check_test,file_not_loading_test) {
-    TiXmlDocument test_xml_doc;
-    string test_xml_directory = "happy_day.xml";
-    EXPECT_EQ(t_file_error_check(test_xml_directory,test_xml_doc),1);
+    TiXmlDocument test_doc;
+    string test_filename = "happy_day.xml";
+    EXPECT_EQ(t_file_error_check(test_filename,test_doc),1);
 
+}
+
+TEST(t_if_root_exists,happy_day_test_has_root) {
+    TiXmlDocument test_doc;
+    string test_filename = "../Tests/test_XML_file/happy_day.xml";
+    t_file_error_check(test_filename,test_doc);
+
+    TiXmlElement* test_root = test_doc.FirstChildElement();
+    EXPECT_EQ(t_if_root_exists(test_root),0);
+
+}
+
+TEST(t_if_root_exists,happy_day_test_has_no_root) {
+    TiXmlDocument test_doc;
+    string test_filename = "../Tests/test_XML_file/rootless.xml";
+    t_file_error_check(test_filename,test_doc);
+
+    TiXmlElement* test_root = test_doc.FirstChildElement();
+    EXPECT_EQ(t_if_root_exists(test_root),1);
+
+}
+
+TEST(t_parse_room_element,happy_day_test) {
+    TiXmlDocument test_doc;
+    string test_filename = "../Tests/test_XML_file/happy_day.xml";
+    t_file_error_check(test_filename,test_doc);
+
+    TiXmlElement* test_root = test_doc.FirstChildElement(); // Dit is <system>
+    t_if_root_exists(test_root);
+
+    Room room;
+    room.set_name("M.G.023");
+    room.set_identifier("Room98732");
+    room.set_capacity(10);
+
+    // Loop over alle <ROOm> elementen binnen  <SYSTEM> [cite: 57, 58]
+    for (TiXmlElement* test_room = test_root->FirstChildElement("ROOM"); test_room != NULL; test_room = test_room->NextSiblingElement("ROOM")) {
+        EXPECT_EQ(t_parse_room_element(test_room),room);
+
+
+    }
+}
+
+TEST(t_parse_room_element,missing_information_test) {
+    TiXmlDocument test_doc;
+    string test_filename = "../Tests/test_XML_file/missing_information.xml";
+    t_file_error_check(test_filename,test_doc);
+
+    TiXmlElement* test_root = test_doc.FirstChildElement(); // Dit is <system>
+    t_if_root_exists(test_root);
+
+    Room room;
+    room.set_name("Fout");
+    room.set_identifier("Fout");
+    room.set_capacity(0);
+
+    // Loop over alle <ROOm> elementen binnen  <SYSTEM> [cite: 57, 58]
+    for (TiXmlElement* test_room = test_root->FirstChildElement("ROOM"); test_room != NULL; test_room = test_room->NextSiblingElement("ROOM")) {
+        EXPECT_EQ(t_parse_room_element(test_room),room);
+
+
+    }
+}
+
+TEST(t_parse_room_element,capacity_not_integer_test) {
+    TiXmlDocument test_doc;
+    string test_filename = "../Tests/test_XML_file/capacity_not_int.xml";
+    t_file_error_check(test_filename,test_doc);
+
+    TiXmlElement* test_root = test_doc.FirstChildElement(); // Dit is <system>
+    t_if_root_exists(test_root);
+
+    Room room;
+    room.set_name("Fout");
+    room.set_identifier("Fout");
+    room.set_capacity(0);
+
+    // Loop over alle <ROOm> elementen binnen  <SYSTEM> [cite: 57, 58]
+    for (TiXmlElement* test_room = test_root->FirstChildElement("ROOM"); test_room != NULL; test_room = test_room->NextSiblingElement("ROOM")) {
+        EXPECT_EQ(t_parse_room_element(test_room),room);
+
+
+    }
 }
