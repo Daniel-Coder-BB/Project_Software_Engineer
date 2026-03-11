@@ -1,11 +1,20 @@
-//
-// Created by danny on 10-Mar-26.
-//
-
 #ifndef PARTICIPATION_H
 #define PARTICIPATION_H
+
+/**
+ * Korte beschrijving:
+ * Deze klasse stelt een Participation voor.
+ *
+ * @authors Bruno Luango en Ibrahim Akiyev
+ * @date 11/03/2026
+ * @version 1.0
+ */
+
+// Include blok
 #include <iostream>
 #include <string>
+
+// Globale using statements
 using namespace std;
 
 

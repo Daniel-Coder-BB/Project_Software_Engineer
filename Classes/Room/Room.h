@@ -1,11 +1,20 @@
-//
-// Created by danny on 09-Mar-26.
-//
-
 #ifndef ROOM_H
 #define ROOM_H
+
+/**
+ * Korte beschrijving:
+ * Deze klasse stelt een Participation voor.
+ *
+ * @authors Bruno Luango en Ibrahim Akiyev
+ * @date 11/03/2026
+ * @version 1.0
+ */
+
+// Include blok
 #include <iostream>
 #include <string>
+
+// Globale using statements
 using namespace std;
 
 

@@ -1,7 +1,13 @@
-//
-// Created by danny on 10-Mar-26.
-//
+/**
+ * Korte beschrijving:
+ * Deze klasse stelt een Participation voor.
+ *
+ * @authors Bruno Luango en Ibrahim Akiyev
+ * @date 11/03/2026
+ * @version 1.0
+ */
 
+// Include blok
 #include "Participation.h"
 
 string Participation::get_user() const {
