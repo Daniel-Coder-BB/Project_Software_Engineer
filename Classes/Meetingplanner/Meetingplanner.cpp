@@ -11,7 +11,6 @@
 #include "MeetingPlanner.h"
 #include <fstream>
 #include <iostream>
-#include <pstl/execution_defs.h>
 
 
 void MeetingPlanner::addRoom(const Room& room) {
@@ -19,7 +18,18 @@ void MeetingPlanner::addRoom(const Room& room) {
 }
 
 void MeetingPlanner::addMeeting(const Meeting& meeting) {
-    meetings.push_back(meeting);
+    bool cancel_meeting = false;
+
+    for (string occupied_room: occupied_rooms) {
+        if (meeting.get_room() == occupied_room) {
+            cerr << "This room is occupied. Meeting cancelled"  <<endl;
+            cancel_meeting = true;
+        }
+    }
+    if (!cancel_meeting) {
+        meetings.push_back(meeting);
+        occupied_rooms.push_back(meeting.get_room());
+    }
 }
 
 void MeetingPlanner::addParticipation(const Participation& participation) {
@@ -37,6 +47,15 @@ std::vector<Meeting>& MeetingPlanner::getMeetings() {
 std::vector<Participation>& MeetingPlanner::getParticipations() {
     return participations;
 }
+
+std::vector<string> MeetingPlanner::get_occupied_rooms() const {
+    return occupied_rooms;
+}
+
+void MeetingPlanner::set_occupied_rooms(const std::vector<string> &occupied_rooms) {
+    this->occupied_rooms = occupied_rooms;
+}
+
 
 void MeetingPlanner::simpleOutput() {
     std::ofstream file("output.txt");

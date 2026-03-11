@@ -10,10 +10,9 @@
 #include <gtest/gtest.h>
 #include <chrono>
 #include <pstl/execution_defs.h>
-
 #include "Classes/Meeting/Meeting.h"
-
 #include "Classes/Participation/Participation.h"
+#include <Classes/Meetingplanner/Meetingplanner.h>
 
 using namespace std;
 
@@ -309,4 +308,96 @@ TEST(test_parse_participation_element, missing_information_test) {
     for (TiXmlElement* test_participation = test_root->FirstChildElement("PARTICIPATION"); test_participation != NULL; test_participation = test_participation->NextSiblingElement("PARTICIPATION")) {
         EXPECT_EQ(t_parse_participation_element(test_participation),participation);
     }
+}
+TEST(test_meeting_planner, happy_day_test) {
+    MeetingPlanner test_planner;
+    TiXmlDocument test_doc;
+    string test_filename = "../Tests/test_XML_file/happy_day.xml";
+    t_file_error_check(test_filename,test_doc);
+
+    TiXmlElement* test_root = test_doc.FirstChildElement(); // Dit is <system>
+    t_if_root_exists(test_root);
+
+    // Loop over alle <ROOm> elementen binnen  <SYSTEM> [cite: 57, 58]
+    for (TiXmlElement* room = test_root->FirstChildElement("ROOM"); room != NULL; room = room->NextSiblingElement("ROOM")) {
+        Room new_room = t_parse_room_element(room);
+        if (new_room.get_name() != "Fout") {
+            test_planner.addRoom(new_room);
+        }
+        else {
+        }
+
+    }
+
+    for (TiXmlElement* meeting = test_root->FirstChildElement("MEETING"); meeting != NULL; meeting = meeting->NextSiblingElement("MEETING")) {
+        Meeting new_meeting = t_parse_meeting_element(meeting);
+        if (new_meeting.get_room() != "fout") {
+            test_planner.addMeeting(new_meeting);
+        }
+        else {
+
+        }
+
+
+    }
+
+    for (TiXmlElement* participation = test_root->FirstChildElement("PARTICIPATION"); participation != NULL; participation = participation->NextSiblingElement("PARTICIPATION")) {
+        Participation new_participation = t_parse_participation_element(participation);
+        if(new_participation.get_meeting() != "fout") {
+            test_planner.addParticipation(new_participation);
+        }
+
+        else {
+        }
+
+    }
+
+    EXPECT_EQ(test_planner.getMeetings().size(), (size_t)1);
+
+}
+TEST(test_meeting_planner, meeting_cancelled_test) {
+    MeetingPlanner test_planner;
+    TiXmlDocument test_doc;
+    string test_filename = "../Tests/test_XML_file/meeting_cancelled.xml";
+    t_file_error_check(test_filename,test_doc);
+
+    TiXmlElement* test_root = test_doc.FirstChildElement(); // Dit is <system>
+    t_if_root_exists(test_root);
+
+    // Loop over alle <ROOm> elementen binnen  <SYSTEM> [cite: 57, 58]
+    for (TiXmlElement* room = test_root->FirstChildElement("ROOM"); room != NULL; room = room->NextSiblingElement("ROOM")) {
+        Room new_room = t_parse_room_element(room);
+        if (new_room.get_name() != "Fout") {
+            test_planner.addRoom(new_room);
+        }
+        else {
+        }
+
+    }
+
+    for (TiXmlElement* meeting = test_root->FirstChildElement("MEETING"); meeting != NULL; meeting = meeting->NextSiblingElement("MEETING")) {
+        Meeting new_meeting = t_parse_meeting_element(meeting);
+        if (new_meeting.get_room() != "fout") {
+            test_planner.addMeeting(new_meeting);
+        }
+        else {
+
+        }
+
+
+    }
+
+    for (TiXmlElement* participation = test_root->FirstChildElement("PARTICIPATION"); participation != NULL; participation = participation->NextSiblingElement("PARTICIPATION")) {
+        Participation new_participation = t_parse_participation_element(participation);
+        if(new_participation.get_meeting() != "fout") {
+            test_planner.addParticipation(new_participation);
+        }
+
+        else {
+        }
+
+    }
+
+    EXPECT_EQ(test_planner.getMeetings().size(), (size_t)1);
+
 }

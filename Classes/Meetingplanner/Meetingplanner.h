@@ -15,12 +15,14 @@
 #include "Classes//Room/Room.h"
 #include "Classes//Meeting/Meeting.h"
 #include "Classes//Participation/Participation.h"
+#include <string>
 
 class MeetingPlanner {
 private:
     std::vector<Room> rooms;
     std::vector<Meeting> meetings;
     std::vector<Participation> participations;
+    std::vector<string> occupied_rooms;
 
 public:
     void addRoom(const Room& room);
@@ -30,6 +32,21 @@ public:
     std::vector<Room>& getRooms();
     std::vector<Meeting>& getMeetings();
     std::vector<Participation>& getParticipations();
+
+    std::vector<string> get_occupied_rooms() const;
+
+    void set_occupied_rooms(const std::vector<string> &occupied_rooms);
+
+    friend bool operator==(const MeetingPlanner &lhs, const MeetingPlanner &rhs) {
+        return lhs.rooms == rhs.rooms
+               && lhs.meetings == rhs.meetings
+               && lhs.participations == rhs.participations
+               && lhs.occupied_rooms == rhs.occupied_rooms;
+    }
+
+    friend bool operator!=(const MeetingPlanner &lhs, const MeetingPlanner &rhs) {
+        return !(lhs == rhs);
+    }
 
     void simpleOutput();
 };
