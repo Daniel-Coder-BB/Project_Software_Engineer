@@ -37,8 +37,21 @@ Room parse_room_element(TiXmlElement* room_element) {
     }
     if (room_element->FirstChildElement("CAPACITY")) {
         // Omzetten van string naar int
-        int capacity = std::stoi(room_element->FirstChildElement("CAPACITY")->GetText());
-        new_room.set_capacity(capacity);
+        try {
+            int capacity = std::stoi(room_element->FirstChildElement("CAPACITY")->GetText());
+            new_room.set_capacity(capacity);
+        }
+        catch (const std::invalid_argument& e) {
+            cerr<<"Capacity moet een getal zijn";
+            new_room.set_capacity(0);
+        }
+
+    }
+
+    if (new_room.get_name() == "" or new_room.get_identifier()=="" or new_room.get_capacity() == 0) {
+        new_room.set_capacity(0);
+        new_room.set_name("Fout");
+        new_room.set_identifier("Fout");
     }
 
     return new_room;

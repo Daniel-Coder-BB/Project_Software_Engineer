@@ -37,6 +37,16 @@ public:
 
     void set_capacity(unsigned int capacity);
 
+    friend bool operator==(const Room &lhs, const Room &rhs) {
+        return lhs.name == rhs.name
+               && lhs.identifier == rhs.identifier
+               && lhs.capacity == rhs.capacity;
+    }
+
+    friend bool operator!=(const Room &lhs, const Room &rhs) {
+        return !(lhs == rhs);
+    }
+
     void print();
 };
 
