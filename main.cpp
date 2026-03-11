@@ -36,7 +36,7 @@ Room parse_room_element(TiXmlElement* room_element) {
         new_room.set_identifier(room_element->FirstChildElement("IDENTIFIER")->GetText());
     }
     if (room_element->FirstChildElement("CAPACITY")) {
-        // Omzetten van string naar int
+        // if capacity is not a string throw error
         try {
             int capacity = std::stoi(room_element->FirstChildElement("CAPACITY")->GetText());
             new_room.set_capacity(capacity);
@@ -47,7 +47,7 @@ Room parse_room_element(TiXmlElement* room_element) {
         }
 
     }
-
+    //if anything goes wrong return a "faulty" new_room"
     if (new_room.get_name() == "" or new_room.get_identifier()=="" or new_room.get_capacity() == 0) {
         new_room.set_capacity(0);
         new_room.set_name("Fout");
@@ -77,6 +77,12 @@ Meeting parse_meeting_element(TiXmlElement* meeting_element) {
     if (meeting_element->FirstChildElement("DATE")) {
         new_meeting.set_date(meeting_element->FirstChildElement("DATE")->GetText());
     }
+    if (new_meeting.get_label() == "" or new_meeting.get_identifier()=="" or new_meeting.get_room()=="" or new_meeting.get_date()=="") {
+        new_meeting.set_label("fout");
+        new_meeting.set_identifier("fout");
+        new_meeting.set_room("fout");
+        new_meeting.set_date("fout");
+    }
 
     return new_meeting;
 }
@@ -94,6 +100,11 @@ Participation parse_participation_element(TiXmlElement* participation_element) {
     }
     if (participation_element->FirstChildElement("MEETING")) {
         new_participation.set_meeting(participation_element->FirstChildElement("MEETING")->GetText());
+    }
+    if (new_participation.get_meeting() == "" or new_participation.get_user()=="") {
+        new_participation.set_meeting("fout");
+        new_participation.set_user("fout");
+
     }
 
 

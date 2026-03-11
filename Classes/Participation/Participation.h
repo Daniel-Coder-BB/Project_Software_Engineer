@@ -31,6 +31,15 @@ public:
 
     void set_meeting(const string &meeting);
 
+    friend bool operator==(const Participation &lhs, const Participation &rhs) {
+        return lhs.user == rhs.user
+               && lhs.meeting == rhs.meeting;
+    }
+
+    friend bool operator!=(const Participation &lhs, const Participation &rhs) {
+        return !(lhs == rhs);
+    }
+
     void print();
 };
 

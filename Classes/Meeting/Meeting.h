@@ -37,6 +37,17 @@ public:
 
     void set_date(const std::string &date);
 
+    friend bool operator==(const Meeting &lhs, const Meeting &rhs) {
+        return lhs.label == rhs.label
+               && lhs.identifier == rhs.identifier
+               && lhs.room == rhs.room
+               && lhs.date == rhs.date;
+    }
+
+    friend bool operator!=(const Meeting &lhs, const Meeting &rhs) {
+        return !(lhs == rhs);
+    }
+
     void print();
 };
 

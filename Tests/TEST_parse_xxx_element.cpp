@@ -9,6 +9,8 @@
 #include "Classes/Meeting/Meeting.h"
 #include <gtest/gtest.h>
 #include <chrono>
+#include <pstl/execution_defs.h>
+
 #include "Classes/Meeting/Meeting.h"
 
 #include "Classes/Participation/Participation.h"
@@ -69,8 +71,14 @@ Meeting t_parse_meeting_element(TiXmlElement* meeting_element) {
 
     if (meeting_element->FirstChildElement("DATE")) {
         new_meeting.set_date(meeting_element->FirstChildElement("DATE")->GetText());
-    }
 
+    }
+    if (new_meeting.get_label() == "" or new_meeting.get_identifier()=="" or new_meeting.get_room()=="" or new_meeting.get_date()=="") {
+        new_meeting.set_label("fout");
+        new_meeting.set_identifier("fout");
+        new_meeting.set_room("fout");
+        new_meeting.set_date("fout");
+    }
     return new_meeting;
 }
 
@@ -88,6 +96,12 @@ Participation t_parse_participation_element(TiXmlElement* participation_element)
     if (participation_element->FirstChildElement("MEETING")) {
         new_participation.set_meeting(participation_element->FirstChildElement("MEETING")->GetText());
     }
+    if (new_participation.get_meeting() == "" or new_participation.get_user()=="") {
+        new_participation.set_meeting("fout");
+        new_participation.set_user("fout");
+
+    }
+
 
 
     return new_participation;
@@ -221,5 +235,78 @@ TEST(t_parse_room_element,capacity_not_integer_test) {
         EXPECT_EQ(t_parse_room_element(test_room),room);
 
 
+    }
+}
+
+
+ TEST(test_parse_meeting_element, Happy_day_test) {
+    TiXmlDocument test_doc;
+    string test_filename = "../Tests/test_XML_file/happy_day.xml";
+    t_file_error_check(test_filename,test_doc);
+
+    TiXmlElement* test_root = test_doc.FirstChildElement(); // Dit is <system>
+    t_if_root_exists(test_root);
+
+    Meeting meeting;
+    meeting.set_label("Weekly meeting");
+    meeting.set_identifier("Meeting_478463");
+    meeting.set_room("Room98732");
+    meeting.set_date("2026-05-22");
+
+    for (TiXmlElement* test_meeting = test_root->FirstChildElement("MEETING"); test_meeting != NULL; test_meeting = test_meeting->NextSiblingElement("MEETING")) {
+        EXPECT_EQ(t_parse_meeting_element(test_meeting),meeting);
+    }
+}
+
+TEST(test_parse_meeting_element, missing_information_test) {
+    TiXmlDocument test_doc;
+    string test_filename = "../Tests/test_XML_file/missing_information.xml";
+    t_file_error_check(test_filename,test_doc);
+
+    TiXmlElement* test_root = test_doc.FirstChildElement(); // Dit is <system>
+    t_if_root_exists(test_root);
+
+    Meeting meeting;
+    meeting.set_label("fout");
+    meeting.set_identifier("fout");
+    meeting.set_room("fout");
+    meeting.set_date("fout");
+
+    for (TiXmlElement* test_meeting = test_root->FirstChildElement("MEETING"); test_meeting != NULL; test_meeting = test_meeting->NextSiblingElement("MEETING")) {
+        EXPECT_EQ(t_parse_meeting_element(test_meeting),meeting);
+    }
+}
+TEST(test_parse_participation_element, happy_day_test) {
+    TiXmlDocument test_doc;
+    string test_filename = "../Tests/test_XML_file/happy_day.xml";
+    t_file_error_check(test_filename,test_doc);
+
+    TiXmlElement* test_root = test_doc.FirstChildElement(); // Dit is <system>
+    t_if_root_exists(test_root);
+
+    Participation participation;
+    participation.set_meeting("Meeting_478463");
+    participation.set_user("Peter Selie");
+
+
+    for (TiXmlElement* test_participation = test_root->FirstChildElement("PARTICIPATION"); test_participation != NULL; test_participation = test_participation->NextSiblingElement("PARTICIPATION")) {
+        EXPECT_EQ(t_parse_participation_element(test_participation),participation);
+    }
+}
+TEST(test_parse_participation_element, missing_information_test) {
+    TiXmlDocument test_doc;
+    string test_filename = "../Tests/test_XML_file/missing_information.xml";
+    t_file_error_check(test_filename,test_doc);
+
+    TiXmlElement* test_root = test_doc.FirstChildElement(); // Dit is <system>
+    t_if_root_exists(test_root);
+
+    Participation participation;
+    participation.set_meeting("fout");
+    participation.set_user("fout");
+
+
+    for (TiXmlElement* test_participation = test_root->FirstChildElement("PARTICIPATION"); test_participation != NULL; test_participation = test_participation->NextSiblingElement("PARTICIPATION")) {
+        EXPECT_EQ(t_parse_participation_element(test_participation),participation);
     }
 }
