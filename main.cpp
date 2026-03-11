@@ -1,12 +1,13 @@
 /**
 * Korte beschrijving:
- * Deze klasse stelt een meeting voor.
+ *Dit stelt onze main voor.
  *
  * @authors Bruno Luango en Ibrahim Akiyev
  * @date 11/03/2026
  * @version 1.0
  */
 
+// Include blok
 #include <iostream>
 #include "tinyxml.h"
 #include "Classes/Room/Room.h"
@@ -17,6 +18,7 @@
 #include "Classes/Meetingplanner/Meetingplanner.h"
 #include "Classes/Participation/Participation.h"
 
+// Globale using statements
 using namespace std;
 
 

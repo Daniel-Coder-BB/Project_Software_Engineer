@@ -1,6 +1,6 @@
 /**
  * Korte beschrijving:
- * Deze klasse stelt een Participation voor.
+ * Deze klasse stelt onze Participation voor.
  *
  * @authors Bruno Luango en Ibrahim Akiyev
  * @date 11/03/2026
