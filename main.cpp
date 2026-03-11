@@ -178,18 +178,17 @@ int main(int argc, char **argv) {
         }
 
         else {
-            cerr<<"Er was een fout bij meeting"<<endl;
+            cerr<<"Er was een fout bij participation"<<endl;
         }
 
     }
-    for (auto& room: planner.getParticipations()) {
-        room.print();
-    }
+
+
     doc.Clear();
 
     // Netjes opruimen [cite: 107]
 
-
+    planner.simpleOutput();
 
     return 0;
 }

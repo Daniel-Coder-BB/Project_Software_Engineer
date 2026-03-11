@@ -30,6 +30,8 @@ public:
     std::vector<Room>& getRooms();
     std::vector<Meeting>& getMeetings();
     std::vector<Participation>& getParticipations();
+
+    void simpleOutput();
 };
 
 #endif
