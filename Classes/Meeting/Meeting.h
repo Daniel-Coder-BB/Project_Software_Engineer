@@ -1,6 +1,6 @@
 /**
  * Korte beschrijving:
- * Deze klasse stelt een meeting voor.
+ * Deze klasse stelt onze meeting voor.
  *
  * @authors Bruno Luango en Ibrahim Akiyev
  * @date 11/03/2026

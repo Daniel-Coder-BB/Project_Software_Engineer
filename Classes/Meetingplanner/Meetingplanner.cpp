@@ -1,6 +1,6 @@
 /**
  * Korte beschrijving:
- * Deze klasse stelt een Meetingplanner voor.
+ * Deze klasse stelt onze Meetingplanner voor.
  *
  * @authors Bruno Luango en Ibrahim Akiyev
  * @date 11/03/2026
