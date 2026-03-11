@@ -1,7 +1,13 @@
-//
-// Created by ibrab on 10.03.2026.
-//
+/**
+ * Korte beschrijving:
+ * Deze klasse stelt een meeting voor.
+ *
+ * @authors Bruno Luango en Ibrahim Akiyev
+ * @date 11/03/2026
+ * @version 1.0
+ */
 
+// Include blok
 #include "Meeting.h"
 #include <iostream>
 

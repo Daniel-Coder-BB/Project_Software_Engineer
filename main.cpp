@@ -1,3 +1,12 @@
+/**
+* Korte beschrijving:
+ * Deze klasse stelt een meeting voor.
+ *
+ * @authors Bruno Luango en Ibrahim Akiyev
+ * @date 11/03/2026
+ * @version 1.0
+ */
+
 #include <iostream>
 #include "tinyxml.h"
 #include "Classes/Room/Room.h"

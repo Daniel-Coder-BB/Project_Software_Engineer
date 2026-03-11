@@ -1,3 +1,13 @@
+/**
+ * Korte beschrijving:
+ * Deze klasse stelt een Meetingplanner voor.
+ *
+ * @authors Bruno Luango en Ibrahim Akiyev
+ * @date 11/03/2026
+ * @version 1.0
+ */
+
+// Include blok
 #include "MeetingPlanner.h"
 
 void MeetingPlanner::addRoom(const Room& room) {
