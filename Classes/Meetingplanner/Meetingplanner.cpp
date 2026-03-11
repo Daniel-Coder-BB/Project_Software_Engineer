@@ -58,7 +58,7 @@ void MeetingPlanner::set_occupied_rooms(const std::vector<string> &occupied_room
 
 
 void MeetingPlanner::simpleOutput() {
-    std::ofstream file("output.txt");
+    std::ofstream file("../output.txt");
 
     if (!file.is_open()) {
         std::cout << "Kan output.txt niet openen" << std::endl;
