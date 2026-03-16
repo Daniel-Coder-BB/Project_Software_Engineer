@@ -4,6 +4,12 @@ MEETINGS:
   Peter Selie  Brin
   Meeting ID:  478463
 
+CONFLICTING MEETINGS: 
+- Room98732, 2026-05-22
+  Weekly meeting
+  Peter Selie  Brin
+  Meeting ID:  478463
+
 ROOMS: 
 - M.G.025
   capacity: 55 people 

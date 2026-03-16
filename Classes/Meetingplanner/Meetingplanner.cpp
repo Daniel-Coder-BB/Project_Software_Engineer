@@ -23,6 +23,7 @@ void MeetingPlanner::addMeeting(const Meeting& meeting) {
     for (string occupied_room: occupied_rooms) {
         if (meeting.get_room() == occupied_room) {
             cerr << "This room is occupied. Meeting cancelled"  <<endl;
+            conflicting_meetings.push_back(meeting);
             cancel_meeting = true;
         }
     }
@@ -81,6 +82,22 @@ void MeetingPlanner::simpleOutput() {
         }
         file<<std::endl;
         file << "  Meeting ID:  " << meeting.get_identifier().substr(8) << std::endl;
+        file << std::endl;
+    }
+
+    file << "CONFLICTING MEETINGS: \n";
+
+    for (const Meeting& conflicting_meeting : conflicting_meetings) {
+        file << "- " << conflicting_meeting.get_room();
+        file << ", " << conflicting_meeting.get_date() << std::endl;
+        file << "  " << conflicting_meeting.get_label() << std::endl;
+        for (const Participation& participation : participations) {
+            if (conflicting_meeting.get_identifier() == participation.get_meeting()){
+                file << "  " << participation.get_user();
+            }
+        }
+        file<<std::endl;
+        file << "  Meeting ID:  " << conflicting_meeting.get_identifier().substr(8) << std::endl;
         file << std::endl;
     }
 

@@ -23,6 +23,7 @@ private:
     std::vector<Meeting> meetings;
     std::vector<Participation> participations;
     std::vector<string> occupied_rooms;
+    std::vector<Meeting> conflicting_meetings;
 
 public:
     void addRoom(const Room& room);
@@ -32,6 +33,8 @@ public:
     std::vector<Room>& getRooms();
     std::vector<Meeting>& getMeetings();
     std::vector<Participation>& getParticipations();
+
+
 
     std::vector<string> get_occupied_rooms() const;
 
