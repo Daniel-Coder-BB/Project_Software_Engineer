@@ -8,11 +8,11 @@
  */
 
 // Include blok
-#include "MeetingPlanner.h"
+#include "Meetingplanner.h"
 #include <fstream>
 #include <iostream>
 
-
+//body-gedeelte
 void MeetingPlanner::addRoom(const Room& room) {
     rooms.push_back(room);
 }

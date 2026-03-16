@@ -1,7 +1,13 @@
-//
-// Created by danny on 10-Mar-26.
-//
+/*
+* Korte beschrijving:
+*Dit stelt onze Testen voor.
+*
+* @authors Bruno Luango en Ibrahim Akiyev
+* @date 11/03/2026
+* @version 1.0
+*/
 
+// Include blok
 #include <gtest/gtest.h>
 #include <iostream>
 #include "tinyxml.h"
@@ -14,9 +20,12 @@
 #include "Classes/Participation/Participation.h"
 #include <Classes/Meetingplanner/Meetingplanner.h>
 
+// Globale using statements
 using namespace std;
 
 
+
+//body-gedeelte
 /*
  *This function parses the room tag of an XML file
  *@param room_element an XML element with the ROOM tag

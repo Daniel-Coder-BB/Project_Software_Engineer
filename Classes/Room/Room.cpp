@@ -10,6 +10,7 @@
 // Include blok
 #include "Room.h"
 
+//body-gedeelte
 string Room::get_name() const {
     return name;
 }
