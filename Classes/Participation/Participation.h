@@ -17,7 +17,7 @@
 // Globale using statements
 using namespace std;
 
-
+//body-gedeelte
 class Participation {
 private:
     string user;

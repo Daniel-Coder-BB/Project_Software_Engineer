@@ -11,7 +11,7 @@
 #include "Meeting.h"
 #include <iostream>
 
-
+//body-gedeelte
 std::string Meeting::get_label() const {
     return label;
 }

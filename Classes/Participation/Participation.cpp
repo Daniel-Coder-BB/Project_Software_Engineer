@@ -10,6 +10,7 @@
 // Include blok
 #include "Participation.h"
 
+//body-gedeelte
 string Participation::get_user() const {
     return user;
 }

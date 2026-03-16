@@ -21,7 +21,7 @@
 // Globale using statements
 using namespace std;
 
-
+//body-gedeelte
 /*
  *This function parses the room tag of an XML file
  *@param room_element an XML element with the ROOM tag

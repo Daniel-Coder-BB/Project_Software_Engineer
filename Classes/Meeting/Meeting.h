@@ -1,4 +1,7 @@
-/**
+#ifndef UITPROBEREN_MEETING_H
+#define UITPROBEREN_MEETING_H
+
+/*
  * Korte beschrijving:
  * Deze klasse stelt onze meeting voor.
  *
@@ -8,11 +11,9 @@
  */
 
 // Include blok
-#ifndef UITPROBEREN_MEETING_H
-#define UITPROBEREN_MEETING_H
 #include <string>
 
-
+//body-gedeelte
 class Meeting {
 private:
     std::string label;

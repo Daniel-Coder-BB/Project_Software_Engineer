@@ -17,6 +17,7 @@
 #include "Classes//Participation/Participation.h"
 #include <string>
 
+//body-gedeelte
 class MeetingPlanner {
 private:
     std::vector<Room> rooms;
