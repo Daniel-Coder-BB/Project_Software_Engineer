@@ -8,7 +8,7 @@
  */
 
 // Include blok
-#include <iostream>
+ #include <iostream>
 #include "tinyxml.h"
 #include  "Classes/DesignByContract/DesignByContract.h"
 #include "Classes/Room/Room.h"
