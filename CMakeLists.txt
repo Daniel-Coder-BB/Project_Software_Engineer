@@ -32,8 +32,6 @@ set(SHARED_SOURCES
         Classes/DesignByContract/DesignByContract.h
         Classes/Parser/Parser.cpp
         Classes/Parser/Parser.h
-        Classes/Parser/Parser.cpp
-        Classes/Parser/Parser.h
 )
 
 # 4. TARGET 1: Je echte applicatie (Planning System)

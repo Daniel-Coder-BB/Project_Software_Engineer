@@ -11,7 +11,6 @@
 
 #ifndef PLANNING_SYSTEM_PROJECT_PARSER_H
 #define PLANNING_SYSTEM_PROJECT_PARSER_H
-#include "Classes/DesignByContract/DesignByContract.h"
 #include "Classes/Meeting/Meeting.h"
 #include "Classes/Meetingplanner/Meetingplanner.h"
 #include "Classes/Participation/Participation.h"
@@ -29,6 +28,16 @@ public:
     [[nodiscard]] string get_filename() const;
 
     void set_filename(const string &filename);
+
+    TiXmlDocument Xml_to_TiXmlDocument();
+    int file_error_check(TiXmlDocument& doc);
+    int if_root_exists(TiXmlElement* root);
+    TiXmlElement* make_root(TiXmlDocument& doc);
+    void run_trough_Element(const char* Element, TiXmlElement* root,  MeetingPlanner planner);
+    Room parse_room_element(TiXmlElement* room_element);
+    Meeting parse_meeting_element(TiXmlElement* meeting_element);
+    Participation parse_participation_element(TiXmlElement* participation_element);
+
 };
 
 
