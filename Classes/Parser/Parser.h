@@ -23,10 +23,12 @@
 
 class Parser {
 private:
- string filename;
+    string filename;
 
 public:
+    [[nodiscard]] string get_filename() const;
 
+    void set_filename(const string &filename);
 };
 
 

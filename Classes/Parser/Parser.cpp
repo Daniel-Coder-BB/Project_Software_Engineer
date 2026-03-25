@@ -1,23 +1,13 @@
-/*
-* Korte beschrijving:
- *Dit stelt onze parser klasse voor.
- *
- * @authors Bruno Luango en Ibrahim Akiyev
- * @date 25/03/2026
- * @version 1.5
- */
+//
+// Created by danny on 25-Mar-26.
+//
 
-// Include blok
+#include "Parser.h"
 
-#include "Classes/DesignByContract/DesignByContract.h"
-#include "Classes/Meeting/Meeting.h"
-#include "Classes/Meetingplanner/Meetingplanner.h"
-#include "Classes/Participation/Participation.h"
-#include "Classes/Room/Room.h"
-#include "tinyxml.h"
-#include <iostream>
+string Parser::get_filename() const {
+    return filename;
+}
 
-
-
-
-
+void Parser::set_filename(const string &filename) {
+    this->filename = filename;
+}
