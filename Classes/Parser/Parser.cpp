@@ -1,6 +1,11 @@
-//
-// Created by danny on 25-Mar-26.
-//
+/*
+* Korte beschrijving:
+ *Dit stelt onze parser klasse voor.
+ *
+ * @authors Bruno Luango en Ibrahim Akiyev
+ * @date 25/03/2026
+ * @version 1.5
+ */
 
 #include "Parser.h"
 
