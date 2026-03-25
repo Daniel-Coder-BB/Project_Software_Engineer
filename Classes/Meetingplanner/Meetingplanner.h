@@ -31,8 +31,31 @@ public:
     void addMeeting(const Meeting& meeting);
     void addParticipation(const Participation& participation);
 
+    /*
+     *This function gets the rooms attribute
+     *@param None
+     *@return the rooms of the Meetingplanner object
+     *precondition rooms is not empty
+     *postcondition returns this->rooms
+     */
     std::vector<Room>& getRooms();
+
+    /*
+     *This function gets the meetings attribute
+     *@param None
+     *@return the meetings of the Meetingplanner object
+     *precondition meetings is not empty
+     *postcondition returns this->meetings
+     */
     std::vector<Meeting>& getMeetings();
+
+    /*
+     *This function gets the participations attribute
+     *@param None
+     *@return the participations of the Meetingplanner object
+     *precondition participations is not empty
+     *postcondition returns this->participations
+     */
     std::vector<Participation>& getParticipations();
 
 

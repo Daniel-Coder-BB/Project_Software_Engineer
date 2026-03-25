@@ -44,10 +44,24 @@ public:
 
     void set_identifier(const std::string &identifier);
 
+    /*
+     *This function gets the room attribute
+     *@param None
+     *@return the room of the Meeting object
+     *precondition room is not empty
+     *postcondition returns this->room
+     */
     [[nodiscard]] std::string get_room() const;
 
     void set_room(const std::string &room);
 
+    /*
+     *This function gets the date attribute
+     *@param None
+     *@return the date of the Meeting object
+     *precondition date is not empty
+     *postcondition returns this->date
+     */
     [[nodiscard]] std::string get_date() const;
 
     void set_date(const std::string &date);
