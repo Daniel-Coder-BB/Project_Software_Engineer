@@ -22,7 +22,7 @@ class Room {
 private:
     string name;
     string identifier;
-    unsigned int capacity;
+    int capacity = -1;
 
 public:
     /*
@@ -64,7 +64,7 @@ public:
      *precondition capacity is not empty
      *postcondition returns this->capacity
      */
-    unsigned int get_capacity() const;
+     int get_capacity() const;
     /*
    *This function changes the capacity attribute
    *@param label the capacity you want to change it to
@@ -72,7 +72,7 @@ public:
    *precondition capacity is bigger or equal to zero
    *postcondition the input capacity is equal to label capacity of Room object
    */
-    void set_capacity(unsigned int capacity);
+    void set_capacity( int capacity);
 
     friend bool operator==(const Room &lhs, const Room &rhs) {
         return lhs.name == rhs.name

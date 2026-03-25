@@ -30,14 +30,29 @@ using namespace std;
  */
 Room parse_room_element(TiXmlElement* room_element) {
     Room new_room;
+    new_room.set_identifier("Fout");
+    new_room.set_name("Fout");
+    new_room.set_capacity(0);
     if (room_element->FirstChildElement("NAME")) {
-        new_room.set_name(room_element->FirstChildElement("NAME")->GetText());
+        string new_name = room_element->FirstChildElement("NAME")->GetText();
+        if (new_name.empty()) {
+            new_room.set_name("Fout");
+        }
+        else {
+            new_room.set_name(new_name);
+        }
     }
     if (room_element->FirstChildElement("IDENTIFIER")) {
-        new_room.set_identifier(room_element->FirstChildElement("IDENTIFIER")->GetText());
+        string new_id = room_element->FirstChildElement("IDENTIFIER")->GetText();
+        if (new_id.empty()) {
+            new_room.set_identifier("Fout");
+        }
+        else {
+            new_room.set_identifier(new_id);
+        }
     }
     if (room_element->FirstChildElement("CAPACITY")) {
-        // if capacity is not a string throw error
+        // Omzetten van string naar int
         try {
             int capacity = std::stoi(room_element->FirstChildElement("CAPACITY")->GetText());
             new_room.set_capacity(capacity);
@@ -48,8 +63,7 @@ Room parse_room_element(TiXmlElement* room_element) {
         }
 
     }
-    //if anything goes wrong return a "faulty" new_room"
-    if (new_room.get_name() == "" or new_room.get_identifier()=="" or new_room.get_capacity() == 0) {
+    if (new_room.get_name() == "Fout" or new_room.get_identifier()=="Fout" or new_room.get_capacity() == 0) {
         new_room.set_capacity(0);
         new_room.set_name("Fout");
         new_room.set_identifier("Fout");
@@ -65,6 +79,10 @@ Room parse_room_element(TiXmlElement* room_element) {
  */
 Meeting parse_meeting_element(TiXmlElement* meeting_element) {
     Meeting new_meeting;
+    new_meeting.set_date("Fout");
+    new_meeting.set_identifier("Fout");
+    new_meeting.set_label("Fout");
+    new_meeting.set_room("Fout");
     if (meeting_element->FirstChildElement("LABEL")) {
         new_meeting.set_label(meeting_element->FirstChildElement("LABEL")->GetText());
     }
@@ -77,17 +95,16 @@ Meeting parse_meeting_element(TiXmlElement* meeting_element) {
 
     if (meeting_element->FirstChildElement("DATE")) {
         new_meeting.set_date(meeting_element->FirstChildElement("DATE")->GetText());
+
     }
-    if (new_meeting.get_label() == "" or new_meeting.get_identifier()=="" or new_meeting.get_room()=="" or new_meeting.get_date()=="") {
+    if (new_meeting.get_label() == "Fout" or new_meeting.get_identifier()=="Fout" or new_meeting.get_room()=="Fout" or new_meeting.get_date()=="Fout") {
         new_meeting.set_label("fout");
         new_meeting.set_identifier("fout");
         new_meeting.set_room("fout");
         new_meeting.set_date("fout");
     }
-
     return new_meeting;
 }
-
 
 /*
  *This function parses the participation tag of an XML file
@@ -96,17 +113,20 @@ Meeting parse_meeting_element(TiXmlElement* meeting_element) {
  */
 Participation parse_participation_element(TiXmlElement* participation_element) {
     Participation new_participation;
+    new_participation.set_meeting("Fout");
+    new_participation.set_user("Fout");
     if (participation_element->FirstChildElement("USER")) {
         new_participation.set_user(participation_element->FirstChildElement("USER")->GetText());
     }
     if (participation_element->FirstChildElement("MEETING")) {
         new_participation.set_meeting(participation_element->FirstChildElement("MEETING")->GetText());
     }
-    if (new_participation.get_meeting() == "" or new_participation.get_user()=="") {
+    if (new_participation.get_meeting() == "Fout" or new_participation.get_user()=="Fout") {
         new_participation.set_meeting("fout");
         new_participation.set_user("fout");
 
     }
+
 
 
     return new_participation;
@@ -196,7 +216,6 @@ int main(int argc, char **argv) {
     // Netjes opruimen [cite: 107]
 
     planner.simpleOutput();
-    maaltafel(5);
     return 0;
 }
 

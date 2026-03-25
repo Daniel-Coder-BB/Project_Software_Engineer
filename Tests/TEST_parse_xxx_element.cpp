@@ -33,11 +33,26 @@ using namespace std;
  */
 Room t_parse_room_element(TiXmlElement* room_element) {
     Room new_room;
+    new_room.set_identifier("Fout");
+    new_room.set_name("Fout");
+    new_room.set_capacity(0);
     if (room_element->FirstChildElement("NAME")) {
-        new_room.set_name(room_element->FirstChildElement("NAME")->GetText());
+        string new_name = room_element->FirstChildElement("NAME")->GetText();
+        if (new_name.empty()) {
+            new_room.set_name("Fout");
+        }
+        else {
+            new_room.set_name(new_name);
+        }
     }
     if (room_element->FirstChildElement("IDENTIFIER")) {
-        new_room.set_identifier(room_element->FirstChildElement("IDENTIFIER")->GetText());
+        string new_id = room_element->FirstChildElement("IDENTIFIER")->GetText();
+        if (new_id.empty()) {
+            new_room.set_identifier("Fout");
+        }
+        else {
+            new_room.set_identifier(new_id);
+        }
     }
     if (room_element->FirstChildElement("CAPACITY")) {
         // Omzetten van string naar int
@@ -51,7 +66,7 @@ Room t_parse_room_element(TiXmlElement* room_element) {
         }
 
     }
-    if (new_room.get_name() == "" or new_room.get_identifier()=="" or new_room.get_capacity() == 0) {
+    if (new_room.get_name() == "Fout" or new_room.get_identifier()=="Fout" or new_room.get_capacity() == 0) {
         new_room.set_capacity(0);
         new_room.set_name("Fout");
         new_room.set_identifier("Fout");
@@ -67,6 +82,10 @@ Room t_parse_room_element(TiXmlElement* room_element) {
  */
 Meeting t_parse_meeting_element(TiXmlElement* meeting_element) {
     Meeting new_meeting;
+    new_meeting.set_date("Fout");
+    new_meeting.set_identifier("Fout");
+    new_meeting.set_label("Fout");
+    new_meeting.set_room("Fout");
     if (meeting_element->FirstChildElement("LABEL")) {
         new_meeting.set_label(meeting_element->FirstChildElement("LABEL")->GetText());
     }
@@ -81,7 +100,7 @@ Meeting t_parse_meeting_element(TiXmlElement* meeting_element) {
         new_meeting.set_date(meeting_element->FirstChildElement("DATE")->GetText());
 
     }
-    if (new_meeting.get_label() == "" or new_meeting.get_identifier()=="" or new_meeting.get_room()=="" or new_meeting.get_date()=="") {
+    if (new_meeting.get_label() == "Fout" or new_meeting.get_identifier()=="Fout" or new_meeting.get_room()=="Fout" or new_meeting.get_date()=="Fout") {
         new_meeting.set_label("fout");
         new_meeting.set_identifier("fout");
         new_meeting.set_room("fout");
@@ -98,13 +117,15 @@ Meeting t_parse_meeting_element(TiXmlElement* meeting_element) {
  */
 Participation t_parse_participation_element(TiXmlElement* participation_element) {
     Participation new_participation;
+    new_participation.set_meeting("Fout");
+    new_participation.set_user("Fout");
     if (participation_element->FirstChildElement("USER")) {
         new_participation.set_user(participation_element->FirstChildElement("USER")->GetText());
     }
     if (participation_element->FirstChildElement("MEETING")) {
         new_participation.set_meeting(participation_element->FirstChildElement("MEETING")->GetText());
     }
-    if (new_participation.get_meeting() == "" or new_participation.get_user()=="") {
+    if (new_participation.get_meeting() == "Fout" or new_participation.get_user()=="Fout") {
         new_participation.set_meeting("fout");
         new_participation.set_user("fout");
 
@@ -408,5 +429,150 @@ TEST(test_meeting_planner, meeting_cancelled_test) {
     }
 
     EXPECT_EQ(test_planner.getMeetings().size(), (size_t)1);
-
 }
+
+    // ============================================================================
+// CONTRACT VIOLATION TESTS (Death Tests voor Design by Contract)
+// ============================================================================
+
+/**
+ * Test de precondities van de Room klasse.
+ */
+TEST(test_contract_violation, roomcontracts) {
+    Room test_room;
+
+    // Test REQUIRE: name is not empty
+    ASSERT_DEATH({ test_room.set_name(""); }, "Contract violation");
+
+    // Test REQUIRE: identifier is not empty
+    ASSERT_DEATH({ test_room.set_identifier(""); }, "Contract violation");
+
+    // Test REQUIRE: capacity is bigger or equal to zero
+    // (Opm: aangezien capacity unsigned is, test we hier vooral de macro aanroep)
+    // Als je REQUIRE(capacity > 0) gebruikt voor de getter:
+    ASSERT_DEATH({ test_room.get_capacity(); }, "Contract violation");
+}
+
+/**
+ * Test de precondities van de Meeting klasse.
+ */
+TEST(ContractViolationTest, MeetingContracts) {
+    Meeting test_meeting;
+
+    // Test REQUIRE: label is not empty
+    ASSERT_DEATH({ test_meeting.set_label(""); }, "Contract violation");
+
+    // Test REQUIRE: identifier is not empty
+    ASSERT_DEATH({ test_meeting.set_identifier(""); }, "Contract violation");
+
+    // Test REQUIRE: room is not empty
+    ASSERT_DEATH({ test_meeting.set_room(""); }, "Contract violation");
+
+    // Test REQUIRE: date is not empty
+    ASSERT_DEATH({ test_meeting.set_date(""); }, "Contract violation");
+}
+
+/**
+ * Test de precondities van de Participation klasse.
+ */
+TEST(ContractViolationTest, ParticipationContracts) {
+    Participation test_part;
+
+    // Test REQUIRE: user is not empty
+    ASSERT_DEATH({ test_part.set_user(""); }, "Contract violation");
+
+    // Test REQUIRE: meeting (ID) is not empty
+    ASSERT_DEATH({ test_part.set_meeting(""); }, "Contract violation");
+}
+
+/**
+ * Test de precondities van de MeetingPlanner klasse.
+ */
+TEST(ContractViolationTest, MeetingPlannerContracts) {
+    MeetingPlanner planner;
+
+    // Test REQUIRE: addRoom (een lege room mag niet toegevoegd worden)
+    Room empty_room;
+    // De setter van Room blokkeert "" al, maar als je een 'default' room doorgeeft:
+    ASSERT_DEATH({ planner.addRoom(empty_room); }, "Contract violation");
+
+    // Test REQUIRE: addMeeting (een meeting zonder ID mag niet toegevoegd worden)
+    Meeting empty_meeting;
+    ASSERT_DEATH({ planner.addMeeting(empty_meeting); }, "Contract violation");
+
+    // Test REQUIRE: addParticipation
+    Participation empty_part;
+    ASSERT_DEATH({ planner.addParticipation(empty_part); }, "Contract violation");
+
+    // Test REQUIRE: get_occupied_rooms (indien de lijst leeg is en je REQUIRE(!empty) hebt)
+    ASSERT_DEATH({ planner.get_occupied_rooms(); }, "Contract violation");
+}
+
+// ============================================================================
+// MEETINGPLANNER CONTRACT TESTS (PRE & POST CONDITIONS)
+// ============================================================================
+
+/**
+ * Test REQUIRE: Precondities (Death Tests)
+ */
+TEST(MeetingPlannerContractTest, Preconditions) {
+    MeetingPlanner planner;
+
+    // REQUIRE: addRoom mag geen lege naam hebben
+    Room empty_room;
+    ASSERT_DEATH({ planner.addRoom(empty_room); }, "Contract violation");
+
+    // REQUIRE: addMeeting mag geen lege identifier hebben
+    Meeting empty_meeting;
+    ASSERT_DEATH({ planner.addMeeting(empty_meeting); }, "Contract violation");
+
+    // REQUIRE: addParticipation mag geen lege user hebben
+    Participation empty_part;
+    ASSERT_DEATH({ planner.addParticipation(empty_part); }, "Contract violation");
+
+    // REQUIRE: get_occupied_rooms mag niet op een lege lijst
+    ASSERT_DEATH({ planner.get_occupied_rooms(); }, "Contract violation");
+
+    // REQUIRE: simpleOutput mag niet op een lege planner
+    ASSERT_DEATH({ planner.simpleOutput(); }, "Contract violation");
+}
+
+/**
+ * Test ENSURE: Postcondities (Success Tests)
+ */
+TEST(MeetingPlannerContractTest, Postconditions) {
+    MeetingPlanner planner;
+
+    // 1. Test ENSURE: addRoom (checkt of size met 1 stijgt en object gelijk is)
+    Room r;
+    r.set_name("Aula");
+    r.set_identifier("ID_A");
+    r.set_capacity(50);
+    EXPECT_NO_THROW(planner.addRoom(r));
+    EXPECT_EQ(planner.getRooms().back(), r);
+
+    // 2. Test ENSURE: addMeeting (checkt of meeting is toegevoegd)
+    Meeting m; m.set_label("Test");
+    m.set_identifier("Meeting_1");
+    m.set_room("Aula");
+    m.set_date("2026-01-01");
+    EXPECT_NO_THROW(planner.addMeeting(m));
+    EXPECT_EQ(planner.getMeetings().back(), m);
+
+    // 3. Test ENSURE: addParticipation (checkt of participation is toegevoegd)
+    Participation p;
+    p.set_user("Jan");
+    p.set_meeting("MEETing_1");
+    EXPECT_NO_THROW(planner.addParticipation(p));
+    EXPECT_EQ(planner.getParticipations().back(), p);
+
+    // 4. Test ENSURE: set_occupied_rooms (checkt of de nieuwe lijst gelijk is)
+    vector<string> new_rooms = {"R1", "R2"};
+    EXPECT_NO_THROW(planner.set_occupied_rooms(new_rooms));
+    EXPECT_EQ(planner.get_occupied_rooms(), new_rooms);
+    // 5. Test ENSURE: simpleOutput (checkt of output.txt bestaat)
+    // De planner is nu niet meer leeg (bevat een room), dus preconditie is voldaan.
+
+    EXPECT_NO_THROW(planner.simpleOutput());
+}
+

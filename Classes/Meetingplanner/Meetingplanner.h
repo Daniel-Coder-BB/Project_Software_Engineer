@@ -110,6 +110,13 @@ public:
         return !(lhs == rhs);
     }
 
+     /*
+      *This function writes an output to an .txt file
+      *@param None
+      *@return None
+      *precondition attributes of meetingplanner are not Empty
+      *postcondition output.txt file got created.
+      */
     void simpleOutput();
 };
 
