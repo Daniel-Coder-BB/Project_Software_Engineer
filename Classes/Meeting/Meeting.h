@@ -32,6 +32,13 @@ public:
      */
     [[nodiscard]] std::string get_label() const;
 
+    /*
+     *This function changes the date attribute
+     *@param label the label you want to change it to
+     *@return None
+     *precondition label is not empty
+     *postcondition the input label is equal to label attribute of Meeting object
+     */
     void set_label(const std::string &label);
 
     /*
@@ -43,6 +50,14 @@ public:
      */
     [[nodiscard]] std::string get_identifier() const;
 
+
+  /*
+   *This function changes the identifier attribute
+   *@param label the identifier you want to change it to
+   *@return None
+   *precondition identifier is not empty
+   *postcondition the input identifier is equal to label identifier of Meeting object
+   */
     void set_identifier(const std::string &identifier);
 
     /*
