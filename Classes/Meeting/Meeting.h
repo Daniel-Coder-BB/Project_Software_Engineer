@@ -108,6 +108,14 @@ public:
         return !(lhs == rhs);
     }
 
+
+    /*
+    *This function prints a string wich displays all the attributes of this Meeting object
+    *@param None
+    *@return None
+    *precondition Meeting attributes are not empty
+    *postcondition string with all the attributes gets shown
+    */
     void print();
 };
 
