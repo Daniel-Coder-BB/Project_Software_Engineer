@@ -68,7 +68,13 @@ public:
     friend bool operator!=(const Participation &lhs, const Participation &rhs) {
         return !(lhs == rhs);
     }
-
+    /*
+    *This function prints a string wich displays all the attributes of this Participation object
+    *@param None
+    *@return None
+    *precondition Participation attributes are not empty
+    *postcondition string with all the attributes gets shown
+    */
     void print();
 };
 

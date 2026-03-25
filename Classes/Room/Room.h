@@ -83,7 +83,13 @@ public:
     friend bool operator!=(const Room &lhs, const Room &rhs) {
         return !(lhs == rhs);
     }
-
+    /*
+    *This function prints a string wich displays all the attributes of this Room object
+    *@param None
+    *@return None
+    *precondition Room attributes are not empty
+    *postcondition string with all the attributes gets shown
+    */
     void print();
 };
 
