@@ -23,10 +23,23 @@ private:
     string user;
     string meeting;
 public:
+    /*
+     *This function gets the user attribute
+     *@param None
+     *@return the user of the Room object
+     *precondition user is not empty
+     *postcondition returns this->user
+     */
     string get_user() const;
 
     void set_user(const string &user);
-
+    /*
+     *This function gets the meeting attribute
+     *@param None
+     *@return the meeting of the Room object
+     *precondition meeting is not empty
+     *postcondition returns this->meeting
+     */
     string get_meeting() const;
 
     void set_meeting(const string &meeting);
