@@ -29,20 +29,25 @@ set(SHARED_SOURCES
         Classes/Meeting/Meeting.cpp
         Classes/Participation/Participation.cpp
         Classes/Meetingplanner/Meetingplanner.cpp
-        Classes/Meetingplanner/Meetingplanner.cpp
         Classes/DesignByContract/DesignByContract.h
+        Classes/Parser/Parser.cpp
+        Classes/Parser/Parser.h
 )
 
 # 4. TARGET 1: Je echte applicatie (Planning System)
 # Deze gebruikt main.cpp voor de normale werking
 add_executable(planning_system main.cpp ${SHARED_SOURCES}
         Classes/Meetingplanner/Meetingplanner.cpp
-        Classes/DesignByContract/DesignByContract.h)
+        Classes/DesignByContract/DesignByContract.h
+        Classes/Parser/Parser.cpp
+)
 target_link_libraries(planning_system pthread)
 
 # 5. TARGET 2: Je Google Tests
 # Deze gebruikt de test-file en de gedeelde code, maar NIET main.cpp
 add_executable(run_tests Tests/TEST_parse_xxx_element.cpp ${SHARED_SOURCES}
         Classes/Meetingplanner/Meetingplanner.cpp
-        Classes/DesignByContract/DesignByContract.h)
+        Classes/DesignByContract/DesignByContract.h
+        Classes/Parser/Parser.cpp)
+
 target_link_libraries(run_tests gtest pthread)

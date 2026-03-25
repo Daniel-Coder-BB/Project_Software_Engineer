@@ -1,34 +1,32 @@
 /*
 * Korte beschrijving:
- *Dit stelt onze main voor.
+ *Dit stelt onze parser klasse voor.
  *
  * @authors Bruno Luango en Ibrahim Akiyev
- * @date 11/03/2026
- * @version 1.0
+ * @date 25/03/2026
+ * @version 1.5
  */
 
 // Include blok
- #include <iostream>
-#include "tinyxml.h"
-#include  "Classes/DesignByContract/DesignByContract.h"
-#include "Classes/Room/Room.h"
-#include "Classes/Meeting/Meeting.h"
-#include <gtest/gtest.h>
-#include <chrono>
+
+#include "Classes/DesignByContract/DesignByContract.h"
 #include "Classes/Meeting/Meeting.h"
 #include "Classes/Meetingplanner/Meetingplanner.h"
 #include "Classes/Participation/Participation.h"
+#include "Classes/Room/Room.h"
+#include "tinyxml.h"
+#include <iostream>
 
-// Globale using statements
-using namespace std;
 
-//body-gedeelte
+
+ //body-gedeelte
+
 /*
  *This function parses the room tag of an XML file
  *@param room_element an XML element with the ROOM tag
  *@return new_room a room of the type ROOM with all the details
  */
-Room parse_room_element(TiXmlElement* room_element) {
+Room t_parse_room_element(TiXmlElement* room_element) {
     Room new_room;
     new_room.set_identifier("Fout");
     new_room.set_name("Fout");
@@ -77,7 +75,7 @@ Room parse_room_element(TiXmlElement* room_element) {
  *@param meeting_element an XML element with the MEETING tag
  *@return new_meeting a meeting of the type MEETING with all the details
  */
-Meeting parse_meeting_element(TiXmlElement* meeting_element) {
+Meeting t_parse_meeting_element(TiXmlElement* meeting_element) {
     Meeting new_meeting;
     new_meeting.set_date("Fout");
     new_meeting.set_identifier("Fout");
@@ -106,12 +104,13 @@ Meeting parse_meeting_element(TiXmlElement* meeting_element) {
     return new_meeting;
 }
 
+
 /*
  *This function parses the participation tag of an XML file
  *@param participation_element an XML element with the PARTICIPATION tag
  *@return new_participation a participation of the type PARTICIPATION with all the details
  */
-Participation parse_participation_element(TiXmlElement* participation_element) {
+Participation t_parse_participation_element(TiXmlElement* participation_element) {
     Participation new_participation;
     new_participation.set_meeting("Fout");
     new_participation.set_user("Fout");
@@ -139,7 +138,7 @@ Participation parse_participation_element(TiXmlElement* participation_element) {
  *@param doc a TiXmlDocument wich contains our XML file
  *@return if failed (1) or if no errors(0)
  */
-int file_error_check(const string& filename,TiXmlDocument& doc) {
+int t_file_error_check(const string& filename,TiXmlDocument& doc) {
 
     if (!doc.LoadFile(filename.c_str())) {
         cerr << "Fout bij laden: " << doc.ErrorDesc() << endl;
@@ -149,73 +148,11 @@ int file_error_check(const string& filename,TiXmlDocument& doc) {
 }
 
 
-int if_root_exists(TiXmlElement* root) {
+int t_if_root_exists(TiXmlElement* root) {
     if (root == NULL) {
         cerr << "Geen root element gevonden." << endl;
         return 1;
     }
-    return 0;
-}
-
-int maaltafel(int x) {
-    REQUIRE(x >= 0,"You FOOOL");
-    int ans = x*2;
-    ENSURE(ans<10,"TOOO BIGGG");
-    return x*2;
-}
-
-
-int main(int argc, char **argv) {
-    MeetingPlanner planner;
-    TiXmlDocument doc;
-    string filename = "../XML_files/Room.xml";
-    file_error_check(filename,doc);
-
-    TiXmlElement* root = doc.FirstChildElement(); // Dit is <system>
-    if_root_exists(root);
-
-    // Loop over alle <ROOm> elementen binnen  <SYSTEM> [cite: 57, 58]
-    for (TiXmlElement* room = root->FirstChildElement("ROOM"); room != NULL; room = room->NextSiblingElement("ROOM")) {
-        Room new_room = parse_room_element(room);
-        if (new_room.get_name() != "Fout") {
-            planner.addRoom(new_room);
-        }
-        else {
-            cerr<<"Er was een fout bij Room"<<endl;
-        }
-
-    }
-
-    for (TiXmlElement* meeting = root->FirstChildElement("MEETING"); meeting != NULL; meeting = meeting->NextSiblingElement("MEETING")) {
-        Meeting new_meeting = parse_meeting_element(meeting);
-        if (new_meeting.get_room() != "fout") {
-            planner.addMeeting(new_meeting);
-        }
-        else {
-            cerr<<"Er was een fout bij meeting"<<endl;
-        }
-
-
-    }
-
-    for (TiXmlElement* participation = root->FirstChildElement("PARTICIPATION"); participation != NULL; participation = participation->NextSiblingElement("PARTICIPATION")) {
-        Participation new_participation = parse_participation_element(participation);
-        if(new_participation.get_meeting() != "fout") {
-            planner.addParticipation(new_participation);
-        }
-
-        else {
-            cerr<<"Er was een fout bij participation"<<endl;
-        }
-
-    }
-
-
-    doc.Clear();
-
-    // Netjes opruimen [cite: 107]
-
-    planner.simpleOutput();
     return 0;
 }
 
