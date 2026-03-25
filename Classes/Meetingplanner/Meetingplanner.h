@@ -81,10 +81,22 @@ public:
      */
     std::vector<Participation>& getParticipations();
 
-
-
+    /*
+    *This function gets the occupied_rooms attribute
+    *@param None
+    *@return the occupied_rooms of the Meetingplanner object
+    *precondition occupied_rooms is not empty
+    *postcondition returns this->occupied_rooms
+    */
     std::vector<string> get_occupied_rooms() const;
 
+    /*
+   *This function changes the occupied_rooms attribute
+   *@param label the occupied_rooms you want to change it to
+   *@return None
+   *precondition occupied_rooms is bigger or equal to zero
+   *postcondition the input occupied_rooms is equal to label occupied_rooms of Meetingplanner object
+   */
     void set_occupied_rooms(const std::vector<string> &occupied_rooms);
 
     friend bool operator==(const MeetingPlanner &lhs, const MeetingPlanner &rhs) {

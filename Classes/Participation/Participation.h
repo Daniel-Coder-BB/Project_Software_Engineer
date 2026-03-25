@@ -23,6 +23,7 @@ private:
     string user;
     string meeting;
 public:
+
     /*
      *This function gets the user attribute
      *@param None
@@ -32,8 +33,16 @@ public:
      */
     string get_user() const;
 
-    void set_user(const string &user);
     /*
+    *This function changes the user attribute
+    *@param label the user you want to change it to
+    *@return None
+    *precondition user is not empty
+    *postcondition the input user is equal to label user of Participation object
+    */
+    void set_user(const string &user);
+
+     /*
      *This function gets the meeting attribute
      *@param None
      *@return the meeting of the Participation object
@@ -42,6 +51,13 @@ public:
      */
     string get_meeting() const;
 
+    /*
+    *This function changes the meeting attribute
+    *@param label the meeting you want to change it to
+    *@return None
+    *precondition meeting is not empty
+    *postcondition the input meeting is equal to label meeting of Participation object
+    */
     void set_meeting(const string &meeting);
 
     friend bool operator==(const Participation &lhs, const Participation &rhs) {

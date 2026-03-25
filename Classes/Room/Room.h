@@ -34,12 +34,12 @@ public:
      */
     string get_name() const;
     /*
-     *This function sets the name attribute
-     *@param g
-     *@return the name of the Room object
-     *precondition name is not empty
-     *postcondition returns this->name
-     */
+   *This function changes the name attribute
+   *@param label the name you want to change it to
+   *@return None
+   *precondition name is not empty
+   *postcondition the input name is equal to label name of Room object
+   */
     void set_name(const string &name);
     /*
      *This function gets the identifier attribute
@@ -49,7 +49,13 @@ public:
      *postcondition returns this->identifier
      */
     string get_identifier() const;
-
+    /*
+   *This function changes the identifier attribute
+   *@param label the identifier you want to change it to
+   *@return None
+   *precondition identifier is not empty
+   *postcondition the input identifier is equal to label identifier of Room object
+   */
     void set_identifier(const string &identifier);
     /*
      *This function gets the capacity attribute
@@ -59,7 +65,13 @@ public:
      *postcondition returns this->capacity
      */
     unsigned int get_capacity() const;
-
+    /*
+   *This function changes the capacity attribute
+   *@param label the capacity you want to change it to
+   *@return None
+   *precondition capacity is bigger or equal to zero
+   *postcondition the input capacity is equal to label capacity of Room object
+   */
     void set_capacity(unsigned int capacity);
 
     friend bool operator==(const Room &lhs, const Room &rhs) {
