@@ -10,6 +10,7 @@
 // Include blok
 #include <iostream>
 #include "tinyxml.h"
+#include  "Classes/DesignByContract/DesignByContract.h"
 #include "Classes/Room/Room.h"
 #include "Classes/Meeting/Meeting.h"
 #include <gtest/gtest.h>
@@ -136,6 +137,12 @@ int if_root_exists(TiXmlElement* root) {
     return 0;
 }
 
+int maaltafel(int x) {
+    REQUIRE(x >= 0,"You FOOOL");
+    int ans = x*2;
+    ENSURE(ans<10,"TOOO BIGGG");
+    return x*2;
+}
 
 
 int main(int argc, char **argv) {
@@ -189,10 +196,8 @@ int main(int argc, char **argv) {
     // Netjes opruimen [cite: 107]
 
     planner.simpleOutput();
-
+    maaltafel(5);
     return 0;
 }
 
-int maaltafel(int x) {
-    return x*2;
-}
+
