@@ -33,7 +33,13 @@ public:
      *postcondition returns this->name
      */
     string get_name() const;
-
+    /*
+     *This function sets the name attribute
+     *@param g
+     *@return the name of the Room object
+     *precondition name is not empty
+     *postcondition returns this->name
+     */
     void set_name(const string &name);
     /*
      *This function gets the identifier attribute
