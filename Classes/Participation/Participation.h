@@ -26,7 +26,7 @@ public:
     /*
      *This function gets the user attribute
      *@param None
-     *@return the user of the Room object
+     *@return the user of the Participation object
      *precondition user is not empty
      *postcondition returns this->user
      */
@@ -36,7 +36,7 @@ public:
     /*
      *This function gets the meeting attribute
      *@param None
-     *@return the meeting of the Room object
+     *@return the meeting of the Participation object
      *precondition meeting is not empty
      *postcondition returns this->meeting
      */
