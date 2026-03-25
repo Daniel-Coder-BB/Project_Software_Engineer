@@ -27,8 +27,31 @@ private:
     std::vector<Meeting> conflicting_meetings;
 
 public:
+    /*
+    *This function changes the room attribute
+    *@param label the room you want to change it to
+    *@return None
+    *precondition room is not empty
+    *postcondition the input room is equal to label room of Meetingplanner object
+    */
     void addRoom(const Room& room);
+
+    /*
+    *This function changes the meeting attribute
+    *@param label the meeting you want to change it to
+    *@return None
+    *precondition meeting is not empty
+    *postcondition the input meeting is equal to label meeting of Meetingplanner object
+    */
     void addMeeting(const Meeting& meeting);
+
+    /*
+    *This function changes the participation attribute
+    *@param label the participation you want to change it to
+    *@return None
+    *precondition participation is not empty
+    *postcondition the input participation is equal to label participation of Meetingplanner object
+    */
     void addParticipation(const Participation& participation);
 
     /*

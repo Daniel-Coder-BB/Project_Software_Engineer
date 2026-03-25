@@ -69,6 +69,13 @@ public:
      */
     [[nodiscard]] std::string get_room() const;
 
+   /*
+    *This function changes the room attribute
+    *@param label the room you want to change it to
+    *@return None
+    *precondition room is not empty
+    *postcondition the input room is equal to label room of Meeting object
+    */
     void set_room(const std::string &room);
 
     /*
@@ -80,6 +87,14 @@ public:
      */
     [[nodiscard]] std::string get_date() const;
 
+
+   /*
+    *This function changes the date attribute
+    *@param label the date you want to change it to
+    *@return None
+    *precondition date is not empty
+    *postcondition the input date is equal to label date of Meeting object
+    */
     void set_date(const std::string &date);
 
     friend bool operator==(const Meeting &lhs, const Meeting &rhs) {
