@@ -23,10 +23,24 @@ private:
     std::string date;
 
 public:
+    /*
+     *This function gets the label attribute
+     *@param None
+     *@return the label of the Meeting object
+     *precondition label is not empty
+     *postcondition returns this->label
+     */
     [[nodiscard]] std::string get_label() const;
 
     void set_label(const std::string &label);
 
+    /*
+     *This function gets the Identifier attribute
+     *@param None
+     *@return the identifier of the Meeting object
+     *precondition identifier is not empty
+     *postcondition returns this->identifier
+     */
     [[nodiscard]] std::string get_identifier() const;
 
     void set_identifier(const std::string &identifier);
