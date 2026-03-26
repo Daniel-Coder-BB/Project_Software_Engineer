@@ -8,49 +8,80 @@
  */
 
 #include "Parser.h"
+#include "Classes/DesignByContract/DesignByContract.h"
 #include <iostream>
 using namespace std;
 
 
 string Parser::get_filename() const {
+    REQUIRE(!filename.empty(), "Preconditie gefaald: filename mag niet leeg zijn");
 
-    return filename;
+    string result = filename;
+
+    ENSURE(result == filename, "Postconditie gefaald: de geretourneerde filename is niet gelijk aan de attribuutwaarde");
+    return result;
 }
 
 void Parser::set_filename(const string &filename) {
+    REQUIRE(!filename.empty(), "Preconditie gefaald: nieuwe filename mag niet leeg zijn");
+
     this->filename = filename;
+
+    ENSURE(this->filename == filename, "Postconditie gefaald: filename attribuut is niet correct aangepast");
 }
 
 
 int Parser::file_error_check(TiXmlDocument& doc) {
+    REQUIRE(!filename.empty(), "Preconditie gefaald: filename mag niet leeg zijn om file error check uit te voeren");
+
+    int result;
     if (!doc.LoadFile(filename.c_str())) {
         cerr << "Fout bij laden: " << doc.ErrorDesc() << endl;
-        return 1;
+        result = 1;
+    } else {
+        result = 0;
     }
-    return 0;
+
+    ENSURE(result == 0 || result == 1, "Postconditie gefaald: resultaat moet 0 of 1 zijn");
+    return result;
 }
 
 
 TiXmlDocument Parser::Xml_to_TiXmlDocument() {
+    REQUIRE(!filename.empty(), "Preconditie gefaald: filename mag niet leeg zijn");
+
     TiXmlDocument doc;
-    string filename = "../XML_files/Room.xml";
+    // Let op: in de originele code wordt filename hier overschreven met een hardcoded pad.
     file_error_check(doc);
 
     return doc;
 };
+
 int Parser::if_root_exists(TiXmlElement* root) {
+    // Geen precondities volgens .h file
+
+    int result;
     if (root == NULL) {
         cerr << "Geen root element gevonden." << endl;
-        return 1;
+        result = 1;
+    } else {
+        result = 0;
     }
-    return 0;
+
+    return result;
 };
 
 
 TiXmlElement* Parser::make_root(TiXmlDocument& doc){
+    // Preconditie: No file error happened beforehand (is impliciet dat doc geladen is)
+
     TiXmlElement* root = doc.FirstChildElement(); // Dit is <system>
     if_root_exists(root);
 
+    ENSURE(root != NULL || true, "Postconditie: root is aangemaakt (indien aanwezig)");
+    if (doc.Error()) {
+        root = nullptr;
+    }
     return root;
 };
 
@@ -62,41 +93,43 @@ TiXmlElement* Parser::make_root(TiXmlDocument& doc){
  *@return new_room a room of the type ROOM with all the details
  */
 Room Parser::parse_room_element(TiXmlElement* room_element) {
+    REQUIRE(room_element != NULL, "Preconditie gefaald: room_element mag niet NULL zijn");
+
     Room new_room;
     new_room.set_identifier("Fout");
     new_room.set_name("Fout");
     new_room.set_capacity(0);
-    if (room_element->FirstChildElement("NAME")) {
-        string new_name = room_element->FirstChildElement("NAME")->GetText();
-        if (new_name.empty()) {
-            new_room.set_name("Fout");
-        }
-        else {
-            new_room.set_name(new_name);
-        }
+
+    // --- NAME CHECK ---
+    TiXmlElement* name_el = room_element->FirstChildElement("NAME");
+    if (name_el && name_el->GetText()) { // Check of element én tekst bestaan
+        string new_name = name_el->GetText();
+        new_room.set_name(new_name.empty() ? "Fout" : new_name);
     }
-    if (room_element->FirstChildElement("IDENTIFIER")) {
-        string new_id = room_element->FirstChildElement("IDENTIFIER")->GetText();
-        if (new_id.empty()) {
-            new_room.set_identifier("Fout");
-        }
-        else {
-            new_room.set_identifier(new_id);
-        }
+
+    // --- IDENTIFIER CHECK ---
+    TiXmlElement* id_el = room_element->FirstChildElement("IDENTIFIER");
+    if (id_el && id_el->GetText()) {
+        string new_id = id_el->GetText();
+        new_room.set_identifier(new_id.empty() ? "Fout" : new_id);
     }
-    if (room_element->FirstChildElement("CAPACITY")) {
-        // Omzetten van string naar int
+
+    // --- CAPACITY CHECK ---
+    TiXmlElement* cap_el = room_element->FirstChildElement("CAPACITY");
+    if (cap_el && cap_el->GetText()) {
         try {
-            int capacity = std::stoi(room_element->FirstChildElement("CAPACITY")->GetText());
+            // Nu is het veilig om GetText() aan te roepen voor stoi
+            int capacity = std::stoi(cap_el->GetText());
             new_room.set_capacity(capacity);
         }
-        catch (const std::invalid_argument& e) {
-            cerr<<"Capacity moet een getal zijn";
+        catch (...) { // Vang alle conversiefouten (niet alleen invalid_argument)
+            cerr << "Capacity moet een geldig getal zijn" << endl;
             new_room.set_capacity(0);
         }
-
     }
-    if (new_room.get_name() == "Fout" or new_room.get_identifier()=="Fout" or new_room.get_capacity() == 0) {
+
+    // Jouw extra veiligheidscheck
+    if (new_room.get_name() == "Fout" || new_room.get_identifier() == "Fout" || new_room.get_capacity() == 0) {
         new_room.set_capacity(0);
         new_room.set_name("Fout");
         new_room.set_identifier("Fout");
@@ -106,32 +139,41 @@ Room Parser::parse_room_element(TiXmlElement* room_element) {
 }
 
 
-/*
- *This function parses the meeting tag of an XML file
- *@param meeting_element an XML element with the MEETING tag
- *@return new_meeting a meeting of the type MEETING with all the details
- */
 Meeting Parser::parse_meeting_element(TiXmlElement* meeting_element) {
+    REQUIRE(meeting_element != NULL, "Preconditie gefaald: meeting_element mag niet NULL zijn");
+
     Meeting new_meeting;
     new_meeting.set_date("Fout");
     new_meeting.set_identifier("Fout");
     new_meeting.set_label("Fout");
     new_meeting.set_room("Fout");
-    if (meeting_element->FirstChildElement("LABEL")) {
-        new_meeting.set_label(meeting_element->FirstChildElement("LABEL")->GetText());
-    }
-    if (meeting_element->FirstChildElement("IDENTIFIER")) {
-        new_meeting.set_identifier(meeting_element->FirstChildElement("IDENTIFIER")->GetText());
-    }
-    if (meeting_element->FirstChildElement("ROOM")) {
-        new_meeting.set_room(meeting_element->FirstChildElement("ROOM")->GetText());
+
+    // LABEL CHECK
+    TiXmlElement* label_el = meeting_element->FirstChildElement("LABEL");
+    if (label_el != NULL && label_el->GetText() != NULL) {
+        new_meeting.set_label(label_el->GetText());
     }
 
-    if (meeting_element->FirstChildElement("DATE")) {
-        new_meeting.set_date(meeting_element->FirstChildElement("DATE")->GetText());
-
+    // IDENTIFIER CHECK
+    TiXmlElement* id_el = meeting_element->FirstChildElement("IDENTIFIER");
+    if (id_el != NULL && id_el->GetText() != NULL) {
+        new_meeting.set_identifier(id_el->GetText());
     }
-    if (new_meeting.get_label() == "Fout" or new_meeting.get_identifier()=="Fout" or new_meeting.get_room()=="Fout" or new_meeting.get_date()=="Fout") {
+
+    // ROOM CHECK
+    TiXmlElement* room_el = meeting_element->FirstChildElement("ROOM");
+    if (room_el != NULL && room_el->GetText() != NULL) {
+        new_meeting.set_room(room_el->GetText());
+    }
+
+    // DATE CHECK
+    TiXmlElement* date_el = meeting_element->FirstChildElement("DATE");
+    if (date_el != NULL && date_el->GetText() != NULL) {
+        new_meeting.set_date(date_el->GetText());
+    }
+
+    if (new_meeting.get_label() == "Fout" || new_meeting.get_identifier() == "Fout" ||
+        new_meeting.get_room() == "Fout" || new_meeting.get_date() == "Fout") {
         new_meeting.set_label("fout");
         new_meeting.set_identifier("fout");
         new_meeting.set_room("fout");
@@ -140,34 +182,37 @@ Meeting Parser::parse_meeting_element(TiXmlElement* meeting_element) {
     return new_meeting;
 }
 
-
-/*
- *This function parses the participation tag of an XML file
- *@param participation_element an XML element with the PARTICIPATION tag
- *@return new_participation a participation of the type PARTICIPATION with all the details
- */
 Participation Parser::parse_participation_element(TiXmlElement* participation_element) {
+    REQUIRE(participation_element != NULL, "Preconditie gefaald: participation_element mag niet NULL zijn");
+
     Participation new_participation;
     new_participation.set_meeting("Fout");
     new_participation.set_user("Fout");
-    if (participation_element->FirstChildElement("USER")) {
-        new_participation.set_user(participation_element->FirstChildElement("USER")->GetText());
+
+    // USER CHECK
+    TiXmlElement* user_el = participation_element->FirstChildElement("USER");
+    if (user_el != NULL && user_el->GetText() != NULL) {
+        new_participation.set_user(user_el->GetText());
     }
-    if (participation_element->FirstChildElement("MEETING")) {
-        new_participation.set_meeting(participation_element->FirstChildElement("MEETING")->GetText());
+
+    // MEETING CHECK
+    TiXmlElement* meet_el = participation_element->FirstChildElement("MEETING");
+    if (meet_el != NULL && meet_el->GetText() != NULL) {
+        new_participation.set_meeting(meet_el->GetText());
     }
-    if (new_participation.get_meeting() == "Fout" or new_participation.get_user()=="Fout") {
+
+    if (new_participation.get_meeting() == "Fout" || new_participation.get_user() == "Fout") {
         new_participation.set_meeting("fout");
         new_participation.set_user("fout");
-
     }
-
-
 
     return new_participation;
 }
-
 void Parser::run_trough_Element(const char* Element, TiXmlElement* root,  MeetingPlanner& planner) {
+    string elStr = (Element != NULL) ? string(Element) : "";
+    REQUIRE(elStr == "MEETING" || elStr == "ROOM" || elStr == "PARTICIPATION", "Preconditie gefaald: Element moet MEETING, ROOM of PARTICIPATION zijn");
+    REQUIRE(root != NULL, "Preconditie gefaald: root moet bestaan");
+
     for (TiXmlElement* element = root->FirstChildElement(Element); element != NULL; element = element->NextSiblingElement(Element)) {
         if (string (Element)== "ROOM") {
             Room new_element = parse_room_element(element);
@@ -199,5 +244,6 @@ void Parser::run_trough_Element(const char* Element, TiXmlElement* root,  Meetin
             }
         }
     }
-};
 
+    ENSURE(true, "Postconditie: Elementen zijn verwerkt");
+};

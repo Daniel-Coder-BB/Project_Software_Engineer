@@ -18,8 +18,8 @@ include_directories(
 # 2. Zoek de gtest bibliotheek
 link_directories(./gtest-1.7.0/lib)
 
-# 3. Gedeelde Bronbestanden (bestanden die BEIDE nodig hebben)
-# Let op: GEEN main.cpp en GEEN test-bestanden hierin zetten!
+# 3. Gedeelde Bronbestanden (Kernlogica)
+# Hier staan alle klassen die zowel de app als de tests nodig hebben.
 set(SHARED_SOURCES
         tinyxml_2_6_2/tinyxml/tinyxml.cpp
         tinyxml_2_6_2/tinyxml/tinyxmlparser.cpp
@@ -29,29 +29,15 @@ set(SHARED_SOURCES
         Classes/Meeting/Meeting.cpp
         Classes/Participation/Participation.cpp
         Classes/Meetingplanner/Meetingplanner.cpp
-        Classes/DesignByContract/DesignByContract.h
         Classes/Parser/Parser.cpp
-        Classes/Parser/Parser.h
 )
 
 # 4. TARGET 1: Je echte applicatie (Planning System)
-# Deze gebruikt main.cpp voor de normale werking
-add_executable(planning_system main.cpp ${SHARED_SOURCES}
-        Classes/Meetingplanner/Meetingplanner.cpp
-        Classes/DesignByContract/DesignByContract.h
-        Classes/Parser/Parser.cpp
-        Classes/Parser/Parser.cpp
-        Classes/Parser/Parser.h
-)
+# Gebruikt main.cpp + de gedeelde logica
+add_executable(planning_system main.cpp ${SHARED_SOURCES})
 target_link_libraries(planning_system pthread)
 
 # 5. TARGET 2: Je Google Tests
-# Deze gebruikt de test-file en de gedeelde code, maar NIET main.cpp
-add_executable(run_tests Tests/TEST_parse_xxx_element.cpp ${SHARED_SOURCES}
-        Classes/Meetingplanner/Meetingplanner.cpp
-        Classes/DesignByContract/DesignByContract.h
-        Classes/Parser/Parser.cpp
-        Classes/Parser/Parser.cpp
-        Classes/Parser/Parser.h)
-
+# Gebruikt nu test_main.cpp in plaats van de specifieke element test
+add_executable(run_tests Tests/test_main.cpp ${SHARED_SOURCES})
 target_link_libraries(run_tests gtest pthread)
