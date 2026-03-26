@@ -14,6 +14,7 @@
 // --- Getters ---
 
 std::string Meeting::get_label() const {
+
     REQUIRE(!label.empty(), "label is not empty");
     std::string result = label;
     ENSURE(result == this->label, "returns this->label");
@@ -79,6 +80,7 @@ void Meeting::print() {
     std::cout << " | Identifier: " << identifier;
     std::cout << " | Room: " << room;
     std::cout << " | Date: " << date << std::endl;
+
 
     // Postconditie: "string gets shown" is lastig te testen in code,
     // maar we kunnen bevestigen dat de functie het einde heeft bereikt.

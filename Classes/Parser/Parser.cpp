@@ -13,6 +13,7 @@ using namespace std;
 
 
 string Parser::get_filename() const {
+
     return filename;
 }
 
@@ -21,9 +22,8 @@ void Parser::set_filename(const string &filename) {
 }
 
 
-int file_error_check(TiXmlDocument& doc) {
-
-    if (!doc.LoadFile(filename.c_str=())) {
+int Parser::file_error_check(TiXmlDocument& doc) {
+    if (!doc.LoadFile(filename.c_str())) {
         cerr << "Fout bij laden: " << doc.ErrorDesc() << endl;
         return 1;
     }
@@ -31,14 +31,14 @@ int file_error_check(TiXmlDocument& doc) {
 }
 
 
-TiXmlDocument Xml_to_TiXmlDocument() {
+TiXmlDocument Parser::Xml_to_TiXmlDocument() {
     TiXmlDocument doc;
     string filename = "../XML_files/Room.xml";
     file_error_check(doc);
 
     return doc;
 };
-int if_root_exists(TiXmlElement* root) {
+int Parser::if_root_exists(TiXmlElement* root) {
     if (root == NULL) {
         cerr << "Geen root element gevonden." << endl;
         return 1;
@@ -47,7 +47,7 @@ int if_root_exists(TiXmlElement* root) {
 };
 
 
-TiXmlElement* make_root(TiXmlDocument& doc){
+TiXmlElement* Parser::make_root(TiXmlDocument& doc){
     TiXmlElement* root = doc.FirstChildElement(); // Dit is <system>
     if_root_exists(root);
 
@@ -61,7 +61,7 @@ TiXmlElement* make_root(TiXmlDocument& doc){
  *@param room_element an XML element with the ROOM tag
  *@return new_room a room of the type ROOM with all the details
  */
-Room parse_room_element(TiXmlElement* room_element) {
+Room Parser::parse_room_element(TiXmlElement* room_element) {
     Room new_room;
     new_room.set_identifier("Fout");
     new_room.set_name("Fout");
@@ -111,7 +111,7 @@ Room parse_room_element(TiXmlElement* room_element) {
  *@param meeting_element an XML element with the MEETING tag
  *@return new_meeting a meeting of the type MEETING with all the details
  */
-Meeting parse_meeting_element(TiXmlElement* meeting_element) {
+Meeting Parser::parse_meeting_element(TiXmlElement* meeting_element) {
     Meeting new_meeting;
     new_meeting.set_date("Fout");
     new_meeting.set_identifier("Fout");
@@ -146,7 +146,7 @@ Meeting parse_meeting_element(TiXmlElement* meeting_element) {
  *@param participation_element an XML element with the PARTICIPATION tag
  *@return new_participation a participation of the type PARTICIPATION with all the details
  */
-Participation parse_participation_element(TiXmlElement* participation_element) {
+Participation Parser::parse_participation_element(TiXmlElement* participation_element) {
     Participation new_participation;
     new_participation.set_meeting("Fout");
     new_participation.set_user("Fout");
@@ -167,7 +167,7 @@ Participation parse_participation_element(TiXmlElement* participation_element) {
     return new_participation;
 }
 
-void run_trough_Element(const char* Element, TiXmlElement* root,  MeetingPlanner planner) {
+void Parser::run_trough_Element(const char* Element, TiXmlElement* root,  MeetingPlanner& planner) {
     for (TiXmlElement* element = root->FirstChildElement(Element); element != NULL; element = element->NextSiblingElement(Element)) {
         if (string (Element)== "ROOM") {
             Room new_element = parse_room_element(element);

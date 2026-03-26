@@ -33,7 +33,7 @@ public:
     int file_error_check(TiXmlDocument& doc);
     int if_root_exists(TiXmlElement* root);
     TiXmlElement* make_root(TiXmlDocument& doc);
-    void run_trough_Element(const char* Element, TiXmlElement* root,  MeetingPlanner planner);
+    void run_trough_Element(const char* Element, TiXmlElement* root,  MeetingPlanner& planner);
     Room parse_room_element(TiXmlElement* room_element);
     Meeting parse_meeting_element(TiXmlElement* meeting_element);
     Participation parse_participation_element(TiXmlElement* participation_element);
