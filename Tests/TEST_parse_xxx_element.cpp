@@ -162,7 +162,6 @@ int t_if_root_exists(TiXmlElement* root) {
 }
 
 
-
 int main(int argc, char **argv) {
     std::cout<<"starten van de testen in main..."<<std::endl;
     ::testing::InitGoogleTest(&argc, argv);
@@ -576,3 +575,116 @@ TEST(MeetingPlannerContractTest, Postconditions) {
     EXPECT_NO_THROW(planner.simpleOutput());
 }
 
+
+// ============================================================================
+// PARSER CLASS TESTS
+// ============================================================================
+
+/**
+ * Test de basis getters en setters van de Parser
+ */
+TEST(ParserTest, GetSetFilename) {
+    Parser test_parser;
+
+    // Test REQUIRE: mag niet leeg zijn bij set
+    ASSERT_DEATH({ test_parser.set_filename(""); }, "Contract violation");
+
+    // Test Happy Day
+    test_parser.set_filename("test.xml");
+    EXPECT_EQ(test_parser.get_filename(), "test.xml");
+}
+
+/**
+ * Test de file_error_check functionaliteit van de Parser klasse
+ */
+TEST(ParserTest, FileErrorCheck) {
+    Parser test_parser;
+    TiXmlDocument doc;
+
+    // Test REQUIRE: filename mag niet leeg zijn voor de check
+    // We moeten een parser object hebben zonder filename (indien mogelijk)
+    // of direct de check aanroepen terwijl filename nog niet gezet is.
+    ASSERT_DEATH({ test_parser.file_error_check(doc); }, "Contract violation");
+
+    // Test Happy Day: Bestaand bestand
+    test_parser.set_filename("../Tests/test_XML_file/happy_day.xml");
+    EXPECT_EQ(test_parser.file_error_check(doc), 0);
+
+    // Test Failure: Onbestaand bestand
+    test_parser.set_filename("onbestaand_bestand.xml");
+    EXPECT_EQ(test_parser.file_error_check(doc), 1);
+}
+
+/**
+ * Test of de root correct wordt herkend en gemaakt
+ */
+TEST(ParserTest, RootHandling) {
+    Parser test_parser;
+    TiXmlDocument doc;
+
+    // Setup: Laad een valide file
+    test_parser.set_filename("../Tests/test_XML_file/happy_day.xml");
+    test_parser.file_error_check(doc);
+
+    // Test if_root_exists
+    TiXmlElement* root = doc.FirstChildElement();
+    EXPECT_EQ(test_parser.if_root_exists(root), 0);
+
+    // Test make_root
+    TiXmlElement* created_root = test_parser.make_root(doc);
+    EXPECT_NE(created_root, nullptr);
+    EXPECT_STREQ(created_root->Value(), "SYSTEM"); // Of wat je root tag ook is
+}
+
+/**
+ * Test de run_trough_Element functie (De kern van de parser)
+ */
+TEST(ParserTest, RunThroughElement) {
+    Parser test_parser;
+    MeetingPlanner planner;
+    TiXmlDocument doc;
+
+    test_parser.set_filename("../Tests/test_XML_file/happy_day.xml");
+    test_parser.file_error_check(doc);
+    TiXmlElement* root = test_parser.make_root(doc);
+
+    // Test REQUIRE: Foute element naam (moet ROOM, MEETING of PARTICIPATION zijn)
+    ASSERT_DEATH({ test_parser.run_trough_Element("INVALID", root, planner); }, "Contract violation");
+
+    // Test REQUIRE: Root mag niet NULL zijn
+    ASSERT_DEATH({ test_parser.run_trough_Element("ROOM", nullptr, planner); }, "Contract violation");
+
+    // Test Happy Day: Verwerk rooms
+    test_parser.run_trough_Element("ROOM", root, planner);
+    EXPECT_FALSE(planner.getRooms().empty());
+}
+
+/**
+ * Test de individuele element-parsers (Room, Meeting, Participation)
+ */
+TEST(ParserTest, ParseElements) {
+    Parser test_parser;
+    TiXmlDocument doc;
+    test_parser.set_filename("../Tests/test_XML_file/happy_day.xml");
+    test_parser.file_error_check(doc);
+    TiXmlElement* root = test_parser.make_root(doc);
+
+    // Haal een Room element op
+    TiXmlElement* room_el = root->FirstChildElement("ROOM");
+    if (room_el) {
+        Room r = test_parser.parse_room_element(room_el);
+        EXPECT_NE(r.get_name(), "Fout");
+    }
+
+    // Haal een Meeting element op
+    TiXmlElement* meeting_el = root->FirstChildElement("MEETING");
+    if (meeting_el) {
+        Meeting m = test_parser.parse_meeting_element(meeting_el);
+        EXPECT_NE(m.get_identifier(), "fout");
+    }
+
+    // Test REQUIRE: mag niet NULL zijn
+    ASSERT_DEATH({ test_parser.parse_room_element(nullptr); }, "Contract violation");
+    ASSERT_DEATH({ test_parser.parse_meeting_element(nullptr); }, "Contract violation");
+    ASSERT_DEATH({ test_parser.parse_participation_element(nullptr); }, "Contract violation");
+}

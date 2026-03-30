@@ -25,18 +25,98 @@ private:
     string filename;
 
 public:
+    /*
+     *This function gets the filename attribute
+     *@param None
+     *@return the filename of the Parser object
+     *precondition filename is not empty
+     *postcondition returns this->filename
+     */
+    string get_filename() const;
 
-    [[nodiscard]] string get_filename() const;
-
+    /*
+    *This function changes the filename attribute
+    *@param label the filename you want to change it to
+    *@return None
+    *precondition filename is not empty
+    *postcondition the input filename is equal to label filename of Parser object
+    */
     void set_filename(const string &filename);
 
+    /*
+    *This function takes the filename and turns the XML document into a TiXmlDocument element
+    *@param None
+    *@return document of type TiXmlElement
+    *precondition filename is not empty
+    *postcondition You have a TiXmlDocument ready to be parsed
+    */
     TiXmlDocument Xml_to_TiXmlDocument();
+
+    /*
+    *This function checks if there was an error in loading the file into TiXmlDocument
+    *@param document an TiXmlDocument wich you will load the content of a file
+    *@return 0 for succes 1, 1 for failure.
+    *precondition filename is not empty
+    *postcondition the content of the file has been loaded into doc
+    */
     int file_error_check(TiXmlDocument& doc);
+
+    /*
+    *This function checks if the root is not NULL
+    *@param root, an TiXmlElement adress wich contains the adress of the root.
+    *@return 0 for succes 1, 1 for failure.
+    *precondition None
+    *postcondition you know if your TIXmlDocument has a root.
+    */
     int if_root_exists(TiXmlElement* root);
+
+    /*
+    *This function makes a root with type TiXmlElement.
+    *@param doc, a TIXmlDocument value of an object
+    *@return root, a TiXmlElement object
+    *precondition No file error happened beforehand.
+    *postcondition a root has been created wich you can extract info about the XML document
+    */
     TiXmlElement* make_root(TiXmlDocument& doc);
+
+    /*
+    *This function runs through every header of the XML file and puts the FirstChildElment in the MeetingPlanner
+    *@param Element, a const char pointer wich represent the FirstChildElement of the root you want to find
+    *@param root, a TiXmlElement pointer wich represents the root of the XML file
+    *@param planner, a Meetingplanner value wich represents the meetingplanner where you will put all the FirstChildElements of your Element.
+    *@return None
+    *precondition Elment is "MEETING","ROOM" or "PARTICIPATION"
+    *precondition root exists
+    *postcondition the Meeting,room and Participation objects have succesfully been added to the planner
+    */
     void run_trough_Element(const char* Element, TiXmlElement* root,  MeetingPlanner& planner);
+
+    /*
+     *This function parses the room tag of an XML file
+     *@param room_element an XML element with the ROOM tag
+     *@return new_room a room of the type ROOM with all the details
+     *precondition None
+     *postcondition you get a Room object back
+     */
     Room parse_room_element(TiXmlElement* room_element);
+
+    /*
+     *This function parses the meeting tag of an XML file
+     *@param meeting_element an XML element with the MEETING tag
+     *@return new_meeting a meeting of the type MEETING with all the details
+     *precondition None
+     *postcondition you get a Meeting object
+     */
     Meeting parse_meeting_element(TiXmlElement* meeting_element);
+
+
+   /*
+    *This function parses the participation tag of an XML file
+    *@param participation_element an XML element with the PARTICIPATION tag
+    *@return new_participation a participation of the type PARTICIPATION with all the details
+    *preconditon None.
+    *postcondition you get a Participation object.
+    */
     Participation parse_participation_element(TiXmlElement* participation_element);
 
 };
