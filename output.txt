@@ -1,11 +1,14 @@
 MEETINGS: 
-- Aula, 2026-01-01
-  Test
-
-  Meeting ID:  1
+- Room98732, 2026-05-22
+  Weekly meeting
+  Peter Selie  Brin
+  Meeting ID:  478463
 
 CONFLICTING MEETINGS: 
 ROOMS: 
-- Aula
-  capacity: 50 people 
+- M.G.025
+  capacity: 55 people 
+
+- M.G.023
+  capacity: 10 people 
 
