@@ -13,6 +13,7 @@
 // Include blok
 
 #include <string>
+#include "Classes/DesignByContract/DesignByContract.h"
 
 //body-gedeelte
 class Meeting {
@@ -21,6 +22,11 @@ private:
     std::string identifier;
     std::string room;
     std::string date;
+    int         hour;
+    bool online;
+    bool externals;
+    bool catering;
+
 
 public:
     /*
@@ -97,6 +103,79 @@ public:
     */
     void set_date(const std::string &date);
 
+
+ /*
+  *This function gets the hour attribute
+  *@param None
+  *@return the hour of the Meeting object
+  *precondition None
+  *postcondition returns this->hour
+  */
+ [[nodiscard]] int get_hour() const;
+
+ /*
+  *This function changes the hour attribute
+  *@param the hour you want to change it to
+  *@return None
+  *precondition hour must be between 0 and 23
+  *postcondition the input hour is equal to the hour of the Meeting object
+  */
+ void set_hour(int hour);
+
+ /*
+  *This function gets the online status attribute
+  *@param None
+  *@return the online status of the Meeting object
+  *precondition None
+  *postcondition returns this->online
+  */
+ [[nodiscard]] bool is_online() const;
+
+ /*
+  *This function changes the online status attribute
+  *@param the online status (true/false) you want to set
+  *@return None
+  *precondition None
+  *postcondition the input online is equal to the online status of the Meeting object
+  */
+ void set_online(bool online);
+
+ /*
+  *This function gets the externals attribute
+  *@param None
+  *@return whether there are externals in the Meeting object
+  *precondition None
+  *postcondition returns this->externals
+  */
+ [[nodiscard]] bool is_externals() const;
+
+ /*
+  *This function changes the externals attribute
+  *@param the externals status (true/false) you want to set
+  *@return None
+  *precondition None
+  *postcondition the input externals is equal to the externals status of the Meeting object
+  */
+ void set_externals(bool externals);
+
+ /*
+  *This function gets the catering attribute
+  *@param None
+  *@return whether catering is provided for the Meeting object
+  *precondition None
+  *postcondition returns this->catering
+  */
+ [[nodiscard]] bool is_catering() const;
+
+ /*
+  *This function changes the catering attribute
+  *@param the catering status (true/false) you want to set
+  *@return None
+  *precondition None
+  *postcondition the input catering is equal to the catering status of the Meeting object
+  */
+ void set_catering(bool catering);
+
     friend bool operator==(const Meeting &lhs, const Meeting &rhs) {
         return lhs.label == rhs.label
                && lhs.identifier == rhs.identifier
@@ -107,6 +186,8 @@ public:
     friend bool operator!=(const Meeting &lhs, const Meeting &rhs) {
         return !(lhs == rhs);
     }
+
+
 
 
     /*
