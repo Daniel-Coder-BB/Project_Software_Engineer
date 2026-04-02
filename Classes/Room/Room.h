@@ -35,7 +35,7 @@ public:
     string get_name() const;
     /*
    *This function changes the name attribute
-   *@param label the name you want to change it to
+   *@param the name you want to change it to
    *@return None
    *precondition name is not empty
    *postcondition the input name is equal to label name of Room object
@@ -51,7 +51,7 @@ public:
     string get_identifier() const;
     /*
    *This function changes the identifier attribute
-   *@param label the identifier you want to change it to
+   *@param the identifier you want to change it to
    *@return None
    *precondition identifier is not empty
    *postcondition the input identifier is equal to label identifier of Room object
@@ -67,7 +67,7 @@ public:
      int get_capacity() const;
     /*
    *This function changes the capacity attribute
-   *@param label the capacity you want to change it to
+   *@param the capacity you want to change it to
    *@return None
    *precondition capacity is bigger or equal to zero
    *postcondition the input capacity is equal to label capacity of Room object

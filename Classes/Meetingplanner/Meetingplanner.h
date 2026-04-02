@@ -29,28 +29,28 @@ private:
 public:
     /*
     *This function changes the room attribute
-    *@param label the room you want to change it to
+    *@param the room you want to change it to
     *@return None
     *precondition room is not empty
-    *postcondition the input room is equal to label room of Meetingplanner object
+    *postcondition the input room is equal to room of Meetingplanner object
     */
     void addRoom(const Room& room);
 
     /*
     *This function changes the meeting attribute
-    *@param label the meeting you want to change it to
+    *@param the meeting you want to change it to
     *@return None
     *precondition meeting is not empty
-    *postcondition the input meeting is equal to label meeting of Meetingplanner object
+    *postcondition the input meeting is equal to meeting of Meetingplanner object
     */
     void addMeeting(const Meeting& meeting);
 
     /*
     *This function changes the participation attribute
-    *@param label the participation you want to change it to
+    *@param the participation you want to change it to
     *@return None
     *precondition participation is not empty
-    *postcondition the input participation is equal to label participation of Meetingplanner object
+    *postcondition the input participation is equal to participation of Meetingplanner object
     */
     void addParticipation(const Participation& participation);
 
@@ -92,10 +92,10 @@ public:
 
     /*
    *This function changes the occupied_rooms attribute
-   *@param label the occupied_rooms you want to change it to
+   *@param the occupied_rooms you want to change it to
    *@return None
    *precondition occupied_rooms is bigger or equal to zero
-   *postcondition the input occupied_rooms is equal to label occupied_rooms of Meetingplanner object
+   *postcondition the input occupied_rooms is equal to occupied_rooms of Meetingplanner object
    */
     void set_occupied_rooms(const std::vector<string> &occupied_rooms);
 

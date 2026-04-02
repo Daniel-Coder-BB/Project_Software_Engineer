@@ -34,7 +34,7 @@ public:
 
     /*
      *This function changes the date attribute
-     *@param label the label you want to change it to
+     *@param the label you want to change it to
      *@return None
      *precondition label is not empty
      *postcondition the input label is equal to label attribute of Meeting object
@@ -53,10 +53,10 @@ public:
 
   /*
    *This function changes the identifier attribute
-   *@param label the identifier you want to change it to
+   *@param the identifier you want to change it to
    *@return None
    *precondition identifier is not empty
-   *postcondition the input identifier is equal to label identifier of Meeting object
+   *postcondition the input identifier is equal to identifier of Meeting object
    */
     void set_identifier(const std::string &identifier);
 
@@ -71,10 +71,10 @@ public:
 
    /*
     *This function changes the room attribute
-    *@param label the room you want to change it to
+    *@param the room you want to change it to
     *@return None
     *precondition room is not empty
-    *postcondition the input room is equal to label room of Meeting object
+    *postcondition the input room is equal to room of Meeting object
     */
     void set_room(const std::string &room);
 
@@ -90,10 +90,10 @@ public:
 
    /*
     *This function changes the date attribute
-    *@param label the date you want to change it to
+    *@param the date you want to change it to
     *@return None
     *precondition date is not empty
-    *postcondition the input date is equal to label date of Meeting object
+    *postcondition the input date is equal to date of Meeting object
     */
     void set_date(const std::string &date);
 

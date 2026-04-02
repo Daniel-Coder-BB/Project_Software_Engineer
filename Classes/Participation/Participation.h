@@ -35,10 +35,10 @@ public:
 
     /*
     *This function changes the user attribute
-    *@param label the user you want to change it to
+    *@param the user you want to change it to
     *@return None
     *precondition user is not empty
-    *postcondition the input user is equal to label user of Participation object
+    *postcondition the input user is equal to user of Participation object
     */
     void set_user(const string &user);
 
@@ -53,10 +53,10 @@ public:
 
     /*
     *This function changes the meeting attribute
-    *@param label the meeting you want to change it to
+    *@param the meeting you want to change it to
     *@return None
     *precondition meeting is not empty
-    *postcondition the input meeting is equal to label meeting of Participation object
+    *postcondition the input meeting is equal to meeting of Participation object
     */
     void set_meeting(const string &meeting);
 

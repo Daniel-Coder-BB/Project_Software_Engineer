@@ -36,10 +36,10 @@ public:
 
     /*
     *This function changes the filename attribute
-    *@param label the filename you want to change it to
+    *@param the filename you want to change it to
     *@return None
     *precondition filename is not empty
-    *postcondition the input filename is equal to label filename of Parser object
+    *postcondition the input filename is equal to filename of Parser object
     */
     void set_filename(const string &filename);
 
