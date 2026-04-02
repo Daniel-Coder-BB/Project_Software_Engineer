@@ -68,6 +68,41 @@ void Meeting::set_date(const std::string &date) {
     ENSURE(this->date == date, "the input date is equal to date attribute");
 }
 
+int Meeting::get_hour() const {
+    return hour;
+}
+
+void Meeting::set_hour(int hour) {
+    if (hour >23 or hour<0) {
+        throw std::invalid_argument("Hour must be smaller then 23 or biggen then 0");
+    }
+    this->hour = hour;
+}
+
+bool Meeting::is_online() const {
+    return online;
+}
+
+void Meeting::set_online(bool online) {
+    this->online = online;
+}
+
+bool Meeting::is_externals() const {
+    return externals;
+}
+
+void Meeting::set_externals(bool externals) {
+    this->externals = externals;
+}
+
+bool Meeting::is_catering() const {
+    return catering;
+}
+
+void Meeting::set_catering(bool catering) {
+    this->catering = catering;
+}
+
 // --- Overige functies ---
 
 void Meeting::print() {
