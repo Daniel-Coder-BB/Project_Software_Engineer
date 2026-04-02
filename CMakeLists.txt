@@ -34,7 +34,16 @@ set(SHARED_SOURCES
 
 # 4. TARGET 1: Je echte applicatie (Planning System)
 # Gebruikt main.cpp + de gedeelde logica
-add_executable(planning_system main.cpp ${SHARED_SOURCES})
+add_executable(planning_system main.cpp ${SHARED_SOURCES}
+        Classes/Buildings/Buildings.cpp
+        Classes/Buildings/Buildings.h
+        "Classes/Catering Providers/Cateringproviders.cpp"
+        "Classes/Catering Providers/Cateringproviders.h"
+        Classes/Renovations/Renovations.cpp
+        Classes/Renovations/Renovations.h
+        Classes/Campus/Campus.cpp
+        Classes/Campus/Campus.h
+)
 target_link_libraries(planning_system pthread)
 
 # 5. TARGET 2: Je Google Tests
