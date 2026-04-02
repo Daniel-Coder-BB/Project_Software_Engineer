@@ -9,6 +9,7 @@
 
 //includ blok
 #include "Campus.h"
+#include "Classes/DesignByContract/DesignByContract.h"
 
 std::string Campus::get_name() const {
     return name;

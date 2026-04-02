@@ -8,6 +8,7 @@
  */
 
 #include "Buildings.h"
+#include "Classes/DesignByContract/DesignByContract.h"
 
 std::string Buildings::get_name() const {
     return name;

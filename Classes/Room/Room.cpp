@@ -76,6 +76,23 @@ void Room::set_capacity( int capacity) {
     ENSURE(this->capacity == capacity, "the input capacity is equal to label capacity of Room object");
 }
 
+string Room::get_campus() const {
+    return campus;
+}
+
+void Room::set_campus(const string &campus) {
+    this->campus = campus;
+}
+
+string Room::get_buulding() const {
+    return building;
+}
+
+void Room::set_buulding(const string &buulding) {
+    this->building = buulding;
+}
+
+
 void Room::print() {
     // Preconditie check op basis van de attributen (consistent met andere klassen)
     REQUIRE(!name.empty() && !identifier.empty() && capacity >= 0, "Room attributes are not empty");
@@ -85,3 +102,4 @@ void Room::print() {
     std::cout << " | Identifier: " << identifier;
     std::cout << " | Capacity: " << capacity << std::endl;
 }
+

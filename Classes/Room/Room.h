@@ -23,6 +23,8 @@ private:
     string name;
     string identifier;
     int capacity = -1;
+    string campus;
+    string building;
 
 public:
     /*
@@ -91,6 +93,42 @@ public:
     *postcondition string with all the attributes gets shown
     */
     void print();
+
+    /*
+     *This function gets the campus attribute
+     *@param None
+     *@return the campus of the Buildings
+     *precondition campus is not empty
+     *postcondition returns this->campus
+     */
+    [[nodiscard]] string get_campus() const;
+
+    /*
+    *This function changes the campus attribute
+    *@param the campus you want to change it to
+    *@return None
+    *precondition campus is not empty
+    *postcondition the input campus is equal to campus attribute of Room
+    */
+    void set_campus(const string &campus);
+
+    /*
+     *This function gets the building attribute
+     *@param None
+     *@return the building attribute of the Room
+     *precondition building is not empty
+     *postcondition returns this->building
+     */
+    [[nodiscard]] string get_buulding() const;
+
+    /*
+    *This function changes the building attribute
+    *@param the building you want to change it to
+    *@return None
+    *precondition building is not empty
+    *postcondition the input campus is equal to building attribute of Room
+    */
+    void set_building(const string &building);
 };
 
 
