@@ -15,7 +15,12 @@
 #include "Classes//Room/Room.h"
 #include "Classes//Meeting/Meeting.h"
 #include "Classes//Participation/Participation.h"
+#include "Classes/Campus/Campus.h"
+#include "Classes/Buildings/Buildings.h"
 #include <string>
+
+#include "Classes/Catering Providers/Cateringproviders.h"
+#include "Classes/Renovations/Renovations.h"
 
 //body-gedeelte
 class MeetingPlanner {
@@ -25,6 +30,11 @@ private:
     std::vector<Participation> participations;
     std::vector<string> occupied_rooms;
     std::vector<Meeting> conflicting_meetings;
+    std::vector<Campus> campuses;
+    std::vector<Buildings> buildings;
+    std::vector<Renovations> renovations;
+    std::vector<Cateringproviders> catering;
+
 
 public:
     /*
@@ -99,12 +109,80 @@ public:
    */
     void set_occupied_rooms(const std::vector<string> &occupied_rooms);
 
+ /*
+     * This function returns the list of campuses
+     * @return a vector containing all Campus objects
+     * precondition None.
+     * postcondition returns a vector of campuses.
+     */
+ std::vector<Campus> get_campuses() const;
+
+ /*
+ * This function adds a campus to the system
+ * @param campus the Campus object to be added
+ * precondition None.
+ * postcondition the campus is added to the list of campuses.
+ */
+ void set_campuses(const Campus &campus);
+
+ /*
+ * This function returns the list of buildings
+ * @return a vector containing all Building objects
+ * precondition None.
+ * postcondition returns a vector of buildings.
+ */
+ std::vector<Buildings> get_buildings() const;
+
+ /*
+ * This function adds a building to the system
+ * @param building the Building object to be added
+ * precondition None.
+ * postcondition the building is added to the list of buildings.
+ */
+ void set_buildings(const Buildings &building);
+
+    /*
+        * This function returns the list of renovations
+        * @return a vector containing all Renovation objects
+        * precondition None.
+        * postcondition returns a vector of renovations.
+        */
+    std::vector<Renovations> get_renovations();
+
+    /*
+    * This function adds a renovation to the system
+    * @param renovation the Renovation object to be added
+    * precondition None.
+    * postcondition the renovation is added to the list of renovations.
+    */
+    void set_renovations(const Renovations &renovation);
+
+    /*
+        * This function returns the list of catering providers
+        * @return a vector containing all Cateringproviders objects
+        * precondition None.
+        * postcondition returns a vector of catering providers.
+        */
+    std::vector<Cateringproviders> get_catering() const;
+
+    /*
+    * This function adds a catering provider to the system
+    * @param catering the Cateringproviders object to be added
+    * precondition None.
+    * postcondition the catering provider is added to the list of catering providers.
+    */
+    void set_catering(const Cateringproviders &catering);
+
     friend bool operator==(const MeetingPlanner &lhs, const MeetingPlanner &rhs) {
         return lhs.rooms == rhs.rooms
                && lhs.meetings == rhs.meetings
                && lhs.participations == rhs.participations
                && lhs.occupied_rooms == rhs.occupied_rooms;
+
     }
+
+
+
 
     friend bool operator!=(const MeetingPlanner &lhs, const MeetingPlanner &rhs) {
         return !(lhs == rhs);

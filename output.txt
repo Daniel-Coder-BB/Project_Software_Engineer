@@ -12,3 +12,9 @@ ROOMS:
 - M.G.023
   capacity: 10 people 
 
+- R.014
+  capacity: 25 people 
+
+- R.014
+  capacity: 25 people 
+

@@ -15,6 +15,8 @@
 #include "Classes/Meetingplanner/Meetingplanner.h"
 #include "Classes/Participation/Participation.h"
 #include "Classes/Room/Room.h"
+#include "Classes/Campus/Campus.h"
+#include "Classes/Buildings/Buildings.h"
 #include "tinyxml.h"
 #include <iostream>
 #include <string>
@@ -119,7 +121,47 @@ public:
     */
     Participation parse_participation_element(TiXmlElement* participation_element);
 
+ /*
+* This function parses the campus tag of an XML file
+* @param campus_element an XML element with the CAMPUS tag
+* @return new_campus a campus of the type CAMPUS with all the details
+* precondition None.
+* postcondition you get a Campus object.
+*/
+ Campus parse_campus_element(TiXmlElement* campus_element);
+
+ /*
+    * This function parses the building tag of an XML file
+    * @param building_element an XML element with the BUILDING tag
+    * @return new_building a building of the type BUILDING with all the details
+    * precondition None.
+    * postcondition you get a Building object.
+    */
+ Buildings parse_building_element(TiXmlElement* building_element);
+
+ /*
+    * This function parses the renovation tag of an XML file
+    * @param renovation_element an XML element with the RENOVATION tag
+    * @return new_renovation a renovation of the type RENOVATION with all the details
+    * precondition None.
+    * postcondition you get a Renovation object.
+    */
+Renovations parse_renovation_element(TiXmlElement* renovation_element);
+
+ /*
+    * This function parses the catering tag of an XML file
+    * @param catering_element an XML element with the CATERING tag
+    * @return new_catering a catering provider of the type Cateringproviders with all the details
+    * precondition None.
+    * postcondition you get a Cateringproviders object.
+    */
+ Cateringproviders parse_catering_element(TiXmlElement* catering_element);
 };
+
+
+
+
+
 
 
 #endif //PLANNING_SYSTEM_PROJECT_PARSER_H

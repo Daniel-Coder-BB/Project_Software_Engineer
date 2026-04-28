@@ -5,7 +5,8 @@
 // Copyright   : Project Software Engineering - BA1 Informatica - Serge Demeyer - University of Antwerp
 // Description : Declarations for design by contract in C++
 //============================================================================
-
+#ifndef DESIGN_BY_CONTRACT_H
+#define DESIGN_BY_CONTRACT_H
 #include <assert.h>
 #include <iostream>
 
@@ -47,3 +48,5 @@ do { \
 if (!(assertion)) \
 contract_fail(#assertion, __FILE__, __LINE__, what); \
 } while (0)
+
+#endif

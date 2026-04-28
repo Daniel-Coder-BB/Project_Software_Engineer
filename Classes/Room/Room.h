@@ -119,7 +119,7 @@ public:
      *precondition building is not empty
      *postcondition returns this->building
      */
-    [[nodiscard]] string get_buulding() const;
+    [[nodiscard]] string get_building() const;
 
     /*
     *This function changes the building attribute

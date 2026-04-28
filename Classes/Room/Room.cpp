@@ -84,11 +84,11 @@ void Room::set_campus(const string &campus) {
     this->campus = campus;
 }
 
-string Room::get_buulding() const {
+string Room::get_building() const {
     return building;
 }
 
-void Room::set_buulding(const string &buulding) {
+void Room::set_building(const string &buulding) {
     this->building = buulding;
 }
 

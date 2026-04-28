@@ -93,6 +93,39 @@ void MeetingPlanner::set_occupied_rooms(const std::vector<string> &occupied_room
     ENSURE(this->occupied_rooms == occupied_rooms, "the input occupied_rooms is equal to label occupied_rooms");
 }
 
+std::vector<Campus> MeetingPlanner::get_campuses() const {
+    return campuses;
+}
+
+void MeetingPlanner::set_campuses(const Campus &campuse) {
+    this->campuses.push_back(campuse);
+}
+
+std::vector<Buildings> MeetingPlanner::get_buildings() const {
+    return buildings;
+}
+
+void MeetingPlanner::set_buildings(const Buildings &buildings) {
+    this->buildings.push_back(buildings);
+}
+
+std::vector<Renovations> MeetingPlanner::get_renovations() {
+    return renovations;
+}
+
+
+void MeetingPlanner::set_renovations(const Renovations &renovation) {
+    this->renovations.push_back(renovation);
+}
+
+std::vector<Cateringproviders> MeetingPlanner::get_catering() const {
+    return catering;
+}
+
+void MeetingPlanner::set_catering(const Cateringproviders &catering) {
+    this->catering.push_back(catering);
+}
+
 // --- Output ---
 
 void MeetingPlanner::simpleOutput() {
@@ -132,6 +165,7 @@ void MeetingPlanner::simpleOutput() {
         file << "  capacity: " << room.get_capacity() << " people " << std::endl;
         file << std::endl;
     }
+
 
     file.close();
 

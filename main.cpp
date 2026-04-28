@@ -40,6 +40,11 @@ int main(int argc, char **argv) {
     Xmlparser.run_trough_Element("ROOM",root,planner);
     Xmlparser.run_trough_Element("MEETING",root,planner);
     Xmlparser.run_trough_Element("PARTICIPATION",root,planner);
+    Xmlparser.run_trough_Element("CAMPUS",root,planner);
+    Xmlparser.run_trough_Element("BUILDING",root,planner);
+    Xmlparser.run_trough_Element("RENOVATION",root,planner);
+    Xmlparser.run_trough_Element("CATERING",root,planner);
+
 
 
     doc.Clear();

@@ -8,6 +8,8 @@
  */
 
 #include "Parser.h"
+#include "Classes/Campus/Campus.h"
+#include "Classes/Buildings/Buildings.h"
 #include "Classes/DesignByContract/DesignByContract.h"
 #include <iostream>
 using namespace std;
@@ -208,9 +210,148 @@ Participation Parser::parse_participation_element(TiXmlElement* participation_el
 
     return new_participation;
 }
+
+Campus Parser::parse_campus_element(TiXmlElement* campus_element) {
+    // Gebruik de REQUIRE macro voor Design by Contract
+    REQUIRE(campus_element != NULL, "Preconditie gefaald: campus_element mag niet NULL zijn");
+
+    Campus new_campus;
+    new_campus.set_name("Fout");
+    new_campus.set_identifier("Fout");
+
+    // NAME CHECK
+    TiXmlElement* name_el = campus_element->FirstChildElement("NAME");
+    if (name_el != NULL && name_el->GetText() != NULL) {
+        new_campus.set_name(name_el->GetText());
+    }
+
+    // IDENTIFIER CHECK
+    TiXmlElement* id_el = campus_element->FirstChildElement("IDENTIFIER");
+    if (id_el != NULL && id_el->GetText() != NULL) {
+        new_campus.set_identifier(id_el->GetText());
+    }
+
+    // Validatie: als een van de velden ontbreekt, markeren we het als ongeldig
+    if (new_campus.get_name() == "Fout" || new_campus.get_identifier() == "Fout") {
+        new_campus.set_name("fout");
+        new_campus.set_identifier("fout");
+    }
+
+    return new_campus;
+}
+
+Buildings Parser::parse_building_element(TiXmlElement* building_element) {
+    REQUIRE(building_element != NULL, "Preconditie gefaald: building_element mag niet NULL zijn");
+
+    Buildings new_building;
+    new_building.set_name("Fout");
+    new_building.set_identifier("Fout");
+    new_building.set_campus("Fout");
+
+    TiXmlElement* name_el = building_element->FirstChildElement("NAME");
+    if (name_el != NULL && name_el->GetText() != NULL) {
+        new_building.set_name(name_el->GetText());
+    }
+
+    TiXmlElement* id_el = building_element->FirstChildElement("IDENTIFIER");
+    if (id_el != NULL && id_el->GetText() != NULL) {
+        new_building.set_identifier(id_el->GetText());
+    }
+
+    TiXmlElement* campus_el = building_element->FirstChildElement("CAMPUS");
+    if (campus_el != NULL && campus_el->GetText() != NULL) {
+        new_building.set_campus(campus_el->GetText());
+    }
+
+    if (new_building.get_name() == "Fout" ||
+        new_building.get_identifier() == "Fout" ||
+        new_building.get_campus() == "Fout") {
+
+        new_building.set_name("fout");
+        new_building.set_identifier("fout");
+        new_building.set_campus("fout");
+        }
+
+    return new_building;
+}
+
+Renovations Parser::parse_renovation_element(TiXmlElement* renovation_element) {
+    REQUIRE(renovation_element != NULL, "Preconditie gefaald: renovation_element mag niet NULL zijn");
+
+    Renovations new_renovation;
+    new_renovation.set_room("Fout");
+    new_renovation.set_start("Fout");
+    new_renovation.set_end("Fout");
+
+    // ROOM CHECK ("Room_87984521")
+    TiXmlElement* room_el = renovation_element->FirstChildElement("ROOM");
+    if (room_el != NULL && room_el->GetText() != NULL) {
+        new_renovation.set_room(room_el->GetText());
+    }
+
+    // START CHECK ("2026-07-06")
+    TiXmlElement* start_el = renovation_element->FirstChildElement("START");
+    if (start_el != NULL && start_el->GetText() != NULL) {
+        new_renovation.set_start(start_el->GetText());
+    }
+
+    // END CHECK ("2026-07-14")
+    TiXmlElement* end_el = renovation_element->FirstChildElement("END");
+    if (end_el != NULL && end_el->GetText() != NULL) {
+        new_renovation.set_end(end_el->GetText());
+    }
+
+    // Validatie
+    if (new_renovation.get_room() == "Fout" ||
+        new_renovation.get_start() == "Fout" ||
+        new_renovation.get_end() == "Fout") {
+
+        new_renovation.set_room("fout");
+        new_renovation.set_start("fout");
+        new_renovation.set_end("fout");
+        }
+
+    return new_renovation;
+}
+
+Cateringproviders Parser::parse_catering_element(TiXmlElement* catering_element) {
+    REQUIRE(catering_element != NULL, "Preconditie gefaald: catering_element mag niet NULL zijn");
+
+    Cateringproviders new_catering;
+    new_catering.set_campus("Fout");
+    new_catering.set_co2(1); // Standaard veilige waarde > 0
+
+    // CAMPUS CHECK
+    TiXmlElement* campus_el = catering_element->FirstChildElement("CAMPUS");
+    if (campus_el != NULL && campus_el->GetText() != NULL) {
+        new_catering.set_campus(campus_el->GetText());
+    }
+
+    // C02 CHECK (gebaseerd op image_3d26d4.png)
+    TiXmlElement* c02_el = catering_element->FirstChildElement("CO2");
+    if (c02_el != NULL && c02_el->GetText() != NULL) {
+        int val = atoi(c02_el->GetText());
+
+        // VOORKOM DE CRASH: Check of de waarde groter is dan 0
+        if (val > 0) {
+            new_catering.set_co2(val);
+        } else {
+            // Als de waarde 0 of lager is, markeer als fout in plaats van te crashen
+            new_catering.set_campus("fout");
+        }
+    }
+
+    if (new_catering.get_campus() == "Fout" || new_catering.get_campus() == "fout") {
+        new_catering.set_campus("fout");
+        // Zorg dat je hier geen waarde <= 0 zet als de setter dat verbiedt
+    }
+
+    return new_catering;
+}
+
 void Parser::run_trough_Element(const char* Element, TiXmlElement* root,  MeetingPlanner& planner) {
     string elStr = (Element != NULL) ? string(Element) : "";
-    REQUIRE(elStr == "MEETING" || elStr == "ROOM" || elStr == "PARTICIPATION", "Preconditie gefaald: Element moet MEETING, ROOM of PARTICIPATION zijn");
+    REQUIRE(elStr == "MEETING" || elStr == "ROOM" || elStr == "PARTICIPATION" || elStr == "CAMPUS" || elStr == "BUILDING" || elStr == "RENOVATION" || elStr == "CATERING", "Preconditie gefaald: Element moet MEETING, ROOM, PARTICIPATION,CAMPUS of BUILDING element zijn");
     REQUIRE(root != NULL, "Preconditie gefaald: root moet bestaan");
 
     for (TiXmlElement* element = root->FirstChildElement(Element); element != NULL; element = element->NextSiblingElement(Element)) {
@@ -220,7 +361,7 @@ void Parser::run_trough_Element(const char* Element, TiXmlElement* root,  Meetin
                 planner.addRoom(new_element);
             }
             else {
-                cerr<<"Er was een fout bij element"<<endl;
+                cerr<<"Er was een fout bij room"<<endl;
             }
         }
         else if (string (Element) == "MEETING") {
@@ -243,6 +384,59 @@ void Parser::run_trough_Element(const char* Element, TiXmlElement* root,  Meetin
                 cerr<<"Er was een fout bij participation"<<endl;
             }
         }
+
+        else if (string (Element) == "CAMPUS") {
+            Campus new_campus = parse_campus_element(element);
+            if(new_campus.get_name() != "fout") {
+                planner.set_campuses(new_campus);
+            }
+
+            else {
+                cerr<<"Er was een fout bij campus"<<endl;
+            }
+        }
+
+        else if (string(Element) == "BUILDING") {
+            Buildings new_building = parse_building_element(element);
+            if(new_building.get_name() != "fout") {
+                planner.set_buildings(new_building);
+                std::vector<Buildings> buildings = planner.get_buildings();
+
+            }
+            else {
+                cerr << "Er was een fout bij het parsen van een building" << endl;
+            }
+        }
+
+        else if (string(Element) == "RENOVATION") {
+            Renovations new_renovation = parse_renovation_element(element);
+            if(new_renovation.get_room() != "fout") {
+                planner.set_renovations(new_renovation);
+            }
+            else {
+                cerr << "Er was een fout bij het parsen van een renovation" << endl;
+            }
+        }
+
+        else if (string(Element) == "CATERING") {
+            Cateringproviders new_cat = parse_catering_element(element);
+            if(new_cat.get_campus() != "fout") {
+                planner.set_catering(new_cat);
+                for (Cateringproviders catering: planner.get_catering()) {
+                    cout<<catering.get_campus()<<endl;
+                    cout<<catering.get_co2()<<endl;
+                }
+            }
+            else {
+                cerr << "Er was een fout bij het parsen van catering" << endl;
+            }
+        }
+
+
+
+
+
+
     }
 
     ENSURE(true, "Postconditie: Elementen zijn verwerkt");
