@@ -10,7 +10,7 @@
 - CO2 emitted: 240g
 - Catering: No
 
-n[Meeting Meeting_555001]
+[Meeting Meeting_555001]
 - Time: 2026-06-01, 12h
 - Location: Room_101
 - Participants: 2/40
@@ -18,7 +18,7 @@ n[Meeting Meeting_555001]
 - CO2 emitted: 240g
 - Catering: Yes
 
-n[Meeting Meeting_555002]
+[Meeting Meeting_555002]
 - Time: 2026-06-03, 12h
 - Location: M.G.025
 - Participants: 1/55
@@ -26,7 +26,7 @@ n[Meeting Meeting_555002]
 - CO2 emitted: 120g
 - Catering: No
 
-n[Meeting Meeting_555003]
+[Meeting Meeting_555003]
 - Time: 2026-07-03, 12h
 - Location: ONLINE
 - Participants: 0/0
@@ -34,7 +34,7 @@ n[Meeting Meeting_555003]
 - CO2 emitted: 0g
 - Catering: No
 
-n--== Rooms ==--
+--== Rooms ==--
 
 [Room M.G.025]
 - Name: M.G.025
@@ -68,7 +68,19 @@ n--== Rooms ==--
 
 --== CO2 summary ==--
 
-- Total CO2 emitted: 0g
-- Average CO2: 0g
+- Total CO2 emitted: 600g
+- Average CO2: 150g
+
+--== Catering ==--
+
+[Meeting Meeting_555001]
+- Time: 2026-06-01 12h
+- Location: Room_101
+- Participants: 2
+- Cost: €21.18
+
+--== Catering Summary ==--
+
+- Total catering cost: €21.18
 
 ==== [END OF REPORT] ====
