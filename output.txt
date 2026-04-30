@@ -8,6 +8,7 @@
 - Externals allowed: No
 - Catering: No
 - CO2 emitted: 220g
+- Online: 0
 
 [Meeting Meeting_555001]
 - Time: 2026-06-01, 12h
@@ -15,6 +16,7 @@
 - Externals allowed: No
 - Catering: No
 - CO2 emitted: 520g
+- Online: 0
 
 [Meeting Meeting_555002]
 - Time: 2026-06-03, 12h
@@ -22,6 +24,15 @@
 - Externals allowed: No
 - Catering: No
 - CO2 emitted: 670g
+- Online: 0
+
+[Meeting Meeting_555003]
+- Time: 2026-07-03, 12h
+- Location: ONLINE
+- Externals allowed: No
+- Catering: No
+- CO2 emitted: 100g
+- Online: 1
 
 --== Rooms ==--
 
@@ -57,7 +68,7 @@
 
 --== CO2 summary ==--
 
-- Total CO2 emitted: 1410g
-- Average CO2: 470g
+- Total CO2 emitted: 1510g
+- Average CO2: 377.5g
 
 ==== [END OF REPORT] ====

@@ -23,7 +23,7 @@ private:
     std::string room;
     std::string date;
     int hour = 12;
-    bool online;
+    bool online = false;
     bool externals;
     bool catering;
     double co2_emission;
