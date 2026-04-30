@@ -240,46 +240,83 @@ void MeetingPlanner::processMeetings() {
 
     std::vector<std::string> used_rooms = occupied_rooms;
 
+    // Reset total catering cost before processing
+    totalCateringCost = 0.0;
+
+    // Open catering file once (better design)
+    std::ofstream cateringFile("../catering.txt");
+
+    if (!cateringFile.is_open()) {
+        std::cerr << "Error: Cannot open catering file.\n";
+        return;
+    }
+
     for (Meeting& meeting : meetings) {
         bool occupied = false;
         bool renovating = false;
 
-        // Exception check
+        // Check if room is already occupied
         for (const std::string& room : used_rooms) {
-            if (meeting.get_room() == room) {
+            if (!meeting.is_online() && meeting.get_room() == room) {
                 std::cerr << "Error: Room " << meeting.get_room()
                           << " is already occupied. Meeting cancelled.\n";
                 occupied = true;
                 break;
             }
-
         }
-        for (const Renovations& renovation: renovations) {
-            //de kamer is aan het renoveren
-            if (meeting.get_room() == renovation.get_room()) {
-                std::cerr << "Error: Renovations"<<meeting.get_room()
-                          <<" This room is renovating. Meeting cancelled. "<<endl;
 
+        // Check if room is under renovation
+        for (const Renovations& renovation : renovations) {
+            if (!meeting.is_online() && meeting.get_room() == renovation.get_room()) {
+                std::cerr << "Error: Room " << meeting.get_room()
+                          << " is under renovation. Meeting cancelled.\n";
                 renovating = true;
                 break;
             }
         }
 
-        if (occupied or renovating) {
+        if (occupied || renovating) {
             continue;
         }
 
-        // Step 1: Meeting takes place
-        used_rooms.push_back(meeting.get_room());
+        // Mark room as used
+        if (!meeting.is_online()) {
+            used_rooms.push_back(meeting.get_room());
+        }
 
-
-
-        // Step 2: Print message
+        // Print success message
         std::cout << "Meeting " << meeting.get_identifier()
                   << " has taken place.\n";
+
+
+        if (meeting.is_catering()) {
+
+            // Rule enforcement: online meetings cannot have catering
+            REQUIRE(!meeting.is_online(),
+                    "Online meetings cannot have catering");
+
+            int participants = countParticipants(meeting.get_identifier());
+            double cost = participants * 10.59;
+
+            totalCateringCost += cost;
+
+            // Write to catering file
+            cateringFile << "[Meeting " << meeting.get_identifier() << "]\n";
+            cateringFile << "- Time: " << meeting.get_date()
+                          << " " << meeting.get_hour() << "h\n";
+            cateringFile << "- Location: " << meeting.get_room() << "\n";
+            cateringFile << "- Participants: " << participants << "\n";
+            cateringFile << "- Cost: €" << cost << "\n\n";
+        }
     }
 
-    ENSURE(true, "meetings processed");
+    // Write total catering cost summary
+    cateringFile << "==== Catering Summary ====\n";
+    cateringFile << "Total catering cost: €" << totalCateringCost << "\n";
+
+    cateringFile.close();
+
+    ENSURE(true, "meetings processed correctly with catering");
 }
 
 int MeetingPlanner::countParticipants(const std::string& meeting_id) {

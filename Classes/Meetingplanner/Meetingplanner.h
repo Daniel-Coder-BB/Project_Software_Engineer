@@ -221,6 +221,8 @@ public:
     int countParticipants(const std::string& meeting_id);
 
     double calculateCO2(const Meeting& meeting);
+
+    double totalCateringCost = 0.0;
 };
 
 
