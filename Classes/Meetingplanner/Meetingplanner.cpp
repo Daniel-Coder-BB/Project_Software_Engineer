@@ -29,6 +29,7 @@ void MeetingPlanner::addRoom(const Room& room) {
 void MeetingPlanner::addMeeting(const Meeting& meeting) {
     // Preconditie: meeting is not empty
     REQUIRE(!meeting.get_identifier().empty(), "meeting is not empty");
+    
     meetings.push_back(meeting);
         // Postconditie: input meeting is toegevoegd aan de lijst
         ENSURE(meetings.back() == meeting, "the input meeting is equal to label meeting of Meetingplanner object");

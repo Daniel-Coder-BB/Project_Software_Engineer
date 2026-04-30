@@ -186,6 +186,8 @@ Meeting Parser::parse_meeting_element(TiXmlElement* meeting_element) {
         new_meeting.set_date(date_el->GetText());
     }
 
+
+
     if (new_meeting.get_label() == "Fout" || new_meeting.get_identifier() == "Fout" ||
         new_meeting.get_room() == "Fout" || new_meeting.get_date() == "Fout") {
         new_meeting.set_label("fout");
