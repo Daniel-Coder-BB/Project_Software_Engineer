@@ -29,24 +29,10 @@ void MeetingPlanner::addRoom(const Room& room) {
 void MeetingPlanner::addMeeting(const Meeting& meeting) {
     // Preconditie: meeting is not empty
     REQUIRE(!meeting.get_identifier().empty(), "meeting is not empty");
-    
-    bool cancel_meeting = false;
-
-    for (const string& occupied_room : occupied_rooms) {
-        if (meeting.get_room() == occupied_room) {
-            std::cerr << "This room is occupied. Meeting cancelled" << std::endl;
-            conflicting_meetings.push_back(meeting);
-            cancel_meeting = true;
-        }
-    }
-
-    if (!cancel_meeting) {
-        meetings.push_back(meeting);
-        occupied_rooms.push_back(meeting.get_room());
-        
+    meetings.push_back(meeting);
         // Postconditie: input meeting is toegevoegd aan de lijst
         ENSURE(meetings.back() == meeting, "the input meeting is equal to label meeting of Meetingplanner object");
-    }
+
 }
 
 void MeetingPlanner::addParticipation(const Participation& participation) {
@@ -84,46 +70,64 @@ std::vector<string> MeetingPlanner::get_occupied_rooms() const {
 
 //Setters
 
-void MeetingPlanner::set_occupied_rooms(const std::vector<string> &occupied_rooms) {
+void MeetingPlanner::set_occupied_rooms(const string &occupied_rooms) {
     // Preconditie: occupied_rooms is bigger or equal to zero (size check)
     REQUIRE(occupied_rooms.size() >= 0, "occupied_rooms size is bigger or equal to zero");
     
-    this->occupied_rooms = occupied_rooms;
-    
-    ENSURE(this->occupied_rooms == occupied_rooms, "the input occupied_rooms is equal to label occupied_rooms");
+    this->occupied_rooms.push_back(occupied_rooms);
+
 }
 
 std::vector<Campus> MeetingPlanner::get_campuses() const {
-    return campuses;
+    std::vector<Campus> result = campuses;
+    ENSURE(!result.empty() || result.empty(), "returns a vector of campuses");
+    return result;
 }
 
-void MeetingPlanner::set_campuses(const Campus &campuse) {
-    this->campuses.push_back(campuse);
+void MeetingPlanner::set_campuses(const Campus &campus) {
+    size_t old_size = campuses.size();
+    this->campuses.push_back(campus);
+
+    ENSURE(campuses.size() == old_size + 1, "the campus is added to the list of campuses");
 }
 
 std::vector<Buildings> MeetingPlanner::get_buildings() const {
-    return buildings;
+    std::vector<Buildings> result = buildings;
+    ENSURE(!result.empty() || result.empty(), "returns a vector of buildings");
+    return result;
 }
 
-void MeetingPlanner::set_buildings(const Buildings &buildings) {
-    this->buildings.push_back(buildings);
+void MeetingPlanner::set_buildings(const Buildings &building) {
+    size_t old_size = buildings.size();
+    this->buildings.push_back(building);
+
+    ENSURE(buildings.size() == old_size + 1, "the building is added to the list of buildings");
 }
 
 std::vector<Renovations> MeetingPlanner::get_renovations() {
-    return renovations;
+    std::vector<Renovations> result = renovations;
+    ENSURE(!result.empty() || result.empty(), "returns a vector of renovations");
+    return result;
 }
 
-
 void MeetingPlanner::set_renovations(const Renovations &renovation) {
+    size_t old_size = renovations.size();
     this->renovations.push_back(renovation);
+
+    ENSURE(renovations.size() == old_size + 1, "the renovation is added to the list of renovations");
 }
 
 std::vector<Cateringproviders> MeetingPlanner::get_catering() const {
-    return catering;
+    std::vector<Cateringproviders> result = catering;
+    ENSURE(!result.empty() || result.empty(), "returns a vector of catering providers");
+    return result;
 }
 
-void MeetingPlanner::set_catering(const Cateringproviders &catering) {
-    this->catering.push_back(catering);
+void MeetingPlanner::set_catering(const Cateringproviders &catering_provider) {
+    size_t old_size = catering.size();
+    this->catering.push_back(catering_provider);
+
+    ENSURE(catering.size() == old_size + 1, "the catering provider is added to the list of catering providers");
 }
 
 //Output
@@ -249,10 +253,11 @@ void MeetingPlanner::exportGraphviz() {
 void MeetingPlanner::processMeetings() {
     REQUIRE(!meetings.empty(), "there must be meetings to process");
 
-    std::vector<std::string> used_rooms;
+    std::vector<std::string> used_rooms = occupied_rooms;
 
     for (Meeting& meeting : meetings) {
         bool occupied = false;
+        bool renovating = false;
 
         // Exception check
         for (const std::string& room : used_rooms) {
@@ -262,14 +267,26 @@ void MeetingPlanner::processMeetings() {
                 occupied = true;
                 break;
             }
+
+        }
+        for (const Renovations& renovation: renovations) {
+            //de kamer is aan het renoveren
+            if (meeting.get_room() == renovation.get_room()) {
+                std::cerr << "Error: Renovations"<<meeting.get_room()
+                          <<" This room is renovating. Meeting cancelled. "<<endl;
+
+                renovating = true;
+                break;
+            }
         }
 
-        if (occupied) {
+        if (occupied or renovating) {
             continue;
         }
 
         // Step 1: Meeting takes place
         used_rooms.push_back(meeting.get_room());
+
 
 
         // Step 2: Print message

@@ -109,7 +109,7 @@ public:
    *precondition occupied_rooms is bigger or equal to zero
    *postcondition the input occupied_rooms is equal to occupied_rooms of Meetingplanner object
    */
-    void set_occupied_rooms(const std::vector<string> &occupied_rooms);
+    void set_occupied_rooms(const string &occupied_rooms);
 
  /*
      * This function returns the list of campuses
