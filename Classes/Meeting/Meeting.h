@@ -24,8 +24,7 @@ private:
     std::string date;
     int hour = 12;
     bool online = false;
-    bool externals;
-    bool catering;
+    bool catering = false;
     double co2_emission;
 
 
@@ -140,24 +139,6 @@ public:
   *postcondition the input online is equal to the online status of the Meeting object
   */
  void set_online(bool online);
-
- /*
-  *This function gets the externals attribute
-  *@param None
-  *@return whether there are externals in the Meeting object
-  *precondition None
-  *postcondition returns this->externals
-  */
- [[nodiscard]] bool is_externals() const;
-
- /*
-  *This function changes the externals attribute
-  *@param the externals status (true/false) you want to set
-  *@return None
-  *precondition None
-  *postcondition the input externals is equal to the externals status of the Meeting object
-  */
- void set_externals(bool externals);
 
  /*
   *This function gets the catering attribute
