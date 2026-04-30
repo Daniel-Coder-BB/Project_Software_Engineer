@@ -5,36 +5,36 @@
 [Meeting Meeting_478463]
 - Time: 2026-05-22, 12h
 - Location: Room98732
-- Externals allowed: No
+- Participants: 2
+- Online: No
+- CO2 emitted: 240g
 - Catering: No
-- CO2 emitted: 220g
-- Online: 0
 
-[Meeting Meeting_555001]
+n[Meeting Meeting_555001]
 - Time: 2026-06-01, 12h
 - Location: Room_101
-- Externals allowed: No
-- Catering: No
-- CO2 emitted: 520g
-- Online: 0
+- Participants: 2
+- Online: No
+- CO2 emitted: 240g
+- Catering: Yes
 
-[Meeting Meeting_555002]
+n[Meeting Meeting_555002]
 - Time: 2026-06-03, 12h
 - Location: M.G.025
-- Externals allowed: No
+- Participants: 1
+- Online: No
+- CO2 emitted: 120g
 - Catering: No
-- CO2 emitted: 670g
-- Online: 0
 
-[Meeting Meeting_555003]
+n[Meeting Meeting_555003]
 - Time: 2026-07-03, 12h
 - Location: ONLINE
-- Externals allowed: No
+- Participants: 0
+- Online: Yes
+- CO2 emitted: 0g
 - Catering: No
-- CO2 emitted: 100g
-- Online: 1
 
---== Rooms ==--
+n--== Rooms ==--
 
 [Room M.G.025]
 - Name: M.G.025
@@ -68,7 +68,7 @@
 
 --== CO2 summary ==--
 
-- Total CO2 emitted: 1510g
-- Average CO2: 377.5g
+- Total CO2 emitted: 0g
+- Average CO2: 0g
 
 ==== [END OF REPORT] ====

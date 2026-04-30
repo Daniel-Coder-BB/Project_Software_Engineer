@@ -57,11 +57,6 @@ bool Meeting::is_online() const {
     return online;
 }
 
-bool Meeting::is_externals() const {
-    ENSURE(externals == true || externals == false, "externals is a valid boolean");
-    return externals;
-}
-
 bool Meeting::is_catering() const {
     ENSURE(catering == true || catering == false, "catering is a valid boolean");
     return catering;
@@ -109,11 +104,6 @@ void Meeting::set_online(bool online) {
     ENSURE(this->online == online, "online status correctly set");
 }
 
-void Meeting::set_externals(bool externals) {
-    this->externals = externals;
-    ENSURE(this->externals == externals, "externals status correctly set");
-}
-
 void Meeting::set_catering(bool catering) {
     this->catering = catering;
     ENSURE(this->catering == catering, "catering status correctly set");
@@ -131,26 +121,4 @@ void Meeting::print() {
     std::cout << " | Date: " << date << std::endl;
 
     ENSURE(!label.empty(), "label still intact after print");
-}
-
-void Meeting::calculate_co2(int room_capacity, double room_co2_per_hour) {
-    REQUIRE(room_capacity >= 0, "room capacity must be non-negative");
-    REQUIRE(room_co2_per_hour >= 0, "co2 per hour must be non-negative");
-
-    double co2 = 0;
-
-    // Room usage
-    co2 += room_co2_per_hour;
-
-    // People impact
-    co2 += room_capacity * 10;
-
-    // Catering impact
-    if (catering) {
-        co2 += 200;
-    }
-
-    co2_emission = co2;
-
-    ENSURE(co2_emission >= 0, "co2 emission calculated correctly");
 }

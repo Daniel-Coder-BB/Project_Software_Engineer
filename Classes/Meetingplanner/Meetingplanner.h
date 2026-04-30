@@ -216,7 +216,13 @@ public:
     *postcondition  Meetings are processesed.
     */
     void processMeetings();
+
+
+    int countParticipants(const std::string& meeting_id);
+
+    double calculateCO2(const Meeting& meeting);
 };
+
 
 
 #endif

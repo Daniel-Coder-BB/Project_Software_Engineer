@@ -133,9 +133,8 @@ void MeetingPlanner::set_catering(const Cateringproviders &catering_provider) {
 //Output
 
 void MeetingPlanner::simpleOutput() {
-    // PRECONDITION: attributes of meetingplanner are not Empty
-    // We controleren of er kamers of meetings zijn om te rapporteren
-    REQUIRE(!rooms.empty() || !meetings.empty(), "attributes of meetingplanner are not Empty");
+    REQUIRE(!rooms.empty() || !meetings.empty(),
+            "attributes of meetingplanner are not Empty");
 
     std::ofstream file("../output.txt");
 
@@ -146,36 +145,22 @@ void MeetingPlanner::simpleOutput() {
 
     file << "====  [SYSTEM STATUS]  ====\n\n";
 
+    double totalCO2 = 0;
+
     //MEETINGS
     file << "--== Meetings ==--\n\n";
 
-    double totalCO2 = 0;
-
     for (Meeting& meeting : meetings) {
 
-        // Vind bijhorende room
-        double room_co2 = 100;
-        int capacity = 0;
 
-        for (const Room& room : rooms) {
-            if (room.get_identifier() == meeting.get_room()) {
-                capacity = room.get_capacity();
-                room_co2 = 120;
-            }
-        }
-
-        // Bereken CO2
-        meeting.calculate_co2(capacity, room_co2);
 
         file << "[Meeting " << meeting.get_identifier() << "]\n";
         file << "- Time: " << meeting.get_date() << ", " << meeting.get_hour() << "h\n";
-        file << "- Location: " << meeting.get_room() << "\n";
-        file << "- Externals allowed: " << (meeting.is_externals() ? "Yes" : "No") << "\n";
-        file << "- Catering: " << (meeting.is_catering() ? "Yes" : "No") << "\n";
-        file << "- CO2 emitted: " << meeting.get_co2() << "g\n";
-        file << "- Online: " << meeting.is_online() << "\n\n";
-
-        totalCO2 += meeting.get_co2();
+        file << "- Location: "<< (meeting.is_online() ? "ONLINE" : meeting.get_room()) << "\n";
+        file << "- Participants: " << countParticipants(meeting.get_identifier()) << "\n";
+        file << "- Online: " << (meeting.is_online() ? "Yes" : "No") << "\n";
+        file << "- CO2 emitted: " << calculateCO2(meeting) << "g\n";
+        file << "- Catering: " << (meeting.is_catering() ? "Yes" : "No") << "\n\nn";
     }
 
     //ROOMS
@@ -186,8 +171,7 @@ void MeetingPlanner::simpleOutput() {
         file << "- Name: " << room.get_name() << "\n";
         file << "- Capacity: " << room.get_capacity() << "\n";
         file << "- Campus: " << room.get_campus() << "\n";
-        file << "- Building: " << room.get_building() << "\n";
-        file << "\n";
+        file << "- Building: " << room.get_building() << "\n\n";
     }
 
     //CO2 SUMMARY
@@ -296,4 +280,37 @@ void MeetingPlanner::processMeetings() {
     }
 
     ENSURE(true, "meetings processed");
+}
+
+int MeetingPlanner::countParticipants(const std::string& meeting_id) {
+
+    int count = 0;
+
+    for (const Participation& p : participations) {
+        if (p.get_meeting() == meeting_id) {
+            count++;
+        }
+    }
+
+    return count;
+}
+
+double MeetingPlanner::calculateCO2(const Meeting& meeting) {
+
+    int participants = countParticipants(meeting.get_identifier());
+
+    double co2 = 0;
+
+    // Rule: online meeting cannot have catering
+    REQUIRE(!(meeting.is_online() && meeting.is_catering()),
+            "Online meetings cannot have catering");
+
+
+        if (meeting.is_online()) {
+            co2 += 30*participants;   // online participant
+        } else {
+            co2 += 120*participants;  // internal participant only
+        }
+
+    return co2;
 }

@@ -186,10 +186,17 @@ Meeting Parser::parse_meeting_element(TiXmlElement* meeting_element) {
         new_meeting.set_date(date_el->GetText());
     }
 
+    TiXmlElement* catering_el = meeting_element->FirstChildElement("CATERING");
+    if (catering_el != NULL && catering_el->GetText() != NULL) {
+        new_meeting.set_catering(true);
+    }
+
     TiXmlElement* online_el = meeting_element->FirstChildElement("ONLINE");
     if (online_el != NULL && online_el->GetText() != NULL) {
         new_meeting.set_online(true);
     }
+
+
 
     if (new_meeting.get_label() == "Fout" || new_meeting.get_identifier() == "Fout" ||
         new_meeting.get_room() == "Fout" || new_meeting.get_date() == "Fout") {
