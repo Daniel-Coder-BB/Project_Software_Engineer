@@ -1,20 +1,19 @@
 /**
 * Korte beschrijving:
- * Deze klasse stelt onze Participation voor.
- *
- * @authors Bruno Luango en Ibrahim Akiyev
- * @date 11/03/2026
- * @version 1.0
- */
+* Deze klasse stelt onze Meeting voor.
+*
+* @authors Bruno Luango en Ibrahim Akiyev
+* @date 11/03/2026
+* @version 1.1
+*/
 
 #include "Meeting.h"
-#include "Classes/DesignByContract/DesignByContract.h" // Zorg dat dit de juiste naam is
+#include "Classes/DesignByContract/DesignByContract.h"
 #include <iostream>
 
-//Getters
+
 
 std::string Meeting::get_label() const {
-
     REQUIRE(!label.empty(), "label is not empty");
     std::string result = label;
     ENSURE(result == this->label, "returns this->label");
@@ -29,11 +28,17 @@ std::string Meeting::get_identifier() const {
 }
 
 std::string Meeting::get_room() const {
-    REQUIRE(!room.empty(), "room is not empty");
+    REQUIRE(online || !room.empty(), "room must be set if meeting is not online");
+
+    if (online) {
+        return "ONLINE";
+    }
+
     std::string result = room;
     ENSURE(result == this->room, "returns this->room");
     return result;
 }
+
 
 std::string Meeting::get_date() const {
     REQUIRE(!date.empty(), "date is not empty");
@@ -42,98 +47,110 @@ std::string Meeting::get_date() const {
     return result;
 }
 
-//Setters
+int Meeting::get_hour() const {
+    ENSURE(hour >= 0 && hour <= 23, "hour is within valid range");
+    return hour;
+}
+
+bool Meeting::is_online() const {
+    ENSURE(online == true || online == false, "online is a valid boolean");
+    return online;
+}
+
+bool Meeting::is_externals() const {
+    ENSURE(externals == true || externals == false, "externals is a valid boolean");
+    return externals;
+}
+
+bool Meeting::is_catering() const {
+    ENSURE(catering == true || catering == false, "catering is a valid boolean");
+    return catering;
+}
+
+double Meeting::get_co2() const {
+    ENSURE(co2_emission >= 0, "co2 emission is non-negative");
+    return co2_emission;
+}
+
+
 
 void Meeting::set_label(const std::string &label) {
     REQUIRE(!label.empty(), "label is not empty");
     this->label = label;
-    ENSURE(this->label == label, "the input label is equal to label attribute");
+    ENSURE(this->label == label, "label correctly set");
 }
 
 void Meeting::set_identifier(const std::string &identifier) {
     REQUIRE(!identifier.empty(), "identifier is not empty");
     this->identifier = identifier;
-    ENSURE(this->identifier == identifier, "the input identifier is equal to identifier attribute");
+    ENSURE(this->identifier == identifier, "identifier correctly set");
 }
 
 void Meeting::set_room(const std::string &room) {
     REQUIRE(!room.empty(), "room is not empty");
     this->room = room;
-    ENSURE(this->room == room, "the input room is equal to room attribute");
+    ENSURE(this->room == room, "room correctly set");
 }
 
 void Meeting::set_date(const std::string &date) {
     REQUIRE(!date.empty(), "date is not empty");
     this->date = date;
-    ENSURE(this->date == date, "the input date is equal to date attribute");
-}
-
-int Meeting::get_hour() const {
-    return hour;
+    ENSURE(this->date == date, "date correctly set");
 }
 
 void Meeting::set_hour(int hour) {
-    if (hour >23 or hour<0) {
-        throw std::invalid_argument("Hour must be smaller then 23 or biggen then 0");
-    }
+    REQUIRE(hour >= 0 && hour <= 23, "hour must be between 0 and 23");
     this->hour = hour;
-}
-
-bool Meeting::is_online() const {
-    return online;
+    ENSURE(this->hour == hour, "hour correctly set");
 }
 
 void Meeting::set_online(bool online) {
     this->online = online;
-}
-
-bool Meeting::is_externals() const {
-    return externals;
+    ENSURE(this->online == online, "online status correctly set");
 }
 
 void Meeting::set_externals(bool externals) {
     this->externals = externals;
-}
-
-bool Meeting::is_catering() const {
-    return catering;
+    ENSURE(this->externals == externals, "externals status correctly set");
 }
 
 void Meeting::set_catering(bool catering) {
     this->catering = catering;
+    ENSURE(this->catering == catering, "catering status correctly set");
 }
 
-//Overige functies
 
 void Meeting::print() {
-    // Preconditie: attributes mogen niet leeg zijn
     REQUIRE(!label.empty() && !identifier.empty() && !room.empty() && !date.empty(),
             "Meeting attributes are not empty");
 
-    std::cout << "MEEETING" << std::endl;
+    std::cout << "MEETING" << std::endl;
     std::cout << "Label: " << label;
     std::cout << " | Identifier: " << identifier;
     std::cout << " | Room: " << room;
     std::cout << " | Date: " << date << std::endl;
-}
 
-double Meeting::get_co2() const {
-    return co2_emission;
+    ENSURE(!label.empty(), "label still intact after print");
 }
 
 void Meeting::calculate_co2(int room_capacity, double room_co2_per_hour) {
+    REQUIRE(room_capacity >= 0, "room capacity must be non-negative");
+    REQUIRE(room_co2_per_hour >= 0, "co2 per hour must be non-negative");
+
     double co2 = 0;
 
-    // Room gebruik
+    // Room usage
     co2 += room_co2_per_hour;
 
-    // People
+    // People impact
     co2 += room_capacity * 10;
 
-    // Catering
+    // Catering impact
     if (catering) {
         co2 += 200;
     }
 
     co2_emission = co2;
+
+    ENSURE(co2_emission >= 0, "co2 emission calculated correctly");
 }

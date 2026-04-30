@@ -172,7 +172,8 @@ void MeetingPlanner::simpleOutput() {
         file << "- Location: " << meeting.get_room() << "\n";
         file << "- Externals allowed: " << (meeting.is_externals() ? "Yes" : "No") << "\n";
         file << "- Catering: " << (meeting.is_catering() ? "Yes" : "No") << "\n";
-        file << "- CO2 emitted: " << meeting.get_co2() << "g\n\n";
+        file << "- CO2 emitted: " << meeting.get_co2() << "g\n";
+        file << "- Online: " << meeting.is_online() << "\n\n";
 
         totalCO2 += meeting.get_co2();
     }

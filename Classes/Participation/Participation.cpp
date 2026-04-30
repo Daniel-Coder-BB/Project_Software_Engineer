@@ -11,7 +11,7 @@
 #include "Participation.h"
 #include "Classes/DesignByContract/DesignByContract.h"
 
-// --- Getters ---
+//Getters
 
 string Participation::get_user() const {
     // precondition user is not empty
@@ -35,7 +35,7 @@ string Participation::get_meeting() const {
     return result;
 }
 
-// --- Setters ---
+//Setters
 
 void Participation::set_user(const string &user) {
     // precondition user is not empty
@@ -57,7 +57,7 @@ void Participation::set_meeting(const string &meeting) {
     ENSURE(this->meeting == meeting, "the input meeting is equal to label meeting of Participation object");
 }
 
-// --- Overige functies ---
+//Overige functies
 
 void Participation::print() {
     // precondition Meeting attributes are not empty (overgenomen van vergelijkbare klassen)
