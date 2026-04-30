@@ -5,7 +5,7 @@
 [Meeting Meeting_478463]
 - Time: 2026-05-22, 12h
 - Location: Room98732
-- Participants: 2
+- Participants: 2/10
 - Online: No
 - CO2 emitted: 240g
 - Catering: No
@@ -13,7 +13,7 @@
 n[Meeting Meeting_555001]
 - Time: 2026-06-01, 12h
 - Location: Room_101
-- Participants: 2
+- Participants: 2/40
 - Online: No
 - CO2 emitted: 240g
 - Catering: Yes
@@ -21,7 +21,7 @@ n[Meeting Meeting_555001]
 n[Meeting Meeting_555002]
 - Time: 2026-06-03, 12h
 - Location: M.G.025
-- Participants: 1
+- Participants: 1/55
 - Online: No
 - CO2 emitted: 120g
 - Catering: No
@@ -29,7 +29,7 @@ n[Meeting Meeting_555002]
 n[Meeting Meeting_555003]
 - Time: 2026-07-03, 12h
 - Location: ONLINE
-- Participants: 0
+- Participants: 0/0
 - Online: Yes
 - CO2 emitted: 0g
 - Catering: No

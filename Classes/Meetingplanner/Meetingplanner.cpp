@@ -158,7 +158,7 @@ void MeetingPlanner::simpleOutput() {
         file << "[Meeting " << meeting.get_identifier() << "]\n";
         file << "- Time: " << meeting.get_date() << ", " << meeting.get_hour() << "h\n";
         file << "- Location: "<< (meeting.is_online() ? "ONLINE" : meeting.get_room()) << "\n";
-        file << "- Participants: " << countParticipants(meeting.get_identifier()) << "\n";
+        file << "- Participants: " << countParticipants(meeting.get_identifier())<<"/"<<meeting_capacity(meeting) << "\n";
         file << "- Online: " << (meeting.is_online() ? "Yes" : "No") << "\n";
         file << "- CO2 emitted: " << calculateCO2(meeting) << "g\n";
         file << "- Catering: " << (meeting.is_catering() ? "Yes" : "No") << "\n\nn";
@@ -314,4 +314,14 @@ double MeetingPlanner::calculateCO2(const Meeting& meeting) {
         }
 
     return co2;
+}
+
+int MeetingPlanner::meeting_capacity(const Meeting& meeting) {
+    string room_name = meeting.get_room();
+    for (Room& room: rooms) {
+        if(room.get_identifier() == room_name) {
+            return room.get_capacity();
+        }
+    }
+    return 0;
 }
