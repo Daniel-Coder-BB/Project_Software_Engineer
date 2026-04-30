@@ -8,17 +8,15 @@
 */
 
 // Include blok
-#include <gtest/gtest.h>
+#include "../gtest-1.7.0/include/gtest/gtest.h"
 #include <iostream>
-#include "tinyxml.h"
-#include "Classes/Room/Room.h"
-#include "Classes/Meeting/Meeting.h"
-#include <gtest/gtest.h>
+#include "../tinyxml_2_6_2/tinyxml/tinyxml.h"
+#include "../Classes/Room/Room.h"
+#include "../Classes/Meeting/Meeting.h"
 #include <pstl/execution_defs.h>
-#include "Classes/Meeting/Meeting.h"
-#include "Classes/Participation/Participation.h"
-#include <Classes/Meetingplanner/Meetingplanner.h>
-#include "Classes/Parser/Parser.h"
+#include "../Classes/Participation/Participation.h"
+#include "../Classes/Meetingplanner/Meetingplanner.h"
+#include "../Classes/Parser/Parser.h"
 
 // Globale using statements
 using namespace std;
@@ -500,7 +498,7 @@ TEST(ParserTest, RunThroughElement_InvalidTagName) {
     TiXmlElement* root = doc.FirstChildElement("ROOT");
 
     // "AUTO" is geen geldige tag volgens je REQUIRE
-    EXPECT_DEATH(p.run_trough_Element("AUTO", root, planner), "Element moet MEETING, ROOM of PARTICIPATION zijn");
+    EXPECT_DEATH(p.run_trough_Element("AUTO", root, planner), "Element moet .* zijn");
 }
 
 TEST(ParserTest, RunThroughElement_NullRoot) {

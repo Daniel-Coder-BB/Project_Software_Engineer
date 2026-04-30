@@ -25,6 +25,7 @@ private:
     int capacity = -1;
     string campus;
     string building;
+    double co2_per_hour;
 
 public:
     /*
@@ -129,6 +130,24 @@ public:
     *postcondition the input campus is equal to building attribute of Room
     */
     void set_building(const string &building);
+
+    /*
+     *This function gets the co2_per_hour attribute
+     *@param None
+     *@return the co2_per_hour attribute of the Room
+     *precondition co2_per_hour is not empty
+     *postcondition returns this->co2_per_hour
+     */
+    double get_co2_per_hour() const;
+
+    /*
+    *This function changes the co2_per_hour attribute
+    *@param the co2_per_hour you get
+    *@return None
+    *precondition co2_per_hour is not empty
+    *postcondition the input campus is equal to building attribute of Room
+    */
+    void set_co2_per_hour(double co2);
 };
 
 

@@ -130,7 +130,19 @@ Room Parser::parse_room_element(TiXmlElement* room_element) {
         }
     }
 
-    // Jouw extra veiligheidscheck
+    // --- CAMPUS CHECK ---
+    TiXmlElement* campus_el = room_element->FirstChildElement("CAMPUS");
+    if (campus_el && campus_el->GetText()) {
+        new_room.set_campus(campus_el->GetText());
+    }
+
+    // --- BUILDING CHECK ---
+    TiXmlElement* building_el = room_element->FirstChildElement("BUILDING");
+    if (building_el && building_el->GetText()) {
+        new_room.set_building(building_el->GetText());
+    }
+
+    //  extra veiligheidscheck
     if (new_room.get_name() == "Fout" || new_room.get_identifier() == "Fout" || new_room.get_capacity() == 0) {
         new_room.set_capacity(0);
         new_room.set_name("Fout");
@@ -423,8 +435,7 @@ void Parser::run_trough_Element(const char* Element, TiXmlElement* root,  Meetin
             if(new_cat.get_campus() != "fout") {
                 planner.set_catering(new_cat);
                 for (Cateringproviders catering: planner.get_catering()) {
-                    cout<<catering.get_campus()<<endl;
-                    cout<<catering.get_co2()<<endl;
+
                 }
             }
             else {

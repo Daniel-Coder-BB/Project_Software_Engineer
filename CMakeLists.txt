@@ -34,19 +34,22 @@ set(SHARED_SOURCES
 
 # 4. TARGET 1: Je echte applicatie (Planning System)
 # Gebruikt main.cpp + de gedeelde logica
-add_executable(planning_system main.cpp ${SHARED_SOURCES}
+ add_executable(planning_system main.cpp ${SHARED_SOURCES}
         Classes/Buildings/Buildings.cpp
-        Classes/Buildings/Buildings.h
-        "Classes/Catering Providers/Cateringproviders.cpp"
-        "Classes/Catering Providers/Cateringproviders.h"
+        Classes/CateringProviders/Cateringproviders.cpp
         Classes/Renovations/Renovations.cpp
-        Classes/Renovations/Renovations.h
         Classes/Campus/Campus.cpp
-        Classes/Campus/Campus.h
+
 )
 target_link_libraries(planning_system pthread)
 
 # 5. TARGET 2: Je Google Tests
 # Gebruikt nu test_main.cpp in plaats van de specifieke element test
-add_executable(run_tests Tests/test_main.cpp ${SHARED_SOURCES})
+add_executable(run_tests Tests/test_main.cpp ${SHARED_SOURCES}
+        Classes/Buildings/Buildings.cpp
+        Classes/CateringProviders/Cateringproviders.cpp
+        Classes/Renovations/Renovations.cpp
+        Classes/Campus/Campus.cpp
+)
+
 target_link_libraries(run_tests gtest pthread)

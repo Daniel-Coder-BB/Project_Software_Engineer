@@ -103,3 +103,14 @@ void Room::print() {
     std::cout << " | Capacity: " << capacity << std::endl;
 }
 
+double Room::get_co2_per_hour() const {
+    return co2_per_hour;
+}
+
+void Room::set_co2_per_hour(double co2) {
+    // precondition
+    REQUIRE(co2 >= 0, "CO2 moet positieve zijn");
+    co2_per_hour = co2;
+    // postcondition
+    ENSURE(co2_per_hour == co2, "CO2 juist gezet");
+}

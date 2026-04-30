@@ -22,10 +22,11 @@ private:
     std::string identifier;
     std::string room;
     std::string date;
-    int         hour;
+    int hour = 12;
     bool online;
     bool externals;
     bool catering;
+    double co2_emission;
 
 
 public:
@@ -180,7 +181,8 @@ public:
         return lhs.label == rhs.label
                && lhs.identifier == rhs.identifier
                && lhs.room == rhs.room
-               && lhs.date == rhs.date;
+               && lhs.date == rhs.date
+               && lhs.hour == rhs.hour;;
     }
 
     friend bool operator!=(const Meeting &lhs, const Meeting &rhs) {
@@ -198,6 +200,24 @@ public:
     *postcondition string with all the attributes gets shown
     */
     void print();
+
+    /*
+    *This function gets the co2
+    *@param None
+    *@return the co2 of the Meeting object
+    *precondition None
+    *postcondition returns this->co2
+    */
+    double get_co2() const;
+
+    /*
+    *This function prints a calculate_co2 of this Meeting object
+    *@param None
+    *@return None
+    *precondition Meeting attributes are not empty
+    *postcondition calculate_co2 gets shown
+    */
+    void calculate_co2(int room_capacity, double room_co2_per_hour);
 };
 
 

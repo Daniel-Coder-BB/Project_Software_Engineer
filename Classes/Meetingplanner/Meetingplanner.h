@@ -19,7 +19,7 @@
 #include "Classes/Buildings/Buildings.h"
 #include <string>
 
-#include "Classes/Catering Providers/Cateringproviders.h"
+#include "Classes/CateringProviders/Cateringproviders.h"
 #include "Classes/Renovations/Renovations.h"
 
 //body-gedeelte
@@ -34,6 +34,8 @@ private:
     std::vector<Buildings> buildings;
     std::vector<Renovations> renovations;
     std::vector<Cateringproviders> catering;
+
+
 
 
 public:
@@ -189,13 +191,32 @@ public:
     }
 
      /*
-      *This function writes an output to an .txt file
-      *@param None
-      *@return None
-      *precondition attributes of meetingplanner are not Empty
-      *postcondition output.txt file got created.
-      */
+    *This function writes an output to an .txt file
+    *@param None
+    *@return None
+    *precondition attributes of meetingplanner are not Empty
+    *postcondition output.txt file got created.
+    */
     void simpleOutput();
+
+    /*
+    *This function writes an structure to an .dot file
+    *@param None
+    *@return None
+    *precondition attributes of meetingplanner are not Empty
+    *postcondition structure.dot file got created.
+    */
+    void exportGraphviz();
+
+    /*
+    *This function processes meetings
+    *@param None
+    *@return None
+    *precondition attributes of meetingplanner are not Empty
+    *postcondition  Meetings are processesed.
+    */
+    void processMeetings();
 };
+
 
 #endif

@@ -1,20 +1,63 @@
-MEETINGS: 
-- Room98732, 2026-05-22
-  Weekly meeting
-  Peter Selie  Brin
-  Meeting ID:  478463
+====  [SYSTEM STATUS]  ====
 
-CONFLICTING MEETINGS: 
-ROOMS: 
-- M.G.025
-  capacity: 55 people 
+--== Meetings ==--
 
-- M.G.023
-  capacity: 10 people 
+[Meeting Meeting_478463]
+- Time: 2026-05-22, 12h
+- Location: Room98732
+- Externals allowed: No
+- Catering: No
+- CO2 emitted: 220g
 
-- R.014
-  capacity: 25 people 
+[Meeting Meeting_555001]
+- Time: 2026-06-01, 12h
+- Location: Room_101
+- Externals allowed: No
+- Catering: No
+- CO2 emitted: 520g
 
-- R.014
-  capacity: 25 people 
+[Meeting Meeting_555002]
+- Time: 2026-06-03, 12h
+- Location: M.G.025
+- Externals allowed: No
+- Catering: No
+- CO2 emitted: 670g
 
+--== Rooms ==--
+
+[Room M.G.025]
+- Name: M.G.025
+- Capacity: 55
+- Campus: Campus_CDE
+- Building: CDE_R
+
+[Room Room98732]
+- Name: M.G.023
+- Capacity: 10
+- Campus: Campus_CDE
+- Building: CDE_R
+
+[Room Room_87984521]
+- Name: R.014
+- Capacity: 25
+- Campus: Campus_CDE
+- Building: CDE_R
+
+[Room Room_101]
+- Name: S.101
+- Capacity: 40
+- Campus: Campus_CDE
+- Building: CDE_S
+
+[Room Room_102]
+- Name: S.102
+- Capacity: 15
+- Campus: Campus_CDE
+- Building: CDE_S
+
+--== CO2 summary ==--
+
+- Total CO2 emitted: 1410g
+- Average CO2: 470g
+
+==== [END OF REPORT] ====

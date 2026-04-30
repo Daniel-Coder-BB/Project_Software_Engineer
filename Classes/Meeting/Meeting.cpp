@@ -11,7 +11,7 @@
 #include "Classes/DesignByContract/DesignByContract.h" // Zorg dat dit de juiste naam is
 #include <iostream>
 
-// --- Getters ---
+//Getters
 
 std::string Meeting::get_label() const {
 
@@ -42,7 +42,7 @@ std::string Meeting::get_date() const {
     return result;
 }
 
-// --- Setters ---
+//Setters
 
 void Meeting::set_label(const std::string &label) {
     REQUIRE(!label.empty(), "label is not empty");
@@ -103,7 +103,7 @@ void Meeting::set_catering(bool catering) {
     this->catering = catering;
 }
 
-// --- Overige functies ---
+//Overige functies
 
 void Meeting::print() {
     // Preconditie: attributes mogen niet leeg zijn
@@ -115,8 +115,25 @@ void Meeting::print() {
     std::cout << " | Identifier: " << identifier;
     std::cout << " | Room: " << room;
     std::cout << " | Date: " << date << std::endl;
+}
 
+double Meeting::get_co2() const {
+    return co2_emission;
+}
 
-    // Postconditie: "string gets shown" is lastig te testen in code,
-    // maar we kunnen bevestigen dat de functie het einde heeft bereikt.
+void Meeting::calculate_co2(int room_capacity, double room_co2_per_hour) {
+    double co2 = 0;
+
+    // Room gebruik
+    co2 += room_co2_per_hour;
+
+    // People
+    co2 += room_capacity * 10;
+
+    // Catering
+    if (catering) {
+        co2 += 200;
+    }
+
+    co2_emission = co2;
 }

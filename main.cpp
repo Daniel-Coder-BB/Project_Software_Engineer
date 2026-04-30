@@ -50,7 +50,10 @@ int main(int argc, char **argv) {
     doc.Clear();
 
     planner.simpleOutput();
+	planner.exportGraphviz();
+    planner.processMeetings();
     return 0;
 }
+
 
 
