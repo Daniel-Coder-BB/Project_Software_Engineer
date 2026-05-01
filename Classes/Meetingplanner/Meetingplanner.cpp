@@ -241,31 +241,21 @@ void MeetingPlanner::exportGraphviz() {
 
     file << "digraph G {\n\n";
 
-    // We bouwen een lineaire keten:
-    // Campus -> Building -> Room -> Next Room -> ... -> Last Room
+    // Optional: horizontal layout (can remove if not required)
+    file << "    rankdir=LR;\n\n";
 
-    // 1. Campus → Building
+    // Campus → Building
     if (!buildings.empty()) {
         file << "    \"" << buildings[0].get_campus()
              << "\" -> \"" << buildings[0].get_name() << "\";\n";
     }
 
-    // 2. Building → eerste room
-    if (!rooms.empty()) {
-        file << "    \"" << buildings[0].get_name()
-             << "\" -> \"" << rooms[0].get_identifier() << "\";\n";
-    }
-
-    // 3. Room → volgende room → volgende room → ...
-    for (size_t i = 0; i + 1 < rooms.size(); ++i) {
-        file << "    \"" << rooms[i].get_identifier()
-             << "\" -> \"" << rooms[i + 1].get_identifier() << "\";\n";
-    }
-
-    // 4. Self-loop op de laatste room
-    if (!rooms.empty()) {
-        const std::string& last = rooms.back().get_identifier();
-        file << "    \"" << last << "\" -> \"" << last << "\";\n";
+    // Building → ALL rooms (no chaining)
+    if (!buildings.empty()) {
+        for (const auto& room : rooms) {
+            file << "    \"" << buildings[0].get_name()
+                 << "\" -> \"" << room.get_identifier() << "\";\n";
+        }
     }
 
     file << "\n}\n";
@@ -279,22 +269,12 @@ void MeetingPlanner::processMeetings() {
 
     std::vector<std::string> used_rooms = occupied_rooms;
 
-    // Reset total catering cost before processing
     totalCateringCost = 0.0;
-
-    // Open catering file once (better design)
-    std::ofstream cateringFile("../catering.txt");
-
-    if (!cateringFile.is_open()) {
-        std::cerr << "Error: Cannot open catering file.\n";
-        return;
-    }
 
     for (Meeting& meeting : meetings) {
         bool occupied = false;
         bool renovating = false;
 
-        // Check if room is already occupied
         for (const std::string& room : used_rooms) {
             if (!meeting.is_online() && meeting.get_room() == room) {
                 std::cerr << "Error: Room " << meeting.get_room()
@@ -304,7 +284,6 @@ void MeetingPlanner::processMeetings() {
             }
         }
 
-        // Check if room is under renovation
         for (const Renovations& renovation : renovations) {
             if (!meeting.is_online() && meeting.get_room() == renovation.get_room()) {
                 std::cerr << "Error: Room " << meeting.get_room()
@@ -314,23 +293,18 @@ void MeetingPlanner::processMeetings() {
             }
         }
 
-
         if (occupied || renovating) {
             continue;
         }
 
-        // Mark room as used
         if (!meeting.is_online()) {
             used_rooms.push_back(meeting.get_room());
         }
 
-        // Print success message
         std::cout << "Meeting " << meeting.get_identifier()
                   << " has taken place.\n";
 
         if (meeting.is_catering()) {
-
-            // Rule enforcement: online meetings cannot have catering
             REQUIRE(!meeting.is_online(),
                     "Online meetings cannot have catering");
 
@@ -339,21 +313,12 @@ void MeetingPlanner::processMeetings() {
 
             totalCateringCost += cost;
 
-            // Write to catering file
-            cateringFile << "[Meeting " << meeting.get_identifier() << "]\n";
-            cateringFile << "- Time: " << meeting.get_date()
-                          << " " << meeting.get_hour() << "h\n";
-            cateringFile << "- Location: " << meeting.get_room() << "\n";
-            cateringFile << "- Participants: " << participants << "\n";
-            cateringFile << "- Cost: €" << cost << "\n\n";
+            std::cout << "[Meeting " << meeting.get_identifier() << "]\n";
+            std::cout << "- Participants: " << participants << "\n";
+            std::cout << "- Cost: €" << cost << "\n\n";
         }
     }
 
-    // Write total catering cost summary
-    cateringFile << "==== Catering Summary ====\n";
-    cateringFile << "Total catering cost: €" << totalCateringCost << "\n";
-
-    cateringFile.close();
 
     ENSURE(true, "meetings processed correctly with catering");
 }

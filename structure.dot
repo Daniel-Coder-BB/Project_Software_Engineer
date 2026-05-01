@@ -1,11 +1,12 @@
 digraph G {
 
+    rankdir=LR;
+
     "Campus_CDE" -> "Gebouw R";
     "Gebouw R" -> "M.G.025";
-    "M.G.025" -> "Room98732";
-    "Room98732" -> "Room_87984521";
-    "Room_87984521" -> "Room_101";
-    "Room_101" -> "Room_102";
-    "Room_102" -> "Room_102";
+    "Gebouw R" -> "Room98732";
+    "Gebouw R" -> "Room_87984521";
+    "Gebouw R" -> "Room_101";
+    "Gebouw R" -> "Room_102";
 
 }
