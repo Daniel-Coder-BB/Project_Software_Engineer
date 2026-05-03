@@ -187,6 +187,7 @@ Meeting Parser::parse_meeting_element(TiXmlElement* meeting_element) {
     }
 
     TiXmlElement* catering_el = meeting_element->FirstChildElement("CATERING");
+
     if (catering_el != NULL && catering_el->GetText() != NULL) {
         new_meeting.set_catering(true);
     }

@@ -223,6 +223,8 @@ public:
     double calculateCO2(const Meeting& meeting);
 
     int meeting_capacity(const Meeting& meeting);
+
+    double totalCateringCost = 0.0;
 };
 
 
