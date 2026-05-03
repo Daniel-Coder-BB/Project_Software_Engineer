@@ -339,35 +339,41 @@ Renovations Parser::parse_renovation_element(TiXmlElement* renovation_element) {
 }
 
 Cateringproviders Parser::parse_catering_element(TiXmlElement* catering_element) {
+    // REQUIRE: Het element mag niet NULL zijn om de parser te kunnen starten
     REQUIRE(catering_element != NULL, "Preconditie gefaald: catering_element mag niet NULL zijn");
 
     Cateringproviders new_catering;
-    new_catering.set_campus("Fout");
-    new_catering.set_co2(1); // Standaard veilige waarde > 0
 
-    // CAMPUS CHECK
+    // Initialisatie met tijdelijke foutwaarde voor de campus
+    new_catering.set_campus("fout");
+    new_catering.set_co2(1.0f); // Veilige default waarde om contract violations te voorkomen
+
+    bool campus_ok = false;
+    bool co2_ok = false;
+
+    // 1. CAMPUS CHECK: Verifieer of de tag bestaat en tekst bevat
     TiXmlElement* campus_el = catering_element->FirstChildElement("CAMPUS");
     if (campus_el != NULL && campus_el->GetText() != NULL) {
         new_catering.set_campus(campus_el->GetText());
+        campus_ok = true;
     }
 
-    // C02 CHECK (gebaseerd op image_3d26d4.png)
-    TiXmlElement* c02_el = catering_element->FirstChildElement("CO2");
-    if (c02_el != NULL && c02_el->GetText() != NULL) {
-        int val = atoi(c02_el->GetText());
+    // 2. CO2 CHECK: Gebruik atof voor drijvende-kommagetallen (float)
+    TiXmlElement* co2_el = catering_element->FirstChildElement("CO2");
+    if (co2_el != NULL && co2_el->GetText() != NULL) {
+        // Omzetten van string naar float met atof ipv atoi om decimalen (zoals .5) te behouden
+        float val = static_cast<float>(atof(co2_el->GetText()));
 
-        // VOORKOM DE CRASH: Check of de waarde groter is dan 0
-        if (val > 0) {
+        // Check Bereik: De waarde moet strikt groter zijn dan 0 volgens de precondities
+        if (val > 0.0f) {
             new_catering.set_co2(val);
-        } else {
-            // Als de waarde 0 of lager is, markeer als fout in plaats van te crashen
-            new_catering.set_campus("fout");
+            co2_ok = true;
         }
     }
 
-    if (new_catering.get_campus() == "Fout" || new_catering.get_campus() == "fout") {
+    // 3. VALIDATIE: Als één van de velden ontbreekt of ongeldig is, markeer het object als "fout"
+    if (!campus_ok || !co2_ok) {
         new_catering.set_campus("fout");
-        // Zorg dat je hier geen waarde <= 0 zet als de setter dat verbiedt
     }
 
     return new_catering;

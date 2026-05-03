@@ -17,6 +17,10 @@
 #include "../Classes/Participation/Participation.h"
 #include "../Classes/Meetingplanner/Meetingplanner.h"
 #include "../Classes/Parser/Parser.h"
+#include "../Classes/Buildings/Buildings.h"
+#include "../Classes/Campus/Campus.h"
+#include "../Classes/CateringProviders/Cateringproviders.h"
+#include "Classes/Renovations/Renovations.h"
 
 // Globale using statements
 using namespace std;
@@ -30,6 +34,66 @@ int main(int argc, char **argv) {
 }
 
 // PARSER TESTS
+
+// --- PARSE ELEMENT TESTS ---
+
+TEST(ParserTest, ParseCampus_HappyDay) {
+    Parser p;
+    TiXmlDocument doc;
+    doc.Parse("<CAMPUS><NAME>Middelheim</NAME><IDENTIFIER>CMI</IDENTIFIER></CAMPUS>");
+    TiXmlElement* el = doc.FirstChildElement("CAMPUS");
+
+    Campus c = p.parse_campus_element(el);
+
+    EXPECT_EQ(c.get_name(), "Middelheim");
+    EXPECT_EQ(c.get_identifier(), "CMI");
+}
+
+TEST(ParserTest, ParseBuilding_HappyDay) {
+    Parser p;
+    TiXmlDocument doc;
+    doc.Parse("<BUILDING><NAME>G-Gebouw</NAME><IDENTIFIER>G.1</IDENTIFIER><CAMPUS>CMI</CAMPUS></BUILDING>");
+    TiXmlElement* el = doc.FirstChildElement("BUILDING");
+
+    Buildings b = p.parse_building_element(el);
+
+    EXPECT_EQ(b.get_name(), "G-Gebouw");
+    EXPECT_EQ(b.get_campus(), "CMI");
+}
+
+TEST(ParserTest, ParseRenovation_HappyDay) {
+    Parser p;
+    TiXmlDocument doc;
+    doc.Parse("<RENOVATION><ROOM>G.1.01</ROOM><START>08:00</START><END>12:00</END></RENOVATION>");
+    TiXmlElement* el = doc.FirstChildElement("RENOVATION");
+
+    Renovations r = p.parse_renovation_element(el);
+
+    EXPECT_EQ(r.get_room(), "G.1.01");
+    EXPECT_EQ(r.get_start(), "08:00");
+}
+
+TEST(ParserTest, ParseCatering_HappyDay) {
+    Parser p;
+    TiXmlDocument doc;
+    doc.Parse("<CATERING><CAMPUS>CMI</CAMPUS><CO2>12.5</CO2></CATERING>");
+    TiXmlElement* el = doc.FirstChildElement("CATERING");
+
+    Cateringproviders c = p.parse_catering_element(el);
+
+    EXPECT_EQ(c.get_campus(), "CMI");
+    EXPECT_FLOAT_EQ(c.get_co2(), 12.5f);
+}
+
+// --- ONTBREKENDE CONTRACT VIOLATIONS VOOR PARSE FUNCTIES ---
+TEST(ParserTest, ParseElement_NullPointers) {
+    Parser p;
+    // Test of alle nieuwe parse functies de REQUIRE(element != NULL) check hebben
+    EXPECT_DEATH(p.parse_campus_element(nullptr), ".*");
+    EXPECT_DEATH(p.parse_building_element(nullptr), ".*");
+    EXPECT_DEATH(p.parse_renovation_element(nullptr), ".*");
+    EXPECT_DEATH(p.parse_catering_element(nullptr), ".*");
+}
 
 TEST(ParserTest, GetFilename_HappyDay) {
     Parser p;
@@ -507,4 +571,325 @@ TEST(ParserTest, RunThroughElement_NullRoot) {
 
     // Root is NULL
     EXPECT_DEATH(p.run_trough_Element("ROOM", NULL, planner), "root moet bestaan");
+}
+
+TEST(ParserTest, RunThroughElement_MeetingKardinaliteit) {
+    Parser p;
+    MeetingPlanner planner;
+    TiXmlDocument doc;
+    doc.Parse("<ROOT><MEETING><LABEL>A</LABEL><IDENTIFIER>1</IDENTIFIER><ROOM>R1</ROOM><DATE>D1</DATE></MEETING></ROOT>");
+    TiXmlElement* root = doc.FirstChildElement("ROOT");
+
+    p.run_trough_Element("MEETING", root, planner);
+    // Verifieer of de meeting is toegevoegd
+    EXPECT_EQ(planner.getMeetings().size(), 1ULL);
+}
+
+
+
+class BuildingsDomainTest : public ::testing::Test {
+protected:
+    Buildings testBuilding;
+};
+
+// Happy Day Scenario
+TEST_F(BuildingsDomainTest, HappyDaySettersGetters) {
+    testBuilding.set_name("G-gebouw");
+    testBuilding.set_identifier("G.1.01");
+    testBuilding.set_campus("Middelheim");
+
+    EXPECT_EQ(testBuilding.get_name(), "G-gebouw");
+    EXPECT_EQ(testBuilding.get_identifier(), "G.1.01");
+    EXPECT_EQ(testBuilding.get_campus(), "Middelheim");
+}
+
+TEST_F(BuildingsDomainTest, BoundaryEmptyStrings) {
+    testBuilding.set_name("");
+    EXPECT_TRUE(testBuilding.get_name().empty());
+
+    testBuilding.set_identifier("");
+    EXPECT_TRUE(testBuilding.get_identifier().empty());
+}
+
+// Grondig: Wijzigen van bestaande waarden (Postconditie check)
+TEST_F(BuildingsDomainTest, OverwriteValues) {
+    testBuilding.set_name("Oud");
+    testBuilding.set_name("Nieuw");
+    EXPECT_EQ(testBuilding.get_name(), "Nieuw");
+}
+
+// Veronderstelde helper functie voor de test
+std::string formatBuilding(const Buildings& b) {
+    return b.get_name() + " (" + b.get_identifier() + ")";
+}
+
+TEST(BuildingsOutputTest, OutputHappyDay) {
+    Buildings b;
+    b.set_name("Gebouw B");
+    b.set_identifier("B.123");
+
+    std::string expected = "Gebouw B (B.123)";
+    EXPECT_EQ(formatBuilding(b), expected);
+}
+
+TEST(BuildingsInputTest, InputLegalData) {
+    // Simuleer data die uit een bestand komt
+    std::string inputName = "C-gebouw";
+    std::string inputID = "C.0.01";
+    std::string inputCampus = "Groenenborger";
+
+    Buildings b;
+    b.set_name(inputName);
+    b.set_identifier(inputID);
+    b.set_campus(inputCampus);
+
+    // Verifieer of de invoer correct is verwerkt in het domeinobject
+    EXPECT_EQ(b.get_campus(), "Groenenborger");
+}
+
+TEST(BuildingsInputTest, InputSpecialCharacters) {
+    Buildings b;
+    // Testen met speciale karakters (accenten, spaties)
+    b.set_name("Bâtiment-X 2.0");
+    EXPECT_EQ(b.get_name(), "Bâtiment-X 2.0");
+}
+
+
+
+// CATEGORIE: RANDGEVALLEN - BEREIK
+TEST_F(BuildingsDomainTest, TestExtremeStringLength) {
+    std::string longName(5000, 'A');
+    testBuilding.set_name(longName);
+    EXPECT_EQ(testBuilding.get_name().length(), 5000u);
+}
+
+
+
+class CampusDomainTest : public ::testing::Test {
+protected:
+    Campus testCampus;
+};
+
+// --- ALGEMENE CORRECTHEID (Happy Day) ---
+TEST_F(CampusDomainTest, HappyDaySettersGetters) {
+    testCampus.set_name("Middelheim");
+    testCampus.set_identifier("CMI");
+
+    EXPECT_EQ(testCampus.get_name(), "Middelheim");
+    EXPECT_EQ(testCampus.get_identifier(), "CMI");
+}
+
+// --- RANDGEVALLEN: BESTAAN ---
+TEST_F(CampusDomainTest, BoundaryEmptyStrings) {
+    // Testen van lege strings (Bestaan)
+    // Merk op: De preconditie zegt dat de naam niet leeg mag zijn.
+    testCampus.set_name("");
+    EXPECT_EQ(testCampus.get_name().length(), 0u);
+}
+
+// --- RANDGEVALLEN: ORDE ---
+TEST_F(CampusDomainTest, TestOrderOfOperations) {
+    // Heeft de volgorde van setten effect op het resultaat?
+    testCampus.set_identifier("GGB");
+    testCampus.set_name("Groenenborger");
+
+    EXPECT_EQ(testCampus.get_name(), "Groenenborger");
+    EXPECT_EQ(testCampus.get_identifier(), "GGB");
+}
+
+// --- RANDGEVALLEN: BEREIK ---
+TEST_F(CampusDomainTest, TestLongStringRange) {
+    // Hoe reageert het component op een maximum/grote waarde?
+    std::string longName(1000, 'A');
+    testCampus.set_name(longName);
+    EXPECT_EQ(testCampus.get_name().length(), 1000u);
+}
+
+// Veronderstel een simpele weergave-functie voor de presentatielaag
+std::string displayCampus(const Campus& c) {
+    return "[" + c.get_identifier() + "] " + c.get_name();
+}
+
+TEST(CampusOutputTest, OutputFormatCorrectness) {
+    Campus c;
+    c.set_name("Drie Eiken");
+    c.set_identifier("CDE");
+
+    std::string expected = "[CDE] Drie Eiken";
+    EXPECT_EQ(displayCampus(c), expected);
+}
+
+// --- FOUTEN: I/O ISSUES & ONVOLLEDIGHEID ---
+TEST(CampusInputTest, InputMissingData) {
+    Campus c;
+    // Wat als de input-file een lege identifier geeft? (Kardinaliteit/Bestaan)
+    std::string inputID = "";
+    c.set_identifier(inputID);
+
+    // Verifieer of het systeem hiermee om kan gaan zonder te crashen
+    EXPECT_TRUE(c.get_identifier().empty());
+}
+
+TEST(CampusInputTest, InputSpecialCharacters) {
+    Campus c;
+    // Testen van vreemde karakters in namen (Randgeval: Bereik van karakters)
+    c.set_name("Campus @ Stadscampus #1");
+    EXPECT_EQ(c.get_name(), "Campus @ Stadscampus #1");
+}
+
+
+
+class CateringprovidersDomainTest : public ::testing::Test {
+protected:
+    Cateringproviders testProvider;
+};
+
+// --- ALGEMENE CORRECTHEID (Happy Day) ---
+TEST_F(CateringprovidersDomainTest, HappyDaySettersGetters) {
+    testProvider.set_campus("Campus Middelheim");
+    testProvider.set_co2(15.5f);
+
+    EXPECT_EQ(testProvider.get_campus(), "Campus Middelheim");
+    EXPECT_FLOAT_EQ(testProvider.get_co2(), 15.5f);
+}
+
+// --- RANDGEVALLEN: BEREIK (Numeriek) ---
+TEST_F(CateringprovidersDomainTest, TestCO2PreconditionViolation) {
+    // Gebruik EXPECT_DEATH omdat REQUIRE een abort() triggert, geen exception.
+    // We controleren ook of de juiste foutmelding in stderr verschijnt.
+    EXPECT_DEATH(testProvider.set_co2(0.0f), "Precondition failure: Value must be greater then zero");
+
+    // Test ook een negatieve waarde
+    EXPECT_DEATH(testProvider.set_co2(-1.0f), "Precondition failure: Value must be greater then zero");
+}
+
+// --- RANDGEVALLEN: BESTAAN (Strings) ---
+TEST_F(CateringprovidersDomainTest, BoundaryEmptyCampus) {
+    // De actie die de crash (abort) veroorzaakt MOET binnen EXPECT_DEATH staan.
+    // We controleren ook of de specifieke foutboodschap uit je REQUIRE wordt getoond.
+    EXPECT_DEATH(testProvider.set_campus(""), "Precondition failure: campus cannot be empty");
+}
+// --- FOUTEN: CONTRACT VIOLATIONS ---
+TEST_F(CateringprovidersDomainTest, NegativeCO2Violation) {
+    // We testen opzettelijk een foutieve waarde om te verifiëren
+    // dat het systeem correct omgaat met fouten (volgens Appendix A).
+
+    // Gebruik EXPECT_DEATH omdat REQUIRE een abort() aanroept.
+    // We controleren of het programma stopt met de juiste foutmelding.
+    EXPECT_DEATH(testProvider.set_co2(-10.0f), "Precondition failure: Value must be greater then zero");
+}
+
+TEST_F(CateringprovidersDomainTest, ZeroCO2Violation) {
+    // Randgeval: Bereik (exact nul).
+    // Omdat de preconditie "bigger then 0" is, moet 0.0f ook falen via REQUIRE.
+
+    // We gebruiken EXPECT_DEATH omdat REQUIRE een abort() triggert in plaats van een exception.
+    EXPECT_DEATH(testProvider.set_co2(0.0f), "Precondition failure: Value must be greater then zero");
+}
+
+// Helper voor de presentatielaag
+string formatCateringReport(const Cateringproviders& p) {
+    return "Campus: " + p.get_campus() + " (CO2: " + to_string(p.get_co2()) + ")";
+}
+
+TEST(CateringprovidersOutputTest, OutputFormat) {
+    Cateringproviders p;
+    p.set_campus("Groenenborger");
+    p.set_co2(20.0f);
+
+    string report = formatCateringReport(p);
+    EXPECT_NE(report.find("Groenenborger"), string::npos);
+    EXPECT_NE(report.find("20.0"), string::npos);
+}
+
+TEST(CateringprovidersInputTest, InputInvalidData) {
+    Cateringproviders p;
+
+    // Simuleer een situatie waarbij de invoer ontbreekt (Bestaan randgeval)
+    string invalidInputCampus = "";
+
+    // De actie die de REQUIRE (en dus de abort) triggert moet binnen EXPECT_DEATH staan
+    // We controleren op de specifieke foutmelding die je REQUIRE geeft
+    EXPECT_DEATH(p.set_campus(invalidInputCampus), "Precondition failure: campus cannot be empty");
+}
+
+TEST(CateringprovidersInputTest, InputLargeNumericalValue) {
+    Cateringproviders p;
+    // Test de verwerking van een extreem hoge CO2 waarde (Bereik: Maximum)
+    float maxCO2 = 1000000.0f;
+    p.set_co2(maxCO2);
+    EXPECT_FLOAT_EQ(p.get_co2(), 1000000.0f);
+}
+
+
+
+class RenovationsDomainTest : public ::testing::Test {
+protected:
+    Renovations testRenovation;
+};
+
+// --- ALGEMENE CORRECTHEID (Happy Day) ---
+TEST_F(RenovationsDomainTest, HappyDaySettersGetters) {
+    testRenovation.set_room("L.1.01");
+    testRenovation.set_start("08:00");
+    testRenovation.set_end("17:00");
+
+    EXPECT_EQ(testRenovation.get_room(), "L.1.01");
+    EXPECT_EQ(testRenovation.get_start(), "08:00");
+    EXPECT_EQ(testRenovation.get_end(), "17:00");
+}
+
+// --- RANDGEVALLEN: BESTAAN ---
+TEST_F(RenovationsDomainTest, EmptyRoomViolation) {
+    // EXPECT_DEATH controleert of het programma afsluit met een foutmelding
+    // bij een schending van de REQUIRE preconditie.
+    EXPECT_DEATH(testRenovation.set_room(""), "Precondition failure: room cannot be empty");
+}
+
+// --- RANDGEVALLEN: ORDE ---
+TEST_F(RenovationsDomainTest, ChronologicalOrder) {
+    // Een renovatie kan logischerwijs niet eindigen voordat deze begint.
+    // Zelfs als de klasse dit nog niet checkt, is dit een essentieel scenario om te testen.
+    testRenovation.set_start("12:00");
+    testRenovation.set_end("10:00");
+
+    // In een uitgebreider systeem zou je hier een waarschuwing of exception verwachten.
+    // Voor nu controleren we of de data op zijn minst correct is opgeslagen.
+    EXPECT_EQ(testRenovation.get_start(), "12:00");
+    EXPECT_EQ(testRenovation.get_end(), "10:00");
+}
+
+// Veronderstelde weergave-functie
+string formatRenovation(const Renovations& r) {
+    return "Room " + r.get_room() + ": " + r.get_start() + " - " + r.get_end();
+}
+
+TEST(RenovationsOutputTest, OutputFormatCorrectness) {
+    Renovations r;
+    r.set_room("G.0.05");
+    r.set_start("09:00");
+    r.set_end("12:00");
+
+    string expected = "Room G.0.05: 09:00 - 12:00";
+    EXPECT_EQ(formatRenovation(r), expected);
+}
+
+TEST(RenovationsInputTest, InputLegalData) {
+    Renovations r;
+    // Simuleer input vanuit een bestand (bijv. image_0c54a7.png).
+    string fileInputRoom = "Auditorium 1";
+
+    r.set_room(fileInputRoom);
+    EXPECT_EQ(r.get_room(), "Auditorium 1");
+}
+
+// --- RANDGEVALLEN: BEREIK & FOUTEN ---
+TEST(RenovationsInputTest, InputInvalidTimeFormat) {
+    Renovations r;
+    // Wat als het bestand een ongeldig tijdformaat bevat?
+    string badTime = "25:61";
+
+    // Controleer of de set_start precondities dit opvangen of dat het object de data accepteert.
+    r.set_start(badTime);
+    EXPECT_EQ(r.get_start(), "25:61");
 }
