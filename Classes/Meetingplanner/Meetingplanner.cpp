@@ -3,8 +3,8 @@
  * Deze klasse stelt onze Participation voor.
  *
  * @authors Bruno Luango en Ibrahim Akiyev
- * @date 11/03/2026
- * @version 1.0
+ * @date 01/05/2026
+ * @version 2.0
  */
 
 #include "Meetingplanner.h"
