@@ -39,14 +39,14 @@
 [Room M.G.025]
 - Name: M.G.025
 - Capacity: 55
-- Campus: Campus_CDE
-- Building: CDE_R
+- Campus: Campus_GR
+- Building: CDE_G
 
 [Room Room98732]
 - Name: M.G.023
 - Capacity: 10
-- Campus: Campus_CDE
-- Building: CDE_R
+- Campus: Campus_GR
+- Building: CDE_G
 
 [Room Room_87984521]
 - Name: R.014

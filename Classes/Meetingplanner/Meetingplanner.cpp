@@ -240,22 +240,52 @@ void MeetingPlanner::exportGraphviz() {
     }
 
     file << "digraph G {\n\n";
-
-    // Optional: horizontal layout (can remove if not required)
     file << "    rankdir=LR;\n\n";
 
-    // Campus → Building
-    if (!buildings.empty()) {
-        file << "    \"" << buildings[0].get_campus()
-             << "\" -> \"" << buildings[0].get_name() << "\";\n";
+    file << "    // --- NODE LABELS ---\n";
+
+
+    for (const auto& campus : campuses) {
+        file << "    \"" << campus.get_identifier()
+             << "\" [label=\"" << campus.get_name() << "\"];\n";
     }
 
-    // Building → ALL rooms (no chaining)
-    if (!buildings.empty()) {
-        for (const auto& room : rooms) {
-            file << "    \"" << buildings[0].get_name()
-                 << "\" -> \"" << room.get_identifier() << "\";\n";
-        }
+
+    for (const auto& building : buildings) {
+        file << "    \"" << building.get_identifier()
+             << "\" [label=\"" << building.get_name() << "\"];\n";
+    }
+
+
+    for (const auto& room : rooms) {
+        file << "    \"" << room.get_identifier()
+             << "\" [label=\"" << room.get_name() << "\"];\n";
+    }
+
+    for (const auto& meeting : meetings) {
+        file << "    \"" << meeting.get_identifier()
+             << "\" [label=\"" << meeting.get_label() << "\"];\n";
+    }
+
+
+    file << "\n    // --- EDGES (CONNECTIONS) ---\n";
+
+
+    for (const auto& building : buildings) {
+        file << "    \"" << building.get_campus()
+             << "\" -> \"" << building.get_identifier() << "\";\n";
+    }
+
+
+    for (const auto& room : rooms) {
+        file << "    \"" << room.get_building()
+             << "\" -> \"" << room.get_identifier() << "\";\n";
+    }
+
+
+    for (const auto& meeting : meetings) {
+        file << "    \"" << meeting.get_room()
+             << "\" -> \"" << meeting.get_identifier() << "\";\n";
     }
 
     file << "\n}\n";
