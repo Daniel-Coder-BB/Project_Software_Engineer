@@ -2,231 +2,196 @@
 #define MEETINGPLANNER_H
 
 /**
- * Korte beschrijving:
- * Deze klasse stelt onze Meetingplanner voor.
- *
+ * @file Meetingplanner.h
+ * @brief Beschrijving van de MeetingPlanner klasse voor het beheren van kamers, meetings en participaties.
  * @authors Bruno Luango en Ibrahim Akiyev
  * @date 30/04/2026
  * @version 2.0
  */
 
-// Include blok
 #include <vector>
-#include "Classes//Room/Room.h"
-#include "Classes//Meeting/Meeting.h"
-#include "Classes//Participation/Participation.h"
+#include <string>
+#include "Classes/Room/Room.h"
+#include "Classes/Meeting/Meeting.h"
+#include "Classes/Participation/Participation.h"
 #include "Classes/Campus/Campus.h"
 #include "Classes/Buildings/Buildings.h"
-#include <string>
-
 #include "Classes/CateringProviders/Cateringproviders.h"
 #include "Classes/Renovations/Renovations.h"
 
-//body-gedeelte
+using namespace std;
+
+/**
+ * @class MeetingPlanner
+ * @brief Klasse die het centrale systeem beheert voor het plannen van meetings en middelen.
+ */
 class MeetingPlanner {
 private:
-    std::vector<Room> rooms;
-    std::vector<Meeting> meetings;
-    std::vector<Participation> participations;
-    std::vector<string> occupied_rooms;
-    std::vector<Meeting> conflicting_meetings;
-    std::vector<Campus> campuses;
-    std::vector<Buildings> buildings;
-    std::vector<Renovations> renovations;
-    std::vector<Cateringproviders> catering;
-
-
-
+    std::vector<Room> rooms; ///< Lijst met beschikbare kamers.
+    std::vector<Meeting> meetings; ///< Lijst met geplande meetings.
+    std::vector<Participation> participations; ///< Lijst met participaties van gebruikers.
+    std::vector<string> occupied_rooms; ///< Lijst met identifiers van bezette kamers.
+    std::vector<Meeting> conflicting_meetings; ///< Lijst met meetings die een conflict veroorzaken.
+    std::vector<Campus> campuses; ///< Lijst met campussen in het systeem.
+    std::vector<Buildings> buildings; ///< Lijst met gebouwen in het systeem.
+    std::vector<Renovations> renovations; ///< Lijst met actieve renovaties.
+    std::vector<Cateringproviders> catering; ///< Lijst met cateringproviders.
 
 public:
-    /*
-    *This function changes the room attribute
-    *@param the room you want to change it to
-    *@return None
-    *precondition room is not empty
-    *postcondition the input room is equal to room of Meetingplanner object
-    */
+    /**
+     * @brief Voegt een kamer toe aan de planner.
+     * @param room De toe te voegen Room-object.
+     * @pre De naam van de kamer mag niet leeg zijn.
+     * @post Het aantal kamers is met 1 toegenomen en de kamer is opgeslagen.
+     */
     void addRoom(const Room& room);
 
-    /*
-    *This function changes the meeting attribute
-    *@param the meeting you want to change it to
-    *@return None
-    *precondition meeting is not empty
-    *postcondition the input meeting is equal to meeting of Meetingplanner object
-    */
+    /**
+     * @brief Voegt een meeting toe aan de planner.
+     * @param meeting Het toe te voegen Meeting-object.
+     * @pre De identifier van de meeting mag niet leeg zijn.
+     * @post De meeting is toegevoegd aan de lijst met meetings.
+     */
     void addMeeting(const Meeting& meeting);
 
-    /*
-    *This function changes the participation attribute
-    *@param the participation you want to change it to
-    *@return None
-    *precondition participation is not empty
-    *postcondition the input participation is equal to participation of Meetingplanner object
-    */
+    /**
+     * @brief Voegt een participatie toe aan de planner.
+     * @param participation Het toe te voegen Participation-object.
+     * @pre De gebruiker in de participatie mag niet leeg zijn.
+     * @post De participatie is toegevoegd aan de lijst.
+     */
     void addParticipation(const Participation& participation);
 
-    /*
-     *This function gets the rooms attribute
-     *@param None
-     *@return the rooms of the Meetingplanner object
-     *precondition rooms is not empty
-     *postcondition returns this->rooms
+    /**
+     * @brief Geeft de lijst met kamers terug.
+     * @return Referentie naar de vector met Room-objecten.
+     * @pre De lijst met kamers mag niet leeg zijn.
      */
     std::vector<Room>& getRooms();
 
-    /*
-     *This function gets the meetings attribute
-     *@param None
-     *@return the meetings of the Meetingplanner object
-     *precondition meetings is not empty
-     *postcondition returns this->meetings
+    /**
+     * @brief Geeft de lijst met meetings terug.
+     * @return Referentie naar de vector met Meeting-objecten.
+     * @pre De lijst met meetings mag niet leeg zijn.
      */
     std::vector<Meeting>& getMeetings();
 
-    /*
-     *This function gets the participations attribute
-     *@param None
-     *@return the participations of the Meetingplanner object
-     *precondition participations is not empty
-     *postcondition returns this->participations
+    /**
+     * @brief Geeft de lijst met participaties terug.
+     * @return Referentie naar de vector met Participation-objecten.
+     * @pre De lijst met participaties mag niet leeg zijn.
      */
     std::vector<Participation>& getParticipations();
 
-    /*
-    *This function gets the occupied_rooms attribute
-    *@param None
-    *@return the occupied_rooms of the Meetingplanner object
-    *precondition occupied_rooms is not empty
-    *postcondition returns this->occupied_rooms
-    */
+    /**
+     * @brief Geeft de lijst met bezette kamer-identifiers terug.
+     * @return Vector van strings met kamer-identifiers.
+     * @pre De lijst met bezette kamers mag niet leeg zijn.
+     */
     std::vector<string> get_occupied_rooms() const;
 
-    /*
-   *This function changes the occupied_rooms attribute
-   *@param the occupied_rooms you want to change it to
-   *@return None
-   *precondition occupied_rooms is bigger or equal to zero
-   *postcondition the input occupied_rooms is equal to occupied_rooms of Meetingplanner object
-   */
+    /**
+     * @brief Voegt een identifier toe aan de lijst van bezette kamers.
+     * @param occupied_rooms De identifier van de kamer.
+     * @pre De identifier string mag niet leeg zijn.
+     * @post De identifier is toegevoegd aan de lijst.
+     */
     void set_occupied_rooms(const string &occupied_rooms);
 
- /*
-     * This function returns the list of campuses
-     * @return a vector containing all Campus objects
-     * precondition None.
-     * postcondition returns a vector of campuses.
+    /**
+     * @brief Geeft alle campussen terug.
+     * @return Vector van Campus-objecten.
+     * @post Geeft een (mogelijk lege) vector van campussen terug.
      */
- std::vector<Campus> get_campuses() const;
+    std::vector<Campus> get_campuses() const;
 
- /*
- * This function adds a campus to the system
- * @param campus the Campus object to be added
- * precondition None.
- * postcondition the campus is added to the list of campuses.
- */
- void set_campuses(const Campus &campus);
+    /**
+     * @brief Voegt een campus toe.
+     * @param campus Het Campus-object.
+     * @post De campus is toegevoegd aan de interne lijst.
+     */
+    void set_campuses(const Campus &campus);
 
- /*
- * This function returns the list of buildings
- * @return a vector containing all Building objects
- * precondition None.
- * postcondition returns a vector of buildings.
- */
- std::vector<Buildings> get_buildings() const;
+    /**
+     * @brief Geeft alle gebouwen terug.
+     * @return Vector van Buildings-objecten.
+     */
+    std::vector<Buildings> get_buildings() const;
 
- /*
- * This function adds a building to the system
- * @param building the Building object to be added
- * precondition None.
- * postcondition the building is added to the list of buildings.
- */
- void set_buildings(const Buildings &building);
+    /**
+     * @brief Voegt een gebouw toe.
+     * @param building Het Buildings-object.
+     */
+    void set_buildings(const Buildings &building);
 
-    /*
-        * This function returns the list of renovations
-        * @return a vector containing all Renovation objects
-        * precondition None.
-        * postcondition returns a vector of renovations.
-        */
+    /**
+     * @brief Geeft alle renovaties terug.
+     * @return Vector van Renovations-objecten.
+     */
     std::vector<Renovations> get_renovations();
 
-    /*
-    * This function adds a renovation to the system
-    * @param renovation the Renovation object to be added
-    * precondition None.
-    * postcondition the renovation is added to the list of renovations.
-    */
+    /**
+     * @brief Voegt een renovatie toe.
+     * @param renovation Het Renovations-object.
+     */
     void set_renovations(const Renovations &renovation);
 
-    /*
-        * This function returns the list of catering providers
-        * @return a vector containing all Cateringproviders objects
-        * precondition None.
-        * postcondition returns a vector of catering providers.
-        */
+    /**
+     * @brief Geeft alle cateringproviders terug.
+     * @return Vector van Cateringproviders-objecten.
+     */
     std::vector<Cateringproviders> get_catering() const;
 
-    /*
-    * This function adds a catering provider to the system
-    * @param catering the Cateringproviders object to be added
-    * precondition None.
-    * postcondition the catering provider is added to the list of catering providers.
-    */
+    /**
+     * @brief Voegt een cateringprovider toe.
+     * @param catering Het Cateringproviders-object.
+     */
     void set_catering(const Cateringproviders &catering);
 
-    friend bool operator==(const MeetingPlanner &lhs, const MeetingPlanner &rhs) {
-        return lhs.rooms == rhs.rooms
-               && lhs.meetings == rhs.meetings
-               && lhs.participations == rhs.participations
-               && lhs.occupied_rooms == rhs.occupied_rooms;
-
-    }
-
-
-
-
-    friend bool operator!=(const MeetingPlanner &lhs, const MeetingPlanner &rhs) {
-        return !(lhs == rhs);
-    }
-
-     /*
-    *This function writes an output to an .txt file
-    *@param None
-    *@return None
-    *precondition attributes of meetingplanner are not Empty
-    *postcondition output.txt file got created.
-    */
+    /**
+     * @brief Genereert een tekstueel rapport van de systeemstatus.
+     * @pre Kamers of meetings mogen niet leeg zijn.
+     * @post Een bestand 'output.txt' is aangemaakt met de rapportage.
+     */
     void simpleOutput();
 
-    /*
-    *This function writes an structure to an .dot file
-    *@param None
-    *@return None
-    *precondition attributes of meetingplanner are not Empty
-    *postcondition structure.dot file got created.
-    */
+    /**
+     * @brief Genereert een DOT-bestand voor visualisatie van de structuur.
+     * @pre De lijst met kamers mag niet leeg zijn.
+     * @post Een bestand 'structure.dot' is aangemaakt.
+     */
     void exportGraphviz();
 
-    /*
-    *This function processes meetings
-    *@param None
-    *@return None
-    *precondition attributes of meetingplanner are not Empty
-    *postcondition  Meetings are processesed.
-    */
+    /**
+     * @brief Verwerkt de geplande meetings en controleert op bezetting of renovaties.
+     * @pre Er moeten meetings aanwezig zijn om te verwerken.
+     * @post De status van meetings is bijgewerkt en cateringkosten zijn berekend.
+     */
     void processMeetings();
 
-
+    /**
+     * @brief Telt het aantal participanten voor een specifieke meeting.
+     * @param meeting_id De identifier van de meeting.
+     * @return Het aantal participanten als integer.
+     */
     int countParticipants(const std::string& meeting_id);
 
+    /**
+     * @brief Berekent de CO2-uitstoot van een meeting op basis van participanten.
+     * @param meeting Het Meeting-object.
+     * @return De totale CO2-uitstoot in gram.
+     * @pre Een online meeting mag geen catering hebben.
+     */
     double calculateCO2(const Meeting& meeting);
 
+    /**
+     * @brief Haalt de capaciteit op van de kamer geassocieerd met een meeting.
+     * @param meeting Het Meeting-object.
+     * @return De capaciteit van de kamer, of 0 als de kamer niet gevonden is.
+     */
     int meeting_capacity(const Meeting& meeting);
 
-    double totalCateringCost = 0.0;
+    double totalCateringCost = 0.0; ///< Houdt de totale kosten voor catering bij.
 };
-
-
 
 #endif
