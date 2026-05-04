@@ -6,8 +6,8 @@
  * Deze klasse stelt onze Meetingplanner voor.
  *
  * @authors Bruno Luango en Ibrahim Akiyev
- * @date 11/03/2026
- * @version 1.0
+ * @date 30/04/2026
+ * @version 2.0
  */
 
 // Include blok
