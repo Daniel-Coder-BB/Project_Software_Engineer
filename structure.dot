@@ -2,7 +2,11 @@ digraph G {
 
     rankdir=LR;
 
-    "Middelheim" -> "G-Blok";
-    "G-Blok" -> "R1";
+    "Campus_CDE" -> "Gebouw R";
+    "Gebouw R" -> "M.G.025";
+    "Gebouw R" -> "Room98732";
+    "Gebouw R" -> "Room_87984521";
+    "Gebouw R" -> "Room_101";
+    "Gebouw R" -> "Room_102";
 
 }
