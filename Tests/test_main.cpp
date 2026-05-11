@@ -16,7 +16,6 @@
 using namespace std;
 
 int main(int argc, char **argv) {
-    std::cout<<"starten van de testen in main..."<<std::endl;
     ::testing::InitGoogleTest(&argc, argv);
 
     return RUN_ALL_TESTS();

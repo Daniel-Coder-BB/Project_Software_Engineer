@@ -36,7 +36,9 @@ public:
     *@param the name you want to change it to
     *@return None
     *precondition name is not empty
+    *REQUIRE(!name.empty(), "Precondition failure: name cannot be empty")
     *postcondition the input name is equal to name of Buildings
+    *ENSURE(this->name == name, "Postcondition failure: name attribute not set correctly")
     */
     void set_name(const std::string &name);
 
@@ -54,7 +56,9 @@ public:
     *@param the identifier you want to change it to
     *@return None
     *precondition identifier is not empty
+    *REQUIRE(!identifier.empty(), "Precondition failure: identifier cannot be empty")
     *postcondition the input identifier is equal to identifier of Buuldings
+    *ENSURE(this->identifier == identifier, "Postcondition failure: identifier attribute not set correctly")
     */
     void set_identifier(const std::string &identifier);
 
@@ -72,7 +76,9 @@ public:
     *@param the campus you want to change it to
     *@return None
     *precondition campus is not empty
+    *REQUIRE(!campus.empty(), "Precondition failure: campus cannot be empty")
     *postcondition the input campus is equal to campus of Buuldings
+    *ENSURE(this->campus == campus, "Postcondition failure: campus attribute not set correctly")
     */
     void set_campus(const std::string &campus);
 };
