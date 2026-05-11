@@ -34,7 +34,9 @@ public:
      *@param None
      *@return the label of the Meeting object
      *precondition label is not empty
+     *REQUIRE(!label.empty(), "label is not empty")
      *postcondition returns this->label
+     *ENSURE(result == this->label, "returns this->label")
      */
     [[nodiscard]] std::string get_label() const;
 
@@ -43,7 +45,9 @@ public:
      *@param the label you want to change it to
      *@return None
      *precondition label is not empty
+     *REQUIRE(!label.empty(), "label is not empty")
      *postcondition the input label is equal to label attribute of Meeting object
+     *ENSURE(this->label == label, "label correctly set")
      */
     void set_label(const std::string &label);
 
@@ -52,7 +56,9 @@ public:
      *@param None
      *@return the identifier of the Meeting object
      *precondition identifier is not empty
+     *REQUIRE(!identifier.empty(), "identifier is not empty")
      *postcondition returns this->identifier
+     *ENSURE(result == this->identifier, "returns this->identifier"
      */
     [[nodiscard]] std::string get_identifier() const;
 
@@ -62,7 +68,9 @@ public:
    *@param the identifier you want to change it to
    *@return None
    *precondition identifier is not empty
+   *REQUIRE(!identifier.empty(), "identifier is not empty")
    *postcondition the input identifier is equal to identifier of Meeting object
+   *ENSURE(this->identifier == identifier, "identifier correctly set")
    */
     void set_identifier(const std::string &identifier);
 
@@ -71,7 +79,9 @@ public:
      *@param None
      *@return the room of the Meeting object
      *precondition room is not empty
+     *REQUIRE(online || !room.empty(), "room must be set if meeting is not online")
      *postcondition returns this->room
+     *ENSURE(result == this->room, "returns this->room")
      */
     [[nodiscard]] std::string get_room() const;
 
@@ -80,7 +90,9 @@ public:
     *@param the room you want to change it to
     *@return None
     *precondition room is not empty
+    *REQUIRE(!room.empty(), "room is not empty")
     *postcondition the input room is equal to room of Meeting object
+    *ENSURE(this->room == room, "room correctly set")
     */
     void set_room(const std::string &room);
 
@@ -89,7 +101,9 @@ public:
      *@param None
      *@return the date of the Meeting object
      *precondition date is not empty
+     *REQUIRE(!date.empty(), "date is not empty")
      *postcondition returns this->date
+     *ENSURE(result == this->date, "returns this->date")
      */
     [[nodiscard]] std::string get_date() const;
 
@@ -99,7 +113,9 @@ public:
     *@param the date you want to change it to
     *@return None
     *precondition date is not empty
+    *REQUIRE(!date.empty(), "date is not empty")
     *postcondition the input date is equal to date of Meeting object
+    *ENSURE(this->date == date, "date correctly set")
     */
     void set_date(const std::string &date);
 
@@ -110,6 +126,7 @@ public:
   *@return the hour of the Meeting object
   *precondition None
   *postcondition returns this->hour
+  *ENSURE(hour >= 0 && hour <= 23, "hour is within valid range")
   */
  [[nodiscard]] int get_hour() const;
 
@@ -118,7 +135,9 @@ public:
   *@param the hour you want to change it to
   *@return None
   *precondition hour must be between 0 and 23
+  *REQUIRE(hour >= 0 && hour <= 23, "hour must be between 0 and 23")
   *postcondition the input hour is equal to the hour of the Meeting object
+  *ENSURE(this->hour == hour, "hour correctly set")
   */
  void set_hour(int hour);
 
@@ -128,6 +147,7 @@ public:
   *@return the online status of the Meeting object
   *precondition None
   *postcondition returns this->online
+  *ENSURE(online == true || online == false, "online is a valid boolean")
   */
  [[nodiscard]] bool is_online() const;
 
@@ -137,6 +157,7 @@ public:
   *@return None
   *precondition None
   *postcondition the input online is equal to the online status of the Meeting object
+  *ENSURE(this->online == online, "online status correctly set")
   */
  void set_online(bool online);
 
@@ -146,6 +167,7 @@ public:
   *@return whether catering is provided for the Meeting object
   *precondition None
   *postcondition returns this->catering
+  *ENSURE(catering == true || catering == false, "catering is a valid boolean")
   */
  [[nodiscard]] bool is_catering() const;
 
@@ -155,6 +177,7 @@ public:
   *@return None
   *precondition None
   *postcondition the input catering is equal to the catering status of the Meeting object
+  *ENSURE(this->catering == catering, "catering status correctly set")
   */
  void set_catering(bool catering);
 
@@ -178,7 +201,9 @@ public:
     *@param None
     *@return None
     *precondition Meeting attributes are not empty
+    *REQUIRE(!label.empty() && !identifier.empty() && !room.empty() && !date.empty()
     *postcondition string with all the attributes gets shown
+    *ENSURE(!label.empty(), "label still intact after print")
     */
     void print();
 
@@ -188,6 +213,7 @@ public:
     *@return the co2 of the Meeting object
     *precondition None
     *postcondition returns this->co2
+    *ENSURE(co2_emission >= 0, "co2 emission is non-negative")
     */
     double get_co2() const;
 

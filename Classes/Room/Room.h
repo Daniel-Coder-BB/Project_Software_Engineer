@@ -33,7 +33,9 @@ public:
      *@param None
      *@return the name of the Room object
      *precondition name is not empty
+     *REQUIRE(!name.empty(), "name is not empty")
      *postcondition returns this->name
+     *ENSURE(result == this->name, "returns this->name")
      */
     string get_name() const;
     /*
@@ -41,7 +43,9 @@ public:
    *@param the name you want to change it to
    *@return None
    *precondition name is not empty
+   *REQUIRE(!name.empty(), "name is not empty")
    *postcondition the input name is equal to label name of Room object
+   *ENSURE(this->name == name, "the input name is equal to label name of Room object")
    */
     void set_name(const string &name);
     /*
@@ -49,7 +53,9 @@ public:
      *@param None
      *@return the identifier of the Room object
      *precondition identifier is not empty
+     *REQUIRE(!identifier.empty(), "identifier is not empty")
      *postcondition returns this->identifier
+     *ENSURE(result == this->identifier, "returns this->identifier")
      */
     string get_identifier() const;
     /*
@@ -57,7 +63,9 @@ public:
    *@param the identifier you want to change it to
    *@return None
    *precondition identifier is not empty
+   *REQUIRE(!identifier.empty(), "identifier is not empty")
    *postcondition the input identifier is equal to label identifier of Room object
+   *ENSURE(this->identifier == identifier, "the input identifier is equal to label identifier of Room object")
    */
     void set_identifier(const string &identifier);
     /*
@@ -65,7 +73,9 @@ public:
      *@param None
      *@return the capacity of the Room object
      *precondition capacity is not empty
+     *REQUIRE(capacity >= 0, "capacity is not empty")
      *postcondition returns this->capacity
+     *ENSURE(result == this->capacity, "returns this->capacity")
      */
      int get_capacity() const;
     /*
@@ -73,7 +83,9 @@ public:
    *@param the capacity you want to change it to
    *@return None
    *precondition capacity is bigger or equal to zero
+   *REQUIRE(capacity >= 0, "capacity is bigger or equal to zero")
    *postcondition the input capacity is equal to label capacity of Room object
+   *ENSURE(this->capacity == capacity, "the input capacity is equal to label capacity of Room object")
    */
     void set_capacity( int capacity);
 
@@ -91,6 +103,7 @@ public:
     *@param None
     *@return None
     *precondition Room attributes are not empty
+    *REQUIRE(!name.empty() && !identifier.empty() && capacity >= 0, "Room attributes are not empty")
     *postcondition string with all the attributes gets shown
     */
     void print();
@@ -145,7 +158,9 @@ public:
     *@param the co2_per_hour you get
     *@return None
     *precondition co2_per_hour is not empty
+    *REQUIRE(co2 >= 0, "CO2 moet positieve zijn")
     *postcondition the input campus is equal to building attribute of Room
+    *ENSURE(co2_per_hour == co2, "CO2 juist gezet")
     */
     void set_co2_per_hour(double co2);
 };

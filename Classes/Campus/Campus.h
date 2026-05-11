@@ -34,7 +34,9 @@ public:
     *@param the name you want to change it to
     *@return None
     *precondition name is not empty
+    *REQUIRE(!name.empty(), "Precondition failure: name cannot be empty")
     *postcondition the input name is equal to of Campus
+    *ENSURE(this->name == name, "Postcondition failure: name attribute not set correctly")
     */
  void set_name(const std::string &name);
 
@@ -52,7 +54,9 @@ public:
     *@param the identifier you want to change it to
     *@return None
     *precondition identifier is not empty
+    * REQUIRE(!identifier.empty(), "Precondition failure: identifier cannot be empty")
     *postcondition the input identifier is equal to identifier of Campus
+    *ENSURE(this->identifier == identifier, "Postcondition failure: identifier attribute not set correctly")
     */
  void set_identifier(const std::string &identifier);
 };

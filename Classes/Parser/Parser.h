@@ -32,7 +32,9 @@ public:
      *@param None
      *@return the filename of the Parser object
      *precondition filename is not empty
+     *REQUIRE(!filename.empty(), "Preconditie gefaald: filename mag niet leeg zijn")
      *postcondition returns this->filename
+     *ENSURE(result == filename, "Postconditie gefaald: de geretourneerde filename is niet gelijk aan de attribuutwaarde")
      */
     string get_filename() const;
 
@@ -41,7 +43,9 @@ public:
     *@param the filename you want to change it to
     *@return None
     *precondition filename is not empty
+    *REQUIRE(!filename.empty(), "Preconditie gefaald: nieuwe filename mag niet leeg zijn")
     *postcondition the input filename is equal to filename of Parser object
+    *ENSURE(this->filename == filename, "Postconditie gefaald: filename attribuut is niet correct aangepast")
     */
     void set_filename(const string &filename);
 
@@ -50,6 +54,7 @@ public:
     *@param None
     *@return document of type TiXmlElement
     *precondition filename is not empty
+    * REQUIRE(!filename.empty(), "Preconditie gefaald: filename mag niet leeg zijn")
     *postcondition You have a TiXmlDocument ready to be parsed
     */
     TiXmlDocument Xml_to_TiXmlDocument();
@@ -59,7 +64,9 @@ public:
     *@param document an TiXmlDocument wich you will load the content of a file
     *@return 0 for succes 1, 1 for failure.
     *precondition filename is not empty
+    *REQUIRE(!filename.empty(), "Preconditie gefaald: filename mag niet leeg zijn om file error check uit te voeren")
     *postcondition the content of the file has been loaded into doc
+    *ENSURE(result == 0 || result == 1, "Postconditie gefaald: resultaat moet 0 of 1 zijn")
     */
     int file_error_check(TiXmlDocument& doc);
 
@@ -78,6 +85,7 @@ public:
     *@return root, a TiXmlElement object
     *precondition No file error happened beforehand.
     *postcondition a root has been created wich you can extract info about the XML document
+    *ENSURE(root != NULL || true, "Postconditie: root is aangemaakt (indien aanwezig)")
     */
     TiXmlElement* make_root(TiXmlDocument& doc);
 
@@ -88,7 +96,10 @@ public:
     *@param planner, a Meetingplanner value wich represents the meetingplanner where you will put all the FirstChildElements of your Element.
     *@return None
     *precondition Elment is "MEETING","ROOM" or "PARTICIPATION"
+    *REQUIRE(elStr == "MEETING" || elStr == "ROOM" || elStr == "PARTICIPATION" || elStr == "CAMPUS" || elStr == "BUILDING" || elStr == "RENOVATION" || elStr == "CATERING",
+    *"Preconditie gefaald: Element moet MEETING, ROOM, PARTICIPATION,CAMPUS of BUILDING element zijn")
     *precondition root exists
+    *REQUIRE(root != NULL, "Preconditie gefaald: root moet bestaan")
     *postcondition the Meeting,room and Participation objects have succesfully been added to the planner
     */
     void run_trough_Element(const char* Element, TiXmlElement* root,  MeetingPlanner& planner);
@@ -98,6 +109,7 @@ public:
      *@param room_element an XML element with the ROOM tag
      *@return new_room a room of the type ROOM with all the details
      *precondition None
+     * REQUIRE(room_element != NULL, "Preconditie gefaald: room_element mag niet NULL zijn")
      *postcondition you get a Room object back
      */
     Room parse_room_element(TiXmlElement* room_element);
@@ -107,6 +119,7 @@ public:
      *@param meeting_element an XML element with the MEETING tag
      *@return new_meeting a meeting of the type MEETING with all the details
      *precondition None
+     *REQUIRE(meeting_element != NULL, "Preconditie gefaald: meeting_element mag niet NULL zijn")
      *postcondition you get a Meeting object
      */
     Meeting parse_meeting_element(TiXmlElement* meeting_element);
@@ -117,6 +130,7 @@ public:
     *@param participation_element an XML element with the PARTICIPATION tag
     *@return new_participation a participation of the type PARTICIPATION with all the details
     *preconditon None.
+    * REQUIRE(participation_element != NULL, "Preconditie gefaald: participation_element mag niet NULL zijn")
     *postcondition you get a Participation object.
     */
     Participation parse_participation_element(TiXmlElement* participation_element);
@@ -126,6 +140,7 @@ public:
 * @param campus_element an XML element with the CAMPUS tag
 * @return new_campus a campus of the type CAMPUS with all the details
 * precondition None.
+* REQUIRE(campus_element != NULL, "Preconditie gefaald: campus_element mag niet NULL zijn")
 * postcondition you get a Campus object.
 */
  Campus parse_campus_element(TiXmlElement* campus_element);
@@ -135,6 +150,7 @@ public:
     * @param building_element an XML element with the BUILDING tag
     * @return new_building a building of the type BUILDING with all the details
     * precondition None.
+    * REQUIRE(building_element != NULL, "Preconditie gefaald: building_element mag niet NULL zijn")
     * postcondition you get a Building object.
     */
  Buildings parse_building_element(TiXmlElement* building_element);
@@ -144,6 +160,7 @@ public:
     * @param renovation_element an XML element with the RENOVATION tag
     * @return new_renovation a renovation of the type RENOVATION with all the details
     * precondition None.
+    * REQUIRE(renovation_element != NULL, "Preconditie gefaald: renovation_element mag niet NULL zijn")
     * postcondition you get a Renovation object.
     */
 Renovations parse_renovation_element(TiXmlElement* renovation_element);
@@ -153,6 +170,7 @@ Renovations parse_renovation_element(TiXmlElement* renovation_element);
     * @param catering_element an XML element with the CATERING tag
     * @return new_catering a catering provider of the type Cateringproviders with all the details
     * precondition None.
+    * REQUIRE(catering_element != NULL, "Preconditie gefaald: catering_element mag niet NULL zijn")
     * postcondition you get a Cateringproviders object.
     */
  Cateringproviders parse_catering_element(TiXmlElement* catering_element);

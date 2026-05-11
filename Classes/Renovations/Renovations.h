@@ -28,6 +28,7 @@ public:
      *@return the room of the Renovations object
      *precondition room is not empty
      *postcondition returns this->room
+     *ENSURE(!this->room.empty(), "Postcondition failure: room is empty")
      */
  [[nodiscard]] string get_room() const;
 
@@ -37,7 +38,9 @@ public:
      *@param room the room you want to change it to
      *@return None
      *precondition room is not empty
+     * REQUIRE(!room.empty(), "Precondition failure: room cannot be empty")
      *postcondition the input room is equal to room attribute of Renovation object
+     *ENSURE(this->room == room, "Postcondition failure: room attribute not set correctly")
      */
  void set_room(const string &room);
      /*
@@ -54,7 +57,9 @@ public:
          *@param start the start you want to change it to
          *@return None
          *precondition start is not empty
+         * REQUIRE(!start.empty(), "Precondition failure: start time cannot be empty")
          *postcondition the input start is equal to start attribute of Meeting object
+         *ENSURE(this->start == start, "Postcondition failure: start attribute not set correctly")
          */
  void set_start(const string &start);
 
@@ -73,7 +78,9 @@ public:
      *@param end the end you want to change it to
      *@return None
      *precondition end is not empty
+     * REQUIRE(!end.empty(), "Precondition failure: end time cannot be empty")
      *postcondition the input end is equal to end attribute of Renovations object
+     *ENSURE(this->end == end, "Postcondition failure: end attribute not set correctly")
      */
  void set_end(const string &end);
 };

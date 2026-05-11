@@ -34,7 +34,9 @@ public:
      *@param campus the campus you want to change it to
      *@return None
      *precondition campus is not empty
+     *REQUIRE(!campus.empty(), "Precondition failure: campus cannot be empty")
      *postcondition the input campus is equal to campus attribute of Cateringproviders object
+     * ENSURE(this->Campus == campus, "Postcondition failure: campus not set correctly")
      */
  void set_campus(const string &campus);
 
@@ -53,7 +55,9 @@ public:
      *@return None
      *precondition co2 is not empty
      *precondition co2 is bigger then 0
+     *REQUIRE(co2 > 0.0, "Precondition failure: Value must be greater then zero")
      *postcondition the input co2 is equal to co2 attribute of Cateringprovider object
+     *ENSURE(this->co2 == co2, "Postcondition failure: co2 attribute not set correctly")
      */
  void set_co2(float co2);
 };

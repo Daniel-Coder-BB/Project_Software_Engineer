@@ -29,7 +29,9 @@ public:
      *@param None
      *@return the user of the Participation object
      *precondition user is not empty
+     *REQUIRE(!user.empty(), "user is not empty")
      *postcondition returns this->user
+     * ENSURE(result == this->user, "returns this->user")
      */
     string get_user() const;
 
@@ -38,7 +40,9 @@ public:
     *@param the user you want to change it to
     *@return None
     *precondition user is not empty
+    *REQUIRE(!user.empty(), "user is not empty")
     *postcondition the input user is equal to user of Participation object
+    *ENSURE(this->user == user, "the input user is equal to label user of Participation object")
     */
     void set_user(const string &user);
 
@@ -47,7 +51,9 @@ public:
      *@param None
      *@return the meeting of the Participation object
      *precondition meeting is not empty
+     *REQUIRE(!meeting.empty(), "meeting is not empty")
      *postcondition returns this->meeting
+     *ENSURE(result == this->meeting, "returns this->meeting")
      */
     string get_meeting() const;
 
@@ -56,7 +62,9 @@ public:
     *@param the meeting you want to change it to
     *@return None
     *precondition meeting is not empty
+    *REQUIRE(!meeting.empty(), "meeting is not empty")
     *postcondition the input meeting is equal to meeting of Participation object
+    *ENSURE(this->meeting == meeting, "the input meeting is equal to label meeting of Participation object")
     */
     void set_meeting(const string &meeting);
 
@@ -73,6 +81,7 @@ public:
     *@param None
     *@return None
     *precondition Participation attributes are not empty
+    * REQUIRE(!user.empty() && !meeting.empty(), "Participation attributes are not empty")
     *postcondition string with all the attributes gets shown
     */
     void print();
