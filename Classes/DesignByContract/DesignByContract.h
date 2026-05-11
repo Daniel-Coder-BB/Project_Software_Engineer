@@ -32,7 +32,6 @@ static inline void contract_fail(
             msg ? msg : "(none)",
             file,
             line);
-    cout<<"tussentijdse cout"<<endl;
 
     abort();
 }

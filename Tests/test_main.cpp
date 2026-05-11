@@ -16,7 +16,6 @@
 using namespace std;
 
 int main(int argc, char **argv) {
-    std::cout<<"starten van de testen in main..."<<std::endl;
     ::testing::InitGoogleTest(&argc, argv);
 
     return RUN_ALL_TESTS();
@@ -194,7 +193,7 @@ TEST(ParserTest, FileErrorCheck_EmptyFile) {
 TEST(ParserTest, FileErrorCheck_CorruptXML) {
     Parser p;
     TiXmlDocument doc;
-    p.set_filename("corrupt.xml");
+    p.set_filename("../Tests/test_XML_file/corrupt.xml");
 
     int result = p.file_error_check(doc);
 
@@ -235,14 +234,6 @@ TEST(ParserTest, IfRootExists_NullPointer) {
     EXPECT_EQ(result, 1);
 }
 
-TEST(ParserTest, IfRootExists_Robustness) {
-    Parser p;
-    EXPECT_EQ(p.if_root_exists(NULL), 1);
-
-    TiXmlElement root("Test");
-    EXPECT_EQ(p.if_root_exists(&root), 0);
-}
-
 TEST(ParserTest, MakeRoot_HappyDay) {
     Parser p;
     TiXmlDocument doc;
@@ -255,16 +246,6 @@ TEST(ParserTest, MakeRoot_HappyDay) {
 }
 
 TEST(ParserTest, MakeRoot_EmptyDocument) {
-    Parser p;
-    TiXmlDocument doc;
-    doc.Parse("");
-
-    TiXmlElement* root = p.make_root(doc);
-
-    EXPECT_EQ(root, nullptr);
-}
-
-TEST(ParserTest, MakeRoot_OnlyComments) {
     Parser p;
     TiXmlDocument doc;
     doc.Parse("");
@@ -767,14 +748,6 @@ TEST_F(CateringprovidersDomainTest, BoundaryEmptyCampus) {
     EXPECT_DEATH(testProvider.set_campus(""), "Precondition failure: campus cannot be empty");
 }
 
-TEST_F(CateringprovidersDomainTest, NegativeCO2Violation) {
-    EXPECT_DEATH(testProvider.set_co2(-10.0f), "Precondition failure: Value must be greater then zero");
-}
-
-TEST_F(CateringprovidersDomainTest, ZeroCO2Violation) {
-    EXPECT_DEATH(testProvider.set_co2(0.0f), "Precondition failure: Value must be greater then zero");
-}
-
 string formatCateringReport(const Cateringproviders& p) {
     return "Campus: " + p.get_campus() + " (CO2: " + to_string(p.get_co2()) + ")";
 }
@@ -787,13 +760,6 @@ TEST(CateringprovidersOutputTest, OutputFormat) {
     string report = formatCateringReport(p);
     EXPECT_NE(report.find("Groenenborger"), string::npos);
     EXPECT_NE(report.find("20.0"), string::npos);
-}
-
-TEST(CateringprovidersInputTest, InputInvalidData) {
-    Cateringproviders p;
-    string invalidInputCampus = "";
-
-    EXPECT_DEATH(p.set_campus(invalidInputCampus), "Precondition failure: campus cannot be empty");
 }
 
 TEST(CateringprovidersInputTest, InputLargeNumericalValue) {

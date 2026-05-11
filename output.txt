@@ -2,85 +2,24 @@
 
 --== Meetings ==--
 
-[Meeting Meeting_478463]
-- Time: 2026-05-22, 12h
-- Location: Room98732
-- Participants: 2/10
-- Online: No
-- CO2 emitted: 240g
-- Catering: No
-
-[Meeting Meeting_555001]
-- Time: 2026-06-01, 12h
-- Location: Room_101
-- Participants: 2/40
-- Online: No
-- CO2 emitted: 240g
-- Catering: Yes
-
-[Meeting Meeting_555002]
-- Time: 2026-06-03, 12h
-- Location: M.G.025
-- Participants: 1/55
-- Online: No
-- CO2 emitted: 120g
-- Catering: No
-
-[Meeting Meeting_555003]
-- Time: 2026-07-03, 12h
-- Location: ONLINE
-- Participants: 0/0
-- Online: Yes
-- CO2 emitted: 0g
-- Catering: No
-
 --== Rooms ==--
 
-[Room M.G.025]
-- Name: M.G.025
-- Capacity: 55
-- Campus: Campus_GR
-- Building: CDE_G
-
-[Room Room98732]
-- Name: M.G.023
+[Room G1]
+- Name: G-Gebouw
 - Capacity: 10
-- Campus: Campus_GR
-- Building: CDE_G
-
-[Room Room_87984521]
-- Name: R.014
-- Capacity: 25
-- Campus: Campus_CDE
-- Building: CDE_R
-
-[Room Room_101]
-- Name: S.101
-- Capacity: 40
-- Campus: Campus_CDE
-- Building: CDE_S
-
-[Room Room_102]
-- Name: S.102
-- Capacity: 15
-- Campus: Campus_CDE
-- Building: CDE_S
+- Campus: 
+- Building: 
 
 --== CO2 summary ==--
 
-- Total CO2 emitted: 600g
-- Average CO2: 150g
+- Total CO2 emitted: 0g
 
 --== Catering ==--
 
-[Meeting Meeting_555001]
-- Time: 2026-06-01 12h
-- Location: Room_101
-- Participants: 2
-- Cost: €21.18
+No catering services required.
 
 --== Catering Summary ==--
 
-- Total catering cost: €21.18
+- Total catering cost: €0
 
 ==== [END OF REPORT] ====
