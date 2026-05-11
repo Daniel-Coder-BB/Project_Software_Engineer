@@ -14,7 +14,6 @@
 #include "Classes/Meeting/Meeting.h"
 #include <gtest/gtest.h>
 #include <chrono>
-#include "Classes/Meeting/Meeting.h"
 #include "Classes/Meetingplanner/Meetingplanner.h"
 #include "Classes/Participation/Participation.h"
 #include "Classes/Parser/Parser.h"

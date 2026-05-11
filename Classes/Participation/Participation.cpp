@@ -4,68 +4,95 @@
  *
  * @authors Bruno Luango en Ibrahim Akiyev
  * @date 11/03/2026
- * @version 1.0
+ * @version 2.0
  */
 
-// Include blok
 #include "Participation.h"
 #include "Classes/DesignByContract/DesignByContract.h"
 
 //Getters
 
-string Participation::get_user() const {
-    // precondition user is not empty
+std::string Participation::get_user() const {
+
     REQUIRE(!user.empty(), "user is not empty");
 
-    string result = user;
+    std::string result = user;
 
-    // postcondition returns this->user
-    ENSURE(result == this->user, "returns this->user");
+    ENSURE(result == this->user,
+           "returns this->user");
+
     return result;
 }
 
-string Participation::get_meeting() const {
-    // precondition meeting is not empty
-    REQUIRE(!meeting.empty(), "meeting is not empty");
+std::string Participation::get_meeting() const {
 
-    string result = meeting;
+    REQUIRE(!meeting.empty(),
+            "meeting is not empty");
 
-    // postcondition returns this->meeting
-    ENSURE(result == this->meeting, "returns this->meeting");
+    std::string result = meeting;
+
+    ENSURE(result == this->meeting,
+           "returns this->meeting");
+
     return result;
 }
 
 //Setters
 
-void Participation::set_user(const string &user) {
-    // precondition user is not empty
-    REQUIRE(!user.empty(), "user is not empty");
+void Participation::set_user(const std::string &user) {
+
+    REQUIRE(!user.empty(),
+            "user is not empty");
 
     this->user = user;
 
-    // postcondition the input user is equal to label user of Participation object
-    ENSURE(this->user == user, "the input user is equal to label user of Participation object");
+    ENSURE(this->user == user,
+           "the input user is equal to label user of Participation object");
 }
 
-void Participation::set_meeting(const string &meeting) {
-    // precondition meeting is not empty
-    REQUIRE(!meeting.empty(), "meeting is not empty");
+void Participation::set_meeting(const std::string &meeting) {
+
+    REQUIRE(!meeting.empty(),
+            "meeting is not empty");
 
     this->meeting = meeting;
 
-    // postcondition the input meeting is equal to label meeting of Participation object
-    ENSURE(this->meeting == meeting, "the input meeting is equal to label meeting of Participation object");
+    ENSURE(this->meeting == meeting,
+           "the input meeting is equal to label meeting of Participation object");
+}
+
+
+int Participation::countParticipants(
+        const std::vector<Participation>& participations,
+        const std::string& meeting_id) {
+
+    REQUIRE(!meeting_id.empty(),
+            "meeting id is not empty");
+
+    int count = 0;
+
+    for (const Participation& p : participations) {
+
+        if (p.get_meeting() == meeting_id) {
+            count++;
+        }
+    }
+
+    ENSURE(count >= 0,
+           "participant count is non-negative");
+
+    return count;
 }
 
 //Overige functies
 
 void Participation::print() {
-    // precondition Meeting attributes are not empty (overgenomen van vergelijkbare klassen)
-    REQUIRE(!user.empty() && !meeting.empty(), "Participation attributes are not empty");
+
+    REQUIRE(!user.empty() && !meeting.empty(),
+            "Participation attributes are not empty");
 
     std::cout << "PARTICIPATION: " << std::endl;
+
     std::cout << "User: " << user;
     std::cout << " | Meeting: " << meeting << std::endl;
-
-    // postcondition string with all the attributes gets shown
 }
