@@ -1,0 +1,38 @@
+====  [SYSTEM STATUS]  ====
+
+--== Meetings ==--
+
+[Meeting M1]
+- Time: 2026-05-15, 10h
+- Location: R1
+- Participants: 2/20
+- Online: No
+- CO2 emitted: 240g
+- Catering: Yes
+
+--== Rooms ==--
+
+[Room R1]
+- Name: Room1
+- Capacity: 20
+- Campus: CMI
+- Building: G.1
+
+--== CO2 summary ==--
+
+- Total CO2 emitted: 240g
+- Average CO2: 240g
+
+--== Catering ==--
+
+[Meeting M1]
+- Time: 2026-05-15 10h
+- Location: R1
+- Participants: 2
+- Cost: €21.18
+
+--== Catering Summary ==--
+
+- Total catering cost: €21.18
+
+==== [END OF REPORT] ====

@@ -1,0 +1,42 @@
+====  [SYSTEM STATUS]  ====
+
+--== Meetings ==--
+
+[Meeting M_ZERO]
+- Time: 2026-05-11, 12h
+- Location: R1
+- Participants: 0/50000
+- Online: No
+- CO2 emitted: 0g
+- Catering: No
+
+[Meeting M_MANY]
+- Time: 2026-05-11, 12h
+- Location: R1
+- Participants: 1000/50000
+- Online: No
+- CO2 emitted: 120000g
+- Catering: No
+
+--== Rooms ==--
+
+[Room R1]
+- Name: Groot Lokaal
+- Capacity: 50000
+- Campus: Mid
+- Building: M
+
+--== CO2 summary ==--
+
+- Total CO2 emitted: 120000g
+- Average CO2: 60000g
+
+--== Catering ==--
+
+No catering services required.
+
+--== Catering Summary ==--
+
+- Total catering cost: €0
+
+==== [END OF REPORT] ====

@@ -22,7 +22,7 @@ class Room {
 private:
     string name;
     string identifier;
-    int capacity = -1;
+    int capacity = 0;
     string campus;
     string building;
     double co2_per_hour;

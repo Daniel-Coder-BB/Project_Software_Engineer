@@ -1,0 +1,28 @@
+====  [SYSTEM STATUS]  ====
+
+--== Meetings ==--
+
+[Meeting M1]
+- Time: 2026-06-14, 12h
+- Location: ONLINE
+- Participants: 0/0
+- Online: Yes
+- CO2 emitted: 0g
+- Catering: No
+
+--== Rooms ==--
+
+--== CO2 summary ==--
+
+- Total CO2 emitted: 0g
+- Average CO2: 0g
+
+--== Catering ==--
+
+No catering services required.
+
+--== Catering Summary ==--
+
+- Total catering cost: €0
+
+==== [END OF REPORT] ====

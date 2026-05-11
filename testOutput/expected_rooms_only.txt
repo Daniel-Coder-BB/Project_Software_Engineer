@@ -1,0 +1,25 @@
+====  [SYSTEM STATUS]  ====
+
+--== Meetings ==--
+
+--== Rooms ==--
+
+[Room R1]
+- Name: Room1
+- Capacity: 20
+- Campus: Middelheim
+- Building: M
+
+--== CO2 summary ==--
+
+- Total CO2 emitted: 0g
+
+--== Catering ==--
+
+No catering services required.
+
+--== Catering Summary ==--
+
+- Total catering cost: €0
+
+==== [END OF REPORT] ====

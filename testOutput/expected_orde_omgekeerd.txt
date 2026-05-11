@@ -1,0 +1,31 @@
+====  [SYSTEM STATUS]  ====
+
+--== Meetings ==--
+
+--== Rooms ==--
+
+[Room R2]
+- Name: Room 2
+- Capacity: 0
+- Campus: Mid
+- Building: M
+
+[Room R1]
+- Name: Room 1
+- Capacity: 0
+- Campus: Mid
+- Building: M
+
+--== CO2 summary ==--
+
+- Total CO2 emitted: 0g
+
+--== Catering ==--
+
+No catering services required.
+
+--== Catering Summary ==--
+
+- Total catering cost: €0
+
+==== [END OF REPORT] ====

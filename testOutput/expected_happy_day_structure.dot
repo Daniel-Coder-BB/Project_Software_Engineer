@@ -1,0 +1,16 @@
+digraph G {
+
+    rankdir=LR;
+
+    // --- NODE LABELS ---
+    "CMI" [label="Middelheim"];
+    "G.1" [label="G-Blok"];
+    "R1" [label="Room1"];
+    "M1" [label="Sync"];
+
+    // --- EDGES (CONNECTIONS) ---
+    "CMI" -> "G.1";
+    "G.1" -> "R1";
+    "R1" -> "M1";
+
+}
