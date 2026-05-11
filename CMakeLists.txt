@@ -26,10 +26,11 @@ set(SHARED_SOURCES
         tinyxml_2_6_2/tinyxml/tinyxmlerror.cpp
         tinyxml_2_6_2/tinyxml/tinystr.cpp
         Classes/Room/Room.cpp
-        Classes/Meeting/Meeting.cpp
-        Classes/Participation/Participation.cpp
-        Classes/Meetingplanner/Meetingplanner.cpp
         Classes/Parser/Parser.cpp
+        Classes/Meeting/Meeting.cpp
+        Classes/Meetingplanner/Meetingplanner.cpp
+        Classes/Participation/Participation.cpp
+
 )
 
 # 4. TARGET 1: Je echte applicatie (Planning System)
@@ -40,7 +41,7 @@ set(SHARED_SOURCES
         Classes/Renovations/Renovations.cpp
         Classes/Campus/Campus.cpp
 
-)
+ )
 target_link_libraries(planning_system pthread)
 
 # 5. TARGET 2: Je Google Tests

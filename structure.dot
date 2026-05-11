@@ -16,7 +16,6 @@ digraph G {
     "Meeting_478463" [label="Weekly meeting"];
     "Meeting_555001" [label="Project kickoff"];
     "Meeting_555002" [label="Research discussion"];
-    "Meeting_555003" [label="Research online"];
 
     // --- EDGES (CONNECTIONS) ---
     "Campus_CDE" -> "CDE_R";
@@ -30,6 +29,5 @@ digraph G {
     "Room98732" -> "Meeting_478463";
     "Room_101" -> "Meeting_555001";
     "M.G.025" -> "Meeting_555002";
-    "ONLINE" -> "Meeting_555003";
 
 }

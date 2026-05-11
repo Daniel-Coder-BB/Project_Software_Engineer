@@ -26,14 +26,6 @@
 - CO2 emitted: 120g
 - Catering: No
 
-[Meeting Meeting_555003]
-- Time: 2026-07-03, 12h
-- Location: ONLINE
-- Participants: 0/0
-- Online: Yes
-- CO2 emitted: 0g
-- Catering: No
-
 --== Rooms ==--
 
 [Room M.G.025]
@@ -69,7 +61,7 @@
 --== CO2 summary ==--
 
 - Total CO2 emitted: 600g
-- Average CO2: 150g
+- Average CO2: 200g
 
 --== Catering ==--
 
