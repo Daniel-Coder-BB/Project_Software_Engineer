@@ -27,7 +27,7 @@ set(SHARED_SOURCES
         tinyxml_2_6_2/tinyxml/tinystr.cpp
         Classes/Room/Room.cpp
         Classes/Parser/Parser.cpp
-        Classes/Meeting/Meeting.cpp
+        Classes/Meetinggit/Meeting.cpp
         Classes/Meetingplanner/Meetingplanner.cpp
         Classes/Participation/Participation.cpp
 
