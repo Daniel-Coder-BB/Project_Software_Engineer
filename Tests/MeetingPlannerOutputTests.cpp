@@ -164,15 +164,7 @@ TEST_F(MeetingPlannerOutputTest, Bereik_NulParticipanten_Vs_Massaal) {
 // ==========================================
 // 5. FOUTEN & EXCEPTIONS (Precondities)
 // ==========================================
-TEST_F(MeetingPlannerOutputTest, Fouten_OnlineMeetingMetCatering_InOutput) {
-    // Zet een illegale status op (online + catering)
-    Room r; r.set_identifier("R1"); r.set_name("Kamer"); planner.addRoom(r);
-    Meeting m; m.set_identifier("M_ILLEGAAL"); m.set_online(true); m.set_catering(true);
-    planner.addMeeting(m);
 
-    // simpleOutput iterereert over meetings. Wanneer hij bij catering aankomt, hoort hij te crashen.
-    EXPECT_DEATH(planner.simpleOutput(), "Online meetings cannot have catering");
-}
 
 TEST_F(MeetingPlannerOutputTest, Fouten_GraphvizLegeKamers) {
     // exportGraphviz vereist minstens 1 kamer

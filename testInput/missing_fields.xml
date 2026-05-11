@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SYSTEM>
+    <ROOM>
+        <NAME></NAME>
+        <IDENTIFIER>R_MISSING</IDENTIFIER>
+    </ROOM>
+    <PARTICIPATION>
+        <USER>Bob</USER>
+    </PARTICIPATION>
+</SYSTEM>

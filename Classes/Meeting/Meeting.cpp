@@ -146,7 +146,7 @@ void Meeting::set_online(bool online) {
 }
 
 void Meeting::set_catering(bool catering) {
-
+    REQUIRE(!this->is_online(), "Online meetings cannot have catering");
     this->catering = catering;
 
     ENSURE(this->catering == catering,

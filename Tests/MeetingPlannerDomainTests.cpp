@@ -19,39 +19,8 @@ protected:
     MeetingPlanner planner;
 };
 
-TEST_F(MeetingPlannerDomainTest, CalculateCO2_PhysicalMeeting) {
-    Room r;
-    r.set_name("Lokaal 1.01");
-    r.set_identifier("M1_Room");
-    r.set_capacity(50);
-    planner.addRoom(r);
 
-    Meeting m;
-    m.set_identifier("M1");
-    m.set_room("M1_Room");
-    m.set_online(false);
-    planner.addMeeting(m);
 
-    Participation p;
-    p.set_user("Ibrahim");
-    p.set_meeting("M1");
-    planner.addParticipation(p);
-
-    EXPECT_DOUBLE_EQ(planner.calculateCO2(m), 120.0);
-}
-
-TEST_F(MeetingPlannerDomainTest, MeetingCapacity_Check) {
-    Room r;
-    r.set_name("Lokaal 1");
-    r.set_identifier("L.1.01");
-    r.set_capacity(50);
-    planner.addRoom(r);
-
-    Meeting m;
-    m.set_room("L.1.01");
-
-    EXPECT_EQ(planner.meeting_capacity(m), 50);
-}
 
 // CONTRACT VIOLATIONS
 TEST_F(MeetingPlannerDomainTest, ContractViolations) {

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SYSTEM>
+    <ROOM>
+        <NAME>FoutTypeLokaal</NAME>
+        <IDENTIFIER>R_ERROR</IDENTIFIER>
+        <CAPACITY>tekst_ipv_getal</CAPACITY>
+    </ROOM>
+    <CATERING>
+        <CAMPUS>CMI</CAMPUS>
+        <CO2>-10.5</CO2>
+    </CATERING>
+</SYSTEM>

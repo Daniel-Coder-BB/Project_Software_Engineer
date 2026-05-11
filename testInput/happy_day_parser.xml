@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SYSTEM>
+    <CAMPUS>
+        <NAME>Middelheim</NAME>
+        <IDENTIFIER>CMI</IDENTIFIER>
+    </CAMPUS>
+    <BUILDING>
+        <NAME>G-Blok</NAME>
+        <IDENTIFIER>G.1</IDENTIFIER>
+        <CAMPUS>CMI</CAMPUS>
+    </BUILDING>
+    <ROOM>
+        <NAME>Aula 1</NAME>
+        <IDENTIFIER>R1</IDENTIFIER>
+        <CAPACITY>20</CAPACITY>
+        <CAMPUS>CMI</CAMPUS>
+        <BUILDING>G.1</BUILDING>
+    </ROOM>
+    <MEETING>
+        <LABEL>Sync</LABEL>
+        <IDENTIFIER>M1</IDENTIFIER>
+        <ROOM>R1</ROOM>
+        <DATE>2026-05-15</DATE>
+        <CATERING>Yes</CATERING>
+    </MEETING>
+    <PARTICIPATION>
+        <USER>Alice</USER>
+        <MEETING>M1</MEETING>
+    </PARTICIPATION>
+</SYSTEM>
