@@ -3,31 +3,11 @@ digraph G {
     rankdir=LR;
 
     // --- NODE LABELS ---
-    "Campus_CDE" [label="Campus Drie Eiken"];
-    "Campus_GR" [label="Campus Groenenborger"];
-    "CDE_R" [label="Gebouw R"];
-    "CDE_G" [label="Gebouw G"];
-    "CDE_S" [label="Gebouw S"];
-    "M.G.025" [label="M.G.025"];
-    "Room98732" [label="M.G.023"];
-    "Room_87984521" [label="R.014"];
-    "Room_101" [label="S.101"];
-    "Room_102" [label="S.102"];
-    "Meeting_478463" [label="Weekly meeting"];
-    "Meeting_555001" [label="Project kickoff"];
-    "Meeting_555002" [label="Research discussion"];
+    "G.1" [label="G-Blok"];
+    "R1" [label="Room1"];
 
     // --- EDGES (CONNECTIONS) ---
-    "Campus_CDE" -> "CDE_R";
-    "Campus_GR" -> "CDE_G";
-    "Campus_CDE" -> "CDE_S";
-    "CDE_G" -> "M.G.025";
-    "CDE_G" -> "Room98732";
-    "CDE_R" -> "Room_87984521";
-    "CDE_S" -> "Room_101";
-    "CDE_S" -> "Room_102";
-    "Room98732" -> "Meeting_478463";
-    "Room_101" -> "Meeting_555001";
-    "M.G.025" -> "Meeting_555002";
+    "Middelheim" -> "G.1";
+    "" -> "R1";
 
 }
